@@ -39,7 +39,4 @@ public class CourseTest {
 		assertEquals((Double) 3.0, model.getAveGrade());
 	}
 	
-	
-	
-	
 }
