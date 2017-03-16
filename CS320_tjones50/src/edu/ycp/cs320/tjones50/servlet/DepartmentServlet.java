@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.tjones50.controller.DepartmentController;
 import edu.ycp.cs320.tjones50.model.Course;
+import edu.ycp.cs320.tjones50.model.Data;
 import edu.ycp.cs320.tjones50.model.Department;
+import edu.ycp.cs320.tjones50.model.Home;
 
 public class DepartmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -17,22 +19,25 @@ public class DepartmentServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		Data data = new Data();
+		data.populate();
 		Department model = new Department();
 		DepartmentController controller = new DepartmentController();
 		controller.setModel(model);
 		
 		String departmentName = req.getParameter("departmentName");
+		
 		model.setName(departmentName);
-		Course course1 = new Course();
-		course1.setName("101");
-		model.addCourse(course1);
-		Course course2 = new Course();
-		course2.setName("201");
-		model.addCourse(course2);
-		Course course3 = new Course();
-		course3.setName("320");
-		model.addCourse(course3);
+		model.setCourses(data.getDept(departmentName).getCourses());
+//		Course course1 = new Course();
+//		course1.setName("101");
+//		model.addCourse(course1);
+//		Course course2 = new Course();
+//		course2.setName("201");
+//		model.addCourse(course2);
+//		Course course3 = new Course();
+//		course3.setName("320");
+//		model.addCourse(course3);
 		
 		
 		// Pass model to jsp
