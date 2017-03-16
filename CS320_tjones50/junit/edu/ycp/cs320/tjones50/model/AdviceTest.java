@@ -15,8 +15,8 @@ public class AdviceTest {
 	
 	@Test
 	public void TestAdviceApproved() {
-		model.adviceApproved(false);
-		assertEquals(false, model.getAdviceApproved());
+		model.setApproved(false);
+		assertEquals(false, model.getApproved());
 	}
 	
 	@Test

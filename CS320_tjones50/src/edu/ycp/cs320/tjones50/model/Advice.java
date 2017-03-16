@@ -1,13 +1,13 @@
 package edu.ycp.cs320.tjones50.model;
 
 public class Advice{
-	private boolean approved;
+	private boolean approved = false;
 	private Rating adviceRating;
 	private int userClassYear;
 	private String userMajor;
 	private Double userGPA;
 	private Double gradeRecieved;
-	private int flag;
+	private int flags = 0;
 	private String semester;
 	private int classYear;
 	
@@ -15,11 +15,21 @@ public class Advice{
 		
 	}
 	
-	public void adviceApproved(boolean approved){
+	public Advice(Rating adviceRating, int userClassYear, String userMajor, Double userGPA, Double gradeRecieved, String semester, int classYear){
+		this.adviceRating = adviceRating;
+		this.userClassYear = userClassYear;
+		this.userMajor = userMajor;
+		this.userGPA = userGPA;
+		this.gradeRecieved = gradeRecieved;
+		this.semester = semester;
+		this.classYear = classYear;
+	}
+	
+	public void setApproved(boolean approved){
 		this.approved = approved;
 	}
 	
-	public boolean getAdviceApproved(){
+	public boolean getApproved(){
 		return this.approved;
 	}
 	
@@ -64,11 +74,11 @@ public class Advice{
 	}
 	
 	public void setFlags(int flag){
-		this.flag = flag;
+		this.flags = flag;
 	}
 	
 	public int getFlags(){
-		return this.flag;
+		return this.flags;
 	}
 	
 	public void setSemester(String semester){

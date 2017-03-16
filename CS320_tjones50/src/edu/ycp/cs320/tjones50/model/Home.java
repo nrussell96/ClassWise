@@ -19,6 +19,7 @@ public class Home {
 		this.departments.add(department);
 	}
 	public Department getDepartment(){
+		// change to counter
 		Department returnDepartment =  this.departments.get(0);
 		removeDepartment(returnDepartment);
 		return returnDepartment;

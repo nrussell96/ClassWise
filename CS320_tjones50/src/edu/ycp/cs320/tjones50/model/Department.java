@@ -28,9 +28,11 @@ public class Department {
 	}
 	
 	public void addCourse(Course course){
+		course.setDepartment(this);
 		this.courses.add(course);
 	}
 	public Course getCourse(){
+		// redo, add counter that iterates through arraylist
 		Course returnCourse =  this.courses.get(0);
 		removeCourse(returnCourse);
 		return returnCourse;
