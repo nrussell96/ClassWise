@@ -11,23 +11,23 @@
 	<body>
 		
 		<h1>
-			Here is the Advice for ${game.department.name} ${game.name}!
+			Here is the Advice for ${course.department.name} ${course.name}!
 		</h1>	
 		
 		<div>
-			Average grade for the class was ${game.aveGrade}
+			Average grade for the class was ${course.aveGrade}
 		</div>
 		
 		<br>
 		
 		<div>
-			Average difficulty was ${game.aveRatings.difficulty}
+			Average difficulty was ${course.aveRatings.difficulty}
 			<br>
-			Average instruction quality was ${game.aveRatings.instruction}
+			Average instruction quality was ${course.aveRatings.instruction}
 			<br>
-			Average cost of supplies was ${game.aveRatings.suppliesCost}
+			Average cost of supplies was ${course.aveRatings.suppliesCost}
 			<br>
-			Average enjoyment was ${game.aveRatings.enjoyment}
+			Average enjoyment was ${course.aveRatings.enjoyment}
 		</div>
 		
 		<br>
@@ -36,7 +36,7 @@
 		<h2>
 			Advice
 		</h2>
-			<c:forEach items="${game.arrAdvice}" var="advice">
+			<c:forEach items="${course.arrAdvice}" var="advice">
     			<tr>      
        				<td>
        				<c:if test="${advice.approved}">

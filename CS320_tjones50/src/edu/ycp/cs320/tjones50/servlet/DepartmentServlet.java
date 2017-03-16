@@ -29,19 +29,9 @@ public class DepartmentServlet extends HttpServlet {
 		
 		model.setName(departmentName);
 		model.setCourses(data.getDept(departmentName).getCourses());
-//		Course course1 = new Course();
-//		course1.setName("101");
-//		model.addCourse(course1);
-//		Course course2 = new Course();
-//		course2.setName("201");
-//		model.addCourse(course2);
-//		Course course3 = new Course();
-//		course3.setName("320");
-//		model.addCourse(course3);
-		
 		
 		// Pass model to jsp
-		req.setAttribute("game", model);
+		req.setAttribute("department", model);
 		
 		req.getRequestDispatcher("/_view/department.jsp").forward(req, resp);
 	}

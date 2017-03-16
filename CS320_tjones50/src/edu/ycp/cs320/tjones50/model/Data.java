@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Data {
 	
 private Department dept;
-//private ArrayList<Course> courses;
 private Course course;
 private ArrayList<Department> depts;
 

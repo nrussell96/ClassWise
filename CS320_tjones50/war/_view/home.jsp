@@ -18,7 +18,7 @@
 		
 		<br>
 		
-		<c:forEach items="${game.departments}" var="department">
+		<c:forEach items="${home.departments}" var="department">
     			<tr>      
        				<td>
        				

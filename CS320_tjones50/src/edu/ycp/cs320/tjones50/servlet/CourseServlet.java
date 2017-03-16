@@ -52,7 +52,7 @@ public class CourseServlet extends HttpServlet {
 		
 		
 		// Pass model to jsp
-		req.setAttribute("game", model);
+		req.setAttribute("course", model);
 		
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
@@ -66,7 +66,7 @@ public class CourseServlet extends HttpServlet {
 		controller.setModel(model);
 		
 		// Pass model to jsp
-		req.setAttribute("game", model);
+		req.setAttribute("course", model);
 		
 		// Forward to view to render the result HTML document
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);

@@ -21,27 +21,14 @@ public class HomeServlet extends HttpServlet {
 		
 		Data data = new Data();
 		data.populate();
-//		for(Department dept: data.getDepts()){
-//			System.out.println(dept.getCourse().getName());
-//		}
+
 		Home model = new Home();
 		HomeController controller = new HomeController();
 		controller.setModel(model);
 		model.setDepartments(data.getDepts());
 		
-//		Department department1 = new Department();
-//		department1.setName("Computer Science");
-//		model.addDepartment(department1);
-//		Department department2 = new Department();
-//		department2.setName("Computer Engineering");
-//		model.addDepartment(department2);
-//		Department department3 = new Department();
-//		department3.setName("Electrical Engineering");
-//		model.addDepartment(department3);
-		
-		
 		// Pass model to jsp
-		req.setAttribute("game", model);
+		req.setAttribute("home", model);
 		
 		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 	}

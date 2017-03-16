@@ -10,19 +10,19 @@
 	<body>
 		
 		<div>
-			This is the department of ${game.name}!
+			This is the department of ${department.name}!
 		</div>	
 		
 		<br>
 		
 		<div>
-			<c:forEach items="${game.courses}" var="course">
+			<c:forEach items="${department.courses}" var="course">
     			<tr>      
        				<td>
        					<form action="${pageContext.request.contextPath}/course">
 							<button type="submit">${course.name} </button>
 							<input name="courseName" type="hidden" value="${course.name}" />
-							<input name="departmentName" type="hidden" value="${game.name}" />
+							<input name="departmentName" type="hidden" value="${department.name}" />
 						</form>
        				</td> 
     			</tr>
