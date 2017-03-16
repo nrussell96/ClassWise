@@ -11,11 +11,7 @@
 	
 		Select Your Department:
 		
-		<pre>
- 			
-		</pre>
-		
-		
+		<br>
 		<br>
 		
 		<c:forEach items="${home.departments}" var="department">

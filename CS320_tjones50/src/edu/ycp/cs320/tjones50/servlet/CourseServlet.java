@@ -36,17 +36,17 @@ public class CourseServlet extends HttpServlet {
 		model.setAveRatings(aveRating);
 		
 		Rating adviceRating = new Rating(7,4,0,8);
-		Advice advice = new Advice(adviceRating, 2019, "Computer Engineering", 3.91, 4.0, "Spring", 2017);
+		Advice advice = new Advice(adviceRating, "Sophmore", "Computer Engineering", 3.91, 4.0, "Spring", 2017);
 		advice.setApproved(true);
 		model.addAdvice(advice);
 		
 		Rating adviceRating2 = new Rating(1,5,4,2);
-		Advice advice2 = new Advice(adviceRating2, 2015, "Computer Science", 3.53, 3.5, "Fall", 2013);
+		Advice advice2 = new Advice(adviceRating2, "Senior", "Computer Science", 3.53, 3.5, "Fall", 2013);
 		advice2.setApproved(true);
 		model.addAdvice(advice2);
 		
 		Rating adviceRating3 = new Rating(1,1,1,1);
-		Advice advice3 = new Advice(adviceRating3, 2016, "Electrical Engineering", 3.22, 3.0, "Fall", 2018);
+		Advice advice3 = new Advice(adviceRating3, "Junior", "Electrical Engineering", 3.22, 3.0, "Fall", 2018);
 		advice3.setApproved(true);
 		model.addAdvice(advice3);
 		

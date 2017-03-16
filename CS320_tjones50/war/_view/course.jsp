@@ -49,7 +49,7 @@
 						<br>
 						<br>
 						
-						Advice was left by a ${advice.userMajor} student who will graduate in ${advice.userClassYear} and has a GPA of ${advice.userGPA }.
+						Advice was left by a ${advice.userMajor} student who was a ${advice.userClassYear} and had a GPA of ${advice.userGPA }.
 						<br>
 						Student got a ${advice.gradeRecieved} in the class
 						

@@ -3,7 +3,7 @@ package edu.ycp.cs320.tjones50.model;
 public class Advice{
 	private boolean approved = false;
 	private Rating adviceRating;
-	private int userClassYear;
+	private String userClassYear;
 	private String userMajor;
 	private Double userGPA;
 	private Double gradeRecieved;
@@ -15,7 +15,7 @@ public class Advice{
 		
 	}
 	
-	public Advice(Rating adviceRating, int userClassYear, String userMajor, Double userGPA, Double gradeRecieved, String semester, int classYear){
+	public Advice(Rating adviceRating, String userClassYear, String userMajor, Double userGPA, Double gradeRecieved, String semester, int classYear){
 		this.adviceRating = adviceRating;
 		this.userClassYear = userClassYear;
 		this.userMajor = userMajor;
@@ -41,11 +41,11 @@ public class Advice{
 		return this.adviceRating;
 	}
 	
-	public void setUserClassYear(int userClassYear){
+	public void setUserClassYear(String userClassYear){
 		this.userClassYear = userClassYear;
 	}
 	
-	public int getUserClassYear(){
+	public String getUserClassYear(){
 		return this.userClassYear;
 	}
 	
