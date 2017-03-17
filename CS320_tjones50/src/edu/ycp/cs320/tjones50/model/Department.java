@@ -31,12 +31,12 @@ public class Department {
 		course.setDepartment(this);
 		this.courses.add(course);
 	}
-	public Course getCourse(){
-		// redo, add counter that iterates through arraylist
-		Course returnCourse =  this.courses.get(0);
-		removeCourse(returnCourse);
-		return returnCourse;
+	
+	public Course getCourse(Course course){
+		return this.courses.get(this.courses.indexOf(course));
+		
 	}
+	
 	public boolean removeCourse(Course course){
 		return this.courses.remove(course);
 	}

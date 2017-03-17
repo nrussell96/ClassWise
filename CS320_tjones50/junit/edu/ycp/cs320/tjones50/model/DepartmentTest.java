@@ -31,9 +31,10 @@ public class DepartmentTest {
 		Course course3 = new Course();
 		course3.setName("320");
 		model.addCourse(course3);
-		assertEquals("101", model.getCourse().getName());
-		assertEquals("201", model.getCourse().getName());
-		assertEquals("320", model.getCourse().getName());
+		
+		assertEquals("201", model.getCourse(course2).getName());
+		assertEquals("320", model.getCourse(course3).getName());
+		assertEquals("101", model.getCourse(course1).getName());
 	}
 	
 	

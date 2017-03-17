@@ -6,11 +6,26 @@
 	<head>
 		<title>Course</title>
 		
+		<style>
+			.adviceStyle {
+    			float: left;
+    			margin: 5px;
+    			padding: 15px;
+    			width: 600px;
+    			height: 400px;
+    			border: 1px solid #096333;
+    		} 
+    		.headerStyle{
+    			color: #096333;
+    		}
+</style>
+		
+		
 	</head>
 
 	<body>
 		
-		<h1>
+		<h1 class = "headerStyle">
 			Here is the Advice for ${course.department.name} ${course.name}!
 		</h1>	
 		
@@ -33,17 +48,16 @@
 		<br>
 		
 		<div>
-		<h2>
+		<h2 class = "headerStyle">
 			Advice
 		</h2>
 			<c:forEach items="${course.arrAdvice}" var="advice">
     			<tr>      
        				<td>
        				<c:if test="${advice.approved}">
-       					----------------------------------------------------------------------------------------------------------------------------------------------
 						
-						<br>
-						
+						<div class="adviceStyle" >
+
 						Course was taken ${advice.semester} of ${advice.classYear}
 						
 						<br>
@@ -54,7 +68,11 @@
 						Student got a ${advice.gradeRecieved} in the class
 						
 						<br>
+						<br>
 						
+						"${advice.text }"
+						
+						<br>
 						<br>
        				
 						Difficulty was ${advice.adviceRating.difficulty}
@@ -71,16 +89,12 @@
 						
 						Enjoyment was ${advice.adviceRating.enjoyment}
 						
-						<br>
-						----------------------------------------------------------------------------------------------------------------------------------------------
-       					<br>
+						</div>
 						
 					</c:if>
        					
        				</td> 
     			</tr>
-    			<br>
-    			<br>
 			</c:forEach>
 			
 		</div>

@@ -5,11 +5,19 @@
 <html>
 	<head>
 		<title>Home</title>
+		
+		<style>
+    		.headerStyle{
+    			color: #096333;
+    		}
+		</style>
 	</head>
 
 	<body>
-	
-		Select Your Department:
+		<h1 class = "headerStyle">
+			Select Your Department:
+		</h1>
+		
 		
 		<br>
 		<br>

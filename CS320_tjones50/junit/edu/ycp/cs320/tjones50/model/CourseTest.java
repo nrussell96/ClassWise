@@ -2,6 +2,8 @@ package edu.ycp.cs320.tjones50.model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,6 +39,16 @@ public class CourseTest {
 	public void TestSetAveGrade() {
 		model.setAveGrade(3.0);
 		assertEquals((Double) 3.0, model.getAveGrade());
+	}
+	
+	@Test
+	public void TestSetArrAdvice() {
+		ArrayList<Advice> arrAdvice = new ArrayList<Advice>();
+		Advice advice = new Advice();
+		advice.setGradeRecieved(4.0);
+		arrAdvice.add(advice);
+		model.setAdvice(arrAdvice);
+		assertEquals((Double) 4.0, model.getAdvice(advice).getGradeRecieved());
 	}
 	
 }

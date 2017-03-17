@@ -5,13 +5,20 @@
 <html>
 	<head>
 		<title>Course</title>
+		
+		<style>
+    		.headerStyle{
+    			color: #096333;
+    		}
+		</style>
+		
 	</head>
 
 	<body>
 		
-		<div>
+		<h1 class = "headerStyle">
 			This is the department of ${department.name}!
-		</div>	
+		</h1>	
 		
 		<br>
 		

@@ -51,10 +51,8 @@ public class Course {
 		this.arrAdvice.add(advice);
 	}
 	
-	public Advice getAdvice(){
-		Advice returnAdvice = this.arrAdvice.get(0);
-		removeAdvice(returnAdvice);
-		return returnAdvice;
+	public Advice getAdvice(Advice advice){
+		return this.arrAdvice.get(this.arrAdvice.indexOf(advice));
 	}
 	
 	public boolean removeAdvice(Advice advice){

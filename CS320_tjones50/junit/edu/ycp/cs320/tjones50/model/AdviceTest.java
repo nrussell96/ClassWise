@@ -67,4 +67,10 @@ public class AdviceTest {
 		model.setClassYear(2017);
 		assertEquals(2017, model.getClassYear());
 	}
+	
+	@Test
+	public void TestSetText(){
+		model.setText("This class is the best");
+		assertEquals("This class is the best", model.getText());
+	}
 }

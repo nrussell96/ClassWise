@@ -10,6 +10,7 @@ public class Advice{
 	private int flags = 0;
 	private String semester;
 	private int classYear;
+	private String text = null;
 	
 	public Advice(){
 		
@@ -95,5 +96,13 @@ public class Advice{
 	
 	public int getClassYear(){
 		return this.classYear;
+	}
+	
+	public void setText(String text){
+		this.text = text;
+	}
+	
+	public String getText(){
+		return this.text;
 	}
 }
