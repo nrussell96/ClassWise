@@ -6,10 +6,8 @@
 	<head>
 		<title>Home</title>
 		
-		<style>
-    		.headerStyle{
-    			color: #096333;
-    		}
+		<style type="text/css">
+    		<%@include file="style.css" %>
 		</style>
 	</head>
 

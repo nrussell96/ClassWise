@@ -5,50 +5,45 @@
 <html>
 	<head>
 		<title>Course</title>
-		
-		<style>
-			.adviceStyle {
-    			float: left;
-    			margin: 5px;
-    			padding: 15px;
-    			width: 600px;
-    			height: 400px;
-    			border: 1px solid #096333;
-    		} 
-    		.headerStyle{
-    			color: #096333;
-    		}
-</style>
+					
+		<style type="text/css">
+    		<%@include file="style.css" %>
+		</style>
 		
 		
 	</head>
 
 	<body>
 		
-		<h1 class = "headerStyle">
+		<h1>
 			Here is the Advice for ${course.department.name} ${course.name}!
 		</h1>	
 		
-		<div>
-			Average grade for the class was ${course.aveGrade}
-		</div>
+		<p2>
+			Average grade recieved was ${course.aveGrade}
+		</p2>
 		
-		<br>
-		
-		<div>
+		<p2>
 			Average difficulty was ${course.aveRatings.difficulty}
-			<br>
-			Average instruction quality was ${course.aveRatings.instruction}
-			<br>
-			Average cost of supplies was ${course.aveRatings.suppliesCost}
-			<br>
-			Average enjoyment was ${course.aveRatings.enjoyment}
-		</div>
+		</p2>
 		
+		<p2>
+			Average instruction quality was ${course.aveRatings.instruction}
+		</p2>
+		
+		<p2>
+			Average cost of supplies was ${course.aveRatings.suppliesCost}
+		</p2>
+		
+		<p2>
+			Average enjoyment was ${course.aveRatings.enjoyment}
+		</p2>
+		
+		<br>
 		<br>
 		
 		<div>
-		<h2 class = "headerStyle">
+		<h2>
 			Advice
 		</h2>
 			<c:forEach items="${course.arrAdvice}" var="advice">
@@ -56,7 +51,7 @@
        				<td>
        				<c:if test="${advice.approved}">
 						
-						<div class="adviceStyle" >
+						<p1>
 
 						Course was taken ${advice.semester} of ${advice.classYear}
 						
@@ -89,7 +84,7 @@
 						
 						Enjoyment was ${advice.adviceRating.enjoyment}
 						
-						</div>
+						</p1>
 						
 					</c:if>
        					

@@ -6,17 +6,15 @@
 	<head>
 		<title>Course</title>
 		
-		<style>
-    		.headerStyle{
-    			color: #096333;
-    		}
+		<style type="text/css">
+    		<%@include file="style.css" %>
 		</style>
 		
 	</head>
 
 	<body>
 		
-		<h1 class = "headerStyle">
+		<h1>
 			This is the department of ${department.name}!
 		</h1>	
 		
