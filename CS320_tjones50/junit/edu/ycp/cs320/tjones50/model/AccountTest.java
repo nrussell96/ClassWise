@@ -6,28 +6,43 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AccountTest {
-	private Account model;
+	private Account user, admin;
 	
 	@Before
 	public void setUp() {
-		model = new Account();
+		user = new User();
+		admin = new Admin();
 	}
 	
 	@Test
-	public void TestAdviceApproved() {
-		model.setActivated(true);
-		assertEquals(true, model.getApproved());
+	public void TestAccountApproved() {
+		user.setApproved(true);
+		assertEquals(true, user.getApproved());
+		admin.setApproved(false);
+		assertEquals(false, admin.getApproved());
 	}
 	
 	@Test
 	public void TestSetEmail(){
-		model.setEmail("test1@ycp.edu");
-		assertEquals("test1@ycp.edu", model.getEmail());
+		user.setEmail("test1@ycp.edu");
+		assertEquals("test1@ycp.edu", user.getEmail());
+		admin.setEmail("test1@ycp.edu");
+		assertEquals("test1@ycp.edu", admin.getEmail());
 	}
 	
 	@Test
 	public void TestSetPassword(){
-		model.setPassword("password");
-		assertEquals("password", model.getPassword());
+		user.setPassword("password");
+		assertEquals("password", user.getPassword());
+		admin.setPassword("password");
+		assertEquals("password", admin.getPassword());
+	}
+	
+	@Test
+	public void TestSetAccountId(){
+		user.setAccountId(1);
+		assertEquals(1, user.getAccountId());
+		admin.setAccountId(1029);
+		assertEquals(1029, admin.getAccountId());
 	}
 }
