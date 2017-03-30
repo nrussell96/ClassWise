@@ -41,13 +41,13 @@ public class AdviceTest {
 	@Test
 	public void TestSetUserGPA(){
 		model.setUserGPA(3.5);
-		assertEquals((Double) 3.5, model.getUserGPA());
+		assertTrue(3.5 == model.getUserGPA());
 	}
 	
 	@Test
 	public void TestSetGradeRecieved(){
 		model.setGradeRecieved(2.0);
-		assertEquals((Double) 2.0, model.getGradeRecieved());
+		assertTrue( 2.0 == model.getGradeRecieved());
 	}
 	
 	@Test

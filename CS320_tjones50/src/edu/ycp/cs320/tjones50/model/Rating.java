@@ -10,6 +10,7 @@ public class Rating {
 		
 	}
 	
+
 	public Rating(double difficulty, double instruction, double suppliesCost, double enjoyment) {
 		this.difficulty = difficulty;
 		this.instruction = instruction;

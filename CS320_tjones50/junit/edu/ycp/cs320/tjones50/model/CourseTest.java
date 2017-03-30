@@ -38,7 +38,7 @@ public class CourseTest {
 	@Test
 	public void TestSetAveGrade() {
 		model.setAveGrade(3.0);
-		assertEquals((Double) 3.0, model.getAveGrade());
+		assertTrue( 3.0 == model.getAveGrade());
 	}
 	
 	@Test
@@ -48,7 +48,7 @@ public class CourseTest {
 		advice.setGradeRecieved(4.0);
 		arrAdvice.add(advice);
 		model.setArrAdvice(arrAdvice);
-		assertEquals((Double) 4.0, model.getAdvice(advice).getGradeRecieved());
+		assertTrue( 4.0 == model.getAdvice(advice).getGradeRecieved());
 	}
 	
 }

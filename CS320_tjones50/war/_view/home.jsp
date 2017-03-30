@@ -8,6 +8,7 @@
 		
 		<style type="text/css">
     		<%@include file="style.css" %>
+    		
 		</style>
 	</head>
 

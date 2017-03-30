@@ -5,12 +5,13 @@ public class Advice{
 	private Rating adviceRating;
 	private String userClassYear;
 	private String userMajor;
-	private Double userGPA;
-	private Double gradeRecieved;
+	private double userGPA;
+	private double gradeRecieved;
 	private int flags = 0;
 	private String semester;
 	private int classYear;
 	private String text = null;
+	private String errorMessage;
 	private int adviceId;
 	private int accountId;
 	
@@ -18,7 +19,7 @@ public class Advice{
 		
 	}
 	
-	public Advice(Rating adviceRating, String userClassYear, String userMajor, Double userGPA, Double gradeRecieved, String semester, int classYear){
+	public Advice(Rating adviceRating, String userClassYear, String userMajor, double userGPA, double gradeRecieved, String semester, int classYear){
 		this.adviceRating = adviceRating;
 		this.userClassYear = userClassYear;
 		this.userMajor = userMajor;
@@ -26,6 +27,14 @@ public class Advice{
 		this.gradeRecieved = gradeRecieved;
 		this.semester = semester;
 		this.classYear = classYear;
+	}
+	
+	public void setErrorMessage(String errorMessage){
+		this.errorMessage = errorMessage;
+	}
+	
+	public String getErrorMessage(){
+		return this.errorMessage;
 	}
 	
 	public void setApproved(boolean approved){
@@ -60,19 +69,19 @@ public class Advice{
 		return this.userMajor;
 	}
 	
-	public void setUserGPA(Double userGPA){
+	public void setUserGPA(double userGPA){
 		this.userGPA = userGPA;
 	}
 	
-	public Double getUserGPA(){
+	public double getUserGPA(){
 		return this.userGPA;
 	}
 	
-	public void setGradeRecieved(Double gradeRecieved){
+	public void setGradeRecieved(double gradeRecieved){
 		this.gradeRecieved = gradeRecieved;
 	}
 	
-	public Double getGradeRecieved(){
+	public double getGradeRecieved(){
 		return this.gradeRecieved;
 	}
 	
