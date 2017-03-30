@@ -8,6 +8,7 @@ public class Course {
 	private Rating aveRatings;
 	private Double aveGrade;
 	private ArrayList<Advice> arrAdvice = new ArrayList<Advice>();
+	private String errorMessage;
 	
 	public Course() {
 		
@@ -25,6 +26,13 @@ public class Course {
 	}
 	public Department getDepartment(){
 		return this.department;
+	}
+	
+	public void setErrorMessage(String errorMessage){
+		this.errorMessage = errorMessage;
+	}
+	public String getErrorMessage(){
+		return this.errorMessage;
 	}
 	
 	public void setAveRatings(Rating aveRatings){

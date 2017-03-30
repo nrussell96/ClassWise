@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<title>Course</title>
+		<title>Give Advice</title>
 					
 		<style type="text/css">
     		<%@include file="style.css" %>
@@ -41,7 +41,7 @@
 					<td><input type="text" name="enjoyment" size="12" value="${adviceModel.adviceRating.enjoyment}" /></td>
 				</tr>
 				<tr>
-					<td class="label">Grade Received (0-4):</td>
+					<td class="label">Grade Received (0.0 - 4.0):</td>
 					<td><input type="text" name="gradeReceived" size="12" value="${adviceModel.gradeRecieved}" /></td>
 				</tr>
 				<tr>
