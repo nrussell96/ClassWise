@@ -19,6 +19,7 @@ public class DepartmentServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		System.out.println("In the department Doget");
 		Data data = new Data();
 		data.populate();
 		Department model = new Department();
@@ -39,7 +40,7 @@ public class DepartmentServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		System.out.println("In the department doPost");
 		Department model = new Department();
 		DepartmentController controller = new DepartmentController();
 		controller.setModel(model);

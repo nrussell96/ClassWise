@@ -98,7 +98,11 @@
  			
 		</pre>
 		
-		
+		<form action="${pageContext.request.contextPath}/giveAdvice">
+							<button type="submit">Give advice</button>
+							<input name="courseName" type="hidden" value="${course.name}" />
+							<input name="departmentName" type="hidden" value="${department.name}" />
+						</form>
 		
 	</body>
 </html>

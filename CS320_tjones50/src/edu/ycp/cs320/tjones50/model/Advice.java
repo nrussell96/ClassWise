@@ -11,6 +11,7 @@ public class Advice{
 	private String semester;
 	private int classYear;
 	private String text = null;
+	private String errorMessage;
 	
 	public Advice(){
 		
@@ -24,6 +25,14 @@ public class Advice{
 		this.gradeRecieved = gradeRecieved;
 		this.semester = semester;
 		this.classYear = classYear;
+	}
+	
+	public void setErrorMessage(String errorMessage){
+		this.errorMessage = errorMessage;
+	}
+	
+	public String getErrorMessage(){
+		return this.errorMessage;
 	}
 	
 	public void setApproved(boolean approved){

@@ -6,6 +6,10 @@ public class Rating {
 	private Integer suppliesCost;
 	private Integer enjoyment;
 	
+	public Rating() {
+		
+	}
+	
 	public Rating(Integer difficulty, Integer instruction, Integer suppliesCost, Integer enjoyment) {
 		this.difficulty = difficulty;
 		this.instruction = instruction;

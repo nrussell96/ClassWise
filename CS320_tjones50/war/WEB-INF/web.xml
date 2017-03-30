@@ -34,7 +34,10 @@
     <servlet-name>DepartmentServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.tjones50.servlet.DepartmentServlet</servlet-class>
   </servlet>
-  
+  <servlet>
+    <servlet-name>GiveAdviceServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.tjones50.servlet.GiveAdviceServlet</servlet-class>
+  </servlet>
   <!-- AJAX servlets. -->
   <servlet>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
@@ -78,7 +81,10 @@
     <servlet-name>DepartmentServlet</servlet-name>
     <url-pattern>/department</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+    <servlet-name>GiveAdviceServlet</servlet-name>
+    <url-pattern>/giveAdvice</url-pattern>
+  </servlet-mapping>
   <!--  AJAX servlet mappings. -->
   <servlet-mapping>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
