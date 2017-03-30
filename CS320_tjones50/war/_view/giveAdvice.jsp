@@ -54,6 +54,8 @@
 				</tr>
 				<tr>
 					<td class="label">What advice do you have for students?:</td>
+					<td><textarea rows="4" cols="50" name="text" value="${adviceModel.text}" </td>
+					</textarea>
 				</tr>
 			</table>
 							<button type="submit">Submit Advice</button>
