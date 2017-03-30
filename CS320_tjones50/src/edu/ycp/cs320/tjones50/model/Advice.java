@@ -12,6 +12,8 @@ public class Advice{
 	private int classYear;
 	private String text = null;
 	private String errorMessage;
+	private int adviceId;
+	private int accountId;
 	
 	public Advice(){
 		
@@ -114,4 +116,22 @@ public class Advice{
 	public String getText(){
 		return this.text;
 	}
+	
+	public void setAdviceId(int adviceId){
+		this.adviceId = adviceId;
+	}
+	
+	public int getAdviceId(){
+		return this.adviceId;
+	}
+	
+	public void setAccountId(int accountId){
+		this.accountId = accountId;
+	}
+	
+	public int getAccountId(){
+		return this.accountId;
+	}
+	
+	
 }

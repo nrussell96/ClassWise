@@ -40,7 +40,7 @@ public class Course {
 	public Double getAveGrade(){
 		return this.aveGrade;
 	}
-	public void setAdvice(ArrayList<Advice> arrAdvice){
+	public void setArrAdvice(ArrayList<Advice> arrAdvice){
 		this.arrAdvice = arrAdvice;
 	}
 	public ArrayList<Advice> getArrAdvice(){

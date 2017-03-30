@@ -1,41 +1,33 @@
 package edu.ycp.cs320.tjones50.model;
 
-public class Account{
-	private boolean activated = false;
-	private String email;
-	private String password;
+public abstract class Account{
 	
-	public Account(){
-		
-	}
+	abstract public void setApproved(boolean approved);
 	
-	public Account(String email, String password){
-		this.email = email;
-		this.password = password;
-	}
+	abstract public boolean getApproved();
 	
-	public void setActivated(boolean activated){
-		this.activated = activated;
-	}
+	abstract public void setEmail(String email);
 	
-	public boolean getApproved(){
-		return this.activated;
-	}
+	abstract public String getEmail();
 	
-	public void setEmail(String email){
-		this.email = email;
-	}
+	abstract public void setPassword(String password);
 	
-	public String getEmail(){
-		return this.email;
-	}
+	abstract public String getPassword();
 	
-	public void setPassword(String password){
-		this.password = password;
-	}
+	abstract public void setAccountId(int accountId);
 	
-	public String getPassword(){
-		return this.password;
-	}
+	abstract public int getAccountId();
+	
+	abstract public void verifyEmail();
+	
+	abstract public void sendEmail();
+	
+	abstract public void login();
+	
+	abstract public void logout();
+	
+	abstract public void deleteAccount();
+	
+	abstract public void forgotPassword();
 	
 }

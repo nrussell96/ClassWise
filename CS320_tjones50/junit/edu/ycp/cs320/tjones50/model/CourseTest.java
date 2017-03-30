@@ -47,7 +47,7 @@ public class CourseTest {
 		Advice advice = new Advice();
 		advice.setGradeRecieved(4.0);
 		arrAdvice.add(advice);
-		model.setAdvice(arrAdvice);
+		model.setArrAdvice(arrAdvice);
 		assertEquals((Double) 4.0, model.getAdvice(advice).getGradeRecieved());
 	}
 	

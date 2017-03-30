@@ -1,47 +1,48 @@
 package edu.ycp.cs320.tjones50.model;
 
 public class Rating {
-	private Integer difficulty;
-	private Integer instruction;
-	private Integer suppliesCost;
-	private Integer enjoyment;
+	private double difficulty;
+	private double instruction;
+	private double suppliesCost;
+	private double enjoyment;
 	
 	public Rating() {
 		
 	}
 	
-	public Rating(Integer difficulty, Integer instruction, Integer suppliesCost, Integer enjoyment) {
+
+	public Rating(double difficulty, double instruction, double suppliesCost, double enjoyment) {
 		this.difficulty = difficulty;
 		this.instruction = instruction;
 		this.suppliesCost = suppliesCost;
 		this.enjoyment = enjoyment;
 	}
 	
-	public void setDifficulty(Integer difficulty){
+	public void setDifficulty(double difficulty){
 		this.difficulty = difficulty;
 	}
-	public Integer getDifficulty(){
+	public double getDifficulty(){
 		return this.difficulty;
 	}
 	
-	public void setInstruction(Integer instruction){
+	public void setInstruction(double instruction){
 		this.instruction = instruction;
 	}
-	public Integer getInstruction(){
+	public double getInstruction(){
 		return this.instruction;
 	}
 	
 	public void setSuppliesCost(Integer suppliesCost){
 		this.suppliesCost = suppliesCost;
 	}
-	public Integer getSuppliesCost(){
+	public double getSuppliesCost(){
 		return this.suppliesCost;
 	}
 	
-	public void setEnjoyment(Integer enjoyment){
+	public void setEnjoyment(double enjoyment){
 		this.enjoyment = enjoyment;
 	}
-	public Integer getEnjoyment(){
+	public double getEnjoyment(){
 		return this.enjoyment;
 	}
 	
