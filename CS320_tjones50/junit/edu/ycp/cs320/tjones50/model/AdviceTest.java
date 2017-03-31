@@ -73,4 +73,16 @@ public class AdviceTest {
 		model.setText("This class is the best");
 		assertEquals("This class is the best", model.getText());
 	}
+	
+	@Test
+	public void TestAccountId(){
+		model.setAccountId(1);
+		assertEquals(1, model.getAccountId());
+	}
+	
+	@Test
+	public void TestAdviceId(){
+		model.setAdviceId(1);
+		assertEquals(1, model.getAdviceId());
+	}
 }
