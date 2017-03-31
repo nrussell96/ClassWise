@@ -51,8 +51,8 @@ public class UserTest {
 	
 	@Test
 	public void TestSetAdviceList(){
-		user.setAdviceList(adviceList);
-		assertEquals(adviceList, user.getAdviceList());
+		user.setArrAdvice(adviceList);
+		assertEquals(adviceList, user.getArrAdvice());
 	}
 	
 	@Test

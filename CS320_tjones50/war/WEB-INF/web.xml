@@ -38,6 +38,10 @@
     <servlet-name>GiveAdviceServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.tjones50.servlet.GiveAdviceServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UserAccountServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.tjones50.servlet.UserAccountServlet</servlet-class>
+  </servlet>
   <!-- AJAX servlets. -->
   <servlet>
     <servlet-name>AddNumbersAjaxServlet</servlet-name>
@@ -84,6 +88,10 @@
   <servlet-mapping>
     <servlet-name>GiveAdviceServlet</servlet-name>
     <url-pattern>/giveAdvice</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>UserAccountServlet</servlet-name>
+    <url-pattern>/userAccount</url-pattern>
   </servlet-mapping>
   <!--  AJAX servlet mappings. -->
   <servlet-mapping>

@@ -54,5 +54,11 @@
 		
 		<br>
 		
+		<form action="${pageContext.request.contextPath}/userAccount">
+		<button type="submit">Account</button>
+		</form>
+		
+		<br>
+		
 	</body>
 </html>

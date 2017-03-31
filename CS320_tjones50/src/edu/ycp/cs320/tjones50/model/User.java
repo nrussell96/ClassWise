@@ -11,7 +11,7 @@ public class User extends Account {
 	private String major;
 	private double GPA;
 	private boolean emailVerified = false;
-	private ArrayList<Advice> adviceList =  new ArrayList<Advice>();
+	private ArrayList<Advice> arrAdvice =  new ArrayList<Advice>();
 
 	public User() {
 
@@ -91,24 +91,24 @@ public class User extends Account {
 		return this.emailVerified;
 	}
 
-	public void setAdviceList(ArrayList<Advice> adviceList) {
-		this.adviceList = adviceList;
+	public void setArrAdvice(ArrayList<Advice> arrAdvice) {
+		this.arrAdvice = arrAdvice;
 	}
 
-	public ArrayList<Advice> getAdviceList() {
-		return this.adviceList;
+	public ArrayList<Advice> getArrAdvice() {
+		return this.arrAdvice;
 	}
 
 	public void addAdvice(Advice advice) {
-		this.adviceList.add(advice);
+		this.arrAdvice.add(advice);
 	}
 
 	public Advice getAdvice(Advice advice) {
-		return this.adviceList.get(this.adviceList.indexOf(advice));
+		return this.arrAdvice.get(this.arrAdvice.indexOf(advice));
 	}
 
 	public boolean removeAdvice(Advice advice) {
-		return this.adviceList.remove(advice);
+		return this.arrAdvice.remove(advice);
 	}
 	
 	
