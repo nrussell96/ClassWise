@@ -29,6 +29,7 @@ public class Advice{
 		this.classYear = classYear;
 	}
 	
+	
 	public void setErrorMessage(String errorMessage){
 		this.errorMessage = errorMessage;
 	}
