@@ -45,4 +45,5 @@ public class AccountTest {
 		admin.setAccountId(1029);
 		assertEquals(1029, admin.getAccountId());
 	}
+	
 }

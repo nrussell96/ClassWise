@@ -30,4 +30,12 @@ public class AccountControllerTest {
 		assertTrue(model1 == controller1.getModel());
 		assertTrue(model2 == controller2.getModel());
 	}
+	
+	@Test
+	public void TestCheckAccountInfo(){
+		assertEquals(controller1.checkAccountInfo("tjones50@ycp.edu", "password1"), true);
+		assertEquals(controller1.checkAccountInfo("tjones50@ycp.edu", "passwor"), false);
+		assertEquals(controller2.checkAccountInfo("tjones50@ycp.edu", "password1"), true);
+		assertEquals(controller2.checkAccountInfo("tjones50@ycp", "password1"), false);
+	}
 }
