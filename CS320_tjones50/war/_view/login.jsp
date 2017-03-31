@@ -21,6 +21,7 @@
 			<input type="password" placeholder="Enter Password" name="pass" value = "${user.password}" required>
 			
 			<button type="submit">Login</button>
+			<div style="color: #FF0000;">${errorMessage}</div>
 			
 		</form>
 	</body>

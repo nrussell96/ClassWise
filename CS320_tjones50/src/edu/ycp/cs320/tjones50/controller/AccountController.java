@@ -12,4 +12,15 @@ public class AccountController{
 	public Account getModel(){
 		return this.model;
 	}
+	
+	public boolean checkAccountInfo(String email, String password){
+		// eventually call database query
+		
+		if(email.equals("tjones50@ycp.edu") && password.equals("password1")){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

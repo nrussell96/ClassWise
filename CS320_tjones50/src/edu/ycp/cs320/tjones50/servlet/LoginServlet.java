@@ -29,16 +29,27 @@ public class LoginServlet extends HttpServlet {
 		AccountController controller = new AccountController();
 		controller.setModel(model);
 		
-		String email = req.getParameter("abc.gmail.com");
-		String password = req.getParameter("1234");
+		String email = req.getParameter("email");
+		String password = req.getParameter("pass");
 		
 		model.setEmail(email);
 		model.setPassword(password);
 		
+		boolean accountExists = controller.checkAccountInfo(email, password);
+		
 		// Pass model to jsp
 		req.setAttribute("login", model);
-				
-		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
+		
+		if(accountExists == true){ //if account exists
+			// Pass model to jsp
+			req.setAttribute("login", model);
+					
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+		}else{
+			req.setAttribute("errorMessage", "Email and/or password invalid.");
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		}
 	}
 }

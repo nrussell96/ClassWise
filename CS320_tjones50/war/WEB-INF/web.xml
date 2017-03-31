@@ -56,10 +56,10 @@
     <servlet-class>edu.ycp.cs320.tjones50.servlet.ajax.NextGuessAjaxServlet</servlet-class>
   </servlet>
 
-  <!-- Servlet mappings --><servlet>
+  <!-- Servlet mappings --><servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
-  	<servlet-class>/login</servlet-class>
-</servlet>
+  	<url-pattern>/login</url-pattern>
+</servlet-mapping>
 	<servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index</url-pattern>
