@@ -45,10 +45,10 @@ public class CourseTest {
 	public void TestSetArrAdvice() {
 		ArrayList<Advice> arrAdvice = new ArrayList<Advice>();
 		Advice advice = new Advice();
-		advice.setGradeRecieved(4.0);
+		advice.setGradeReceived(4.0);
 		arrAdvice.add(advice);
 		model.setArrAdvice(arrAdvice);
-		assertTrue( 4.0 == model.getAdvice(advice).getGradeRecieved());
+		assertTrue( 4.0 == model.getAdvice(advice).getGradeReceived());
 	}
 	
 }

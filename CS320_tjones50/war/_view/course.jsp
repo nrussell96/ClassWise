@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 	<head>
@@ -17,27 +18,28 @@
 	<body>
 		
 		<h1>
+		
 			Here is the Advice for ${course.department.name} ${course.name}!
 		</h1>	
 		
 		<p2>
-			Average grade recieved was ${course.aveGrade}
+			Average grade received was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveGrade}"/>
 		</p2>
 		
 		<p2>
-			Average difficulty was ${course.aveRatings.difficulty}
+			Average difficulty was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.difficulty}"/>
 		</p2>
 		
 		<p2>
-			Average instruction quality was ${course.aveRatings.instruction}
+			Average instruction quality was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.instruction}"/>
 		</p2>
 		
 		<p2>
-			Average cost of supplies was ${course.aveRatings.suppliesCost}
+			Average cost of supplies was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.suppliesCost}"/>
 		</p2>
 		
 		<p2>
-			Average enjoyment was ${course.aveRatings.enjoyment}
+			Average enjoyment was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.enjoyment}"/>
 		</p2>
 		
 		<br>
@@ -61,7 +63,7 @@
 						
 						Advice was left by a ${advice.userMajor} student who was a ${advice.userClassYear} and had a GPA of ${advice.userGPA }.
 						<br>
-						Student got a ${advice.gradeRecieved} in the class
+						Student got a ${advice.gradeReceived} in the class
 						
 						<br>
 						<br>

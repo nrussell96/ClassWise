@@ -45,7 +45,7 @@ public class CourseController {
 		double aveGrade = 0;
 		
 		for(int i = 0; i<arrAdvice.size();i++){
-			aveGrade += arrAdvice.get(i).getGradeRecieved();
+			aveGrade += arrAdvice.get(i).getGradeReceived();
 		}
 		
 		aveGrade = aveGrade/arrAdvice.size();

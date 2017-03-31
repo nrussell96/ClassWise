@@ -46,8 +46,8 @@ public class AdviceTest {
 	
 	@Test
 	public void TestSetGradeRecieved(){
-		model.setGradeRecieved(2.0);
-		assertTrue( 2.0 == model.getGradeRecieved());
+		model.setGradeReceived(2.0);
+		assertTrue( 2.0 == model.getGradeReceived());
 	}
 	
 	@Test

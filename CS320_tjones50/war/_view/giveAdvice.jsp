@@ -21,7 +21,7 @@
 		
 	
 		<%-- This part right below is needed to save all of the typed in values and send them to the course servlet to get displayed --%>
-			<form action="${pageContext.servletContext.contextPath}/course" method="post">
+			<form action="${pageContext.servletContext.contextPath}/giveAdvice" method="post">
 			<table>
 				<tr>
 
@@ -42,7 +42,7 @@
 				</tr>
 				<tr>
 					<td class="label">Grade Received (0.0 - 4.0):</td>
-					<td><input type="text" name="gradeReceived" size="12" value="${adviceModel.gradeRecieved}" /></td>
+					<td><input type="text" name="gradeReceived" size="12" value="${adviceModel.gradeReceived}" /></td>
 				</tr>
 				<tr>
 					<td class="label">Semester (Fall, Spring, or Summer):</td>
@@ -54,8 +54,8 @@
 				</tr>
 				<tr>
 					<td class="label">What advice do you have for students?:</td>
-					<td><textarea rows="4" cols="50" name="text" value="${adviceModel.text}" </td>
-					</textarea>
+					<td><textarea rows="4" cols="50" name="text" value="${adviceModel.text}"> </textarea></td>
+					
 				</tr>
 			</table>
 							<button type="submit">Submit Advice</button>
@@ -65,7 +65,7 @@
 							<input name="instruction" type="hidden" value="${model.adviceRating.instruction}" />
 							<input name="suppliesCost" type="hidden" value="${model.adviceRating.suppliesCost}" />
 							<input name="enjoyment" type="hidden" value="${model.adviceRating.enjoyment}" />
-							<input name="gradeReceived" type="hidden" value="${model.gradeRecieved}" />
+							<input name="gradeReceived" type="hidden" value="${model.gradeReceived}" />
 							<input name="semester" type="hidden" value="${model.semester}" />
 							<input name="classYear" type="hidden" value="${model.classYear}" />
 							<input name="text" type="hidden" value="${model.text}" />

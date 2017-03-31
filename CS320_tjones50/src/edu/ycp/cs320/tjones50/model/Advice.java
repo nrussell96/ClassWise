@@ -6,7 +6,7 @@ public class Advice{
 	private String userClassYear;
 	private String userMajor;
 	private double userGPA;
-	private double gradeRecieved;
+	private double gradeReceived;
 	private int flags = 0;
 	private String semester;
 	private int classYear;
@@ -24,7 +24,7 @@ public class Advice{
 		this.userClassYear = userClassYear;
 		this.userMajor = userMajor;
 		this.userGPA = userGPA;
-		this.gradeRecieved = gradeRecieved;
+		this.gradeReceived = gradeRecieved;
 		this.semester = semester;
 		this.classYear = classYear;
 	}
@@ -77,12 +77,12 @@ public class Advice{
 		return this.userGPA;
 	}
 	
-	public void setGradeRecieved(double gradeRecieved){
-		this.gradeRecieved = gradeRecieved;
+	public void setGradeReceived(double gradeReceived){
+		this.gradeReceived = gradeReceived;
 	}
 	
-	public double getGradeRecieved(){
-		return this.gradeRecieved;
+	public double getGradeReceived(){
+		return this.gradeReceived;
 	}
 	
 	public void setFlags(int flag){
