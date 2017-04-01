@@ -19,7 +19,7 @@ public class UserTest {
 		adviceList= new ArrayList<Advice>();
 		advice1 = new Advice();
 		Rating rating = new Rating(3,3,3,3);
-		advice2 = new Advice(rating, "freshman", "Biology", 3.68, 3.5, "Fall", 2017);
+		advice2 = new Advice(rating, "freshman", "Biology", 3.68, 3.5, "Fall", 2017, "Hake");
 		adviceList.add(advice1);
 		adviceList.add(advice2);
 	}

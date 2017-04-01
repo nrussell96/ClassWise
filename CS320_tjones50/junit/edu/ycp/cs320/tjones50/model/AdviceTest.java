@@ -39,6 +39,12 @@ public class AdviceTest {
 	}
 	
 	@Test
+	public void TestSetProfessor(){
+		model.setProfessor("Hake");
+		assertEquals("Hake", model.getProfessor());
+	}
+	
+	@Test
 	public void TestSetUserGPA(){
 		model.setUserGPA(3.5);
 		assertTrue(3.5 == model.getUserGPA());

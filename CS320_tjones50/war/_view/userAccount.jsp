@@ -67,7 +67,7 @@
 						
 						Advice was left by a ${advice.userMajor} student who was a ${advice.userClassYear} and had a GPA of ${advice.userGPA }.
 						<br>
-						Student got a ${advice.gradeReceived} in the class
+						Student got a ${advice.gradeReceived} in the class taught by ${advice.professor }
 						
 						<br>
 						<br>

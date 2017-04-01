@@ -28,8 +28,8 @@ public class CourseControllerTest {
 		ArrayList<Advice> arrAdvice= new ArrayList<Advice>();
 		rating1 = new Rating(2,2,2,2);
 		rating2 = new Rating(4,4,4,4);
-		advice1 = new Advice(rating1, "Freshman", "Biology", 4.0, 2.0, "Fall", 2017);
-		advice2 = new Advice(rating2, "Freshman", "Biology", 4.0, 4.0, "Fall", 2017);
+		advice1 = new Advice(rating1, "Freshman", "Biology", 4.0, 2.0, "Fall", 2017, "Hake");
+		advice2 = new Advice(rating2, "Freshman", "Biology", 4.0, 4.0, "Fall", 2017, "Hake");
 		arrAdvice.add(advice1);
 		arrAdvice.add(advice2);
 		model.setArrAdvice(arrAdvice);

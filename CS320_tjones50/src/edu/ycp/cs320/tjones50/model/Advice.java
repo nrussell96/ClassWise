@@ -14,12 +14,13 @@ public class Advice{
 	private String errorMessage;
 	private int adviceId;
 	private int accountId;
+	private String professor;
 	
 	public Advice(){
 		
 	}
 	
-	public Advice(Rating adviceRating, String userClassYear, String userMajor, double userGPA, double gradeRecieved, String semester, int classYear){
+	public Advice(Rating adviceRating, String userClassYear, String userMajor, double userGPA, double gradeRecieved, String semester, int classYear, String professor){
 		this.adviceRating = adviceRating;
 		this.userClassYear = userClassYear;
 		this.userMajor = userMajor;
@@ -27,6 +28,7 @@ public class Advice{
 		this.gradeReceived = gradeRecieved;
 		this.semester = semester;
 		this.classYear = classYear;
+		this.professor = professor;
 	}
 	
 	
@@ -100,6 +102,14 @@ public class Advice{
 	
 	public String getSemester(){
 		return this.semester;
+	}
+	
+	public void setProfessor(String professor){
+		this.professor = professor;
+	}
+	
+	public String getProfessor(){
+		return this.professor;
 	}
 	
 	public void setClassYear(int classYear){
