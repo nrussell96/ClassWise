@@ -36,6 +36,15 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		/*		HttpSession session=req.getSession(false); //Part of my attempt at making a session that persists - Nate 
+		if(session != null){
+			String email = (String)session.getAttribute("email");
+			req.setAttribute("sessionMessage", "Hello " + email); 
+		}
+		else{  
+			req.setAttribute("errorMessage", "Please login first");  
+            req.getRequestDispatcher("/_view/login.jsp").include(req, resp);  
+        } */
 		Home model = new Home();
 		HomeController controller = new HomeController();
 		controller.setModel(model);

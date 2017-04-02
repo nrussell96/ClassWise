@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.tjones50.controller.AccountController;
 import edu.ycp.cs320.tjones50.model.Account;
@@ -42,7 +43,8 @@ public class LoginServlet extends HttpServlet {
 		
 		if(accountExists == true){ //if account exists
 			// Pass model to jsp
-			req.setAttribute("login", model);
+/*			HttpSession session = req.getSession(); //Part of my attempt at making a session that persists
+			session.setAttribute("login", model); */
 					
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
