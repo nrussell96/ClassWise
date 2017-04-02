@@ -12,4 +12,9 @@ public class AdviceController{
 	public Advice getModel(){
 		return this.model;
 	}
+	
+	public void flagAdvice() {
+		model.setFlags(model.getFlags() + 1);
+		
+	}
 }

@@ -19,7 +19,7 @@
 		
 		<h1>
 		
-			Here is the Advice for ${course.department.name} ${course.name}!
+			Here is the Advice for ${course.department.name} - ${course.name}!
 		</h1>	
 		
 		<p2>
@@ -44,6 +44,8 @@
 		
 		<br>
 		<br>
+		
+		
 		
 		<div>
 		<h2>
@@ -87,7 +89,18 @@
 						
 						Enjoyment was ${advice.adviceRating.enjoyment}
 						
+						<form action="${pageContext.servletContext.contextPath}/course" method="post">
+						<button type="submit">Flag Inappropriate Advice</button>
+						<input name="courseName" type="hidden" value="${course.name}" />
+						<input name="departmentName" type="hidden" value="${department.name}" />
+						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+						<input name="flags" type="hidden" value="${advice.flags}" />
+						
+						</form>
+						
+						Flags: ${advice.flags}
 						</p1>
+						
 						
 					</c:if>
        					
