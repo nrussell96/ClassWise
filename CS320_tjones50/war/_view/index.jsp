@@ -60,5 +60,23 @@
 		
 		<br>
 		
+		<form action="${pageContext.request.contextPath}/login">
+		<button type="submit">Login</button>
+		</form>
+		
+		<br>
+		
+		<form action="${pageContext.request.contextPath}/createaccount">
+		<button type="submit">Create Account</button>
+		</form>
+		
+		<br>
+		
+		<form action="${pageContext.request.contextPath}/giveAdvice">
+		<button type="submit">Give Advice</button>
+		</form>
+		
+		<br>
+		
 	</body>
 </html>

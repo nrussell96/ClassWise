@@ -6,6 +6,26 @@
 	<head>
 		<title>Course</title>
 		
+		<p3>
+		
+		<table>
+		<form action="${pageContext.request.contextPath}/home">
+			<button type="submit">Home</button>
+		</form>
+		
+		
+		<form action="${pageContext.request.contextPath}/login">
+		<button type="submit">Login</button>
+		</form>
+		
+		
+		<form action="${pageContext.request.contextPath}/createaccount">
+		<button type="submit">Create Account</button>
+		</form>
+		</table>
+		
+		</p3>
+		
 		<style type="text/css">
     		<%@include file="style.css" %>
     		
@@ -18,6 +38,8 @@
 		<h1>
 			This is the department of ${department.name}!
 		</h1>	
+		
+		
 		
 		<br>
 		

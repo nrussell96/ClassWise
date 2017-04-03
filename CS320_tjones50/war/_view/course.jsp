@@ -5,6 +5,33 @@
 
 <html>
 	<head>
+		<p3>
+		
+		<table>
+		<form action="${pageContext.request.contextPath}/home">
+			<button type="submit">Home</button>
+		</form>
+		
+		
+		<form action="${pageContext.request.contextPath}/login">
+		<button type="submit">Login</button>
+		</form>
+		
+		
+		<form action="${pageContext.request.contextPath}/createaccount">
+		<button type="submit">Create Account</button>
+		</form>
+		
+		<form action="${pageContext.request.contextPath}/giveAdvice">
+			<button type="submit">Give advice</button>
+			<input name="courseName" type="hidden" value="${course.name}" />
+			<input name="departmentName" type="hidden" value="${department.name}" />
+		</form>
+		
+		</table>
+		
+		</p3>
+		
 		<title>Course</title>
 					
 		<style type="text/css">
@@ -21,6 +48,8 @@
 		
 			Here is the Advice for ${course.department.name} - ${course.name}!
 		</h1>	
+		
+		
 		
 		<p2>
 			Average grade received was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveGrade}"/>
@@ -44,8 +73,7 @@
 		
 		<br>
 		<br>
-		
-		
+	
 		
 		<div>
 		<h2>
@@ -113,12 +141,6 @@
 		<pre>
  			
 		</pre>
-		
-		<form action="${pageContext.request.contextPath}/giveAdvice">
-							<button type="submit">Give advice</button>
-							<input name="courseName" type="hidden" value="${course.name}" />
-							<input name="departmentName" type="hidden" value="${department.name}" />
-						</form>
 		
 	</body>
 </html>

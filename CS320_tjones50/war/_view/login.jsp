@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-	<title>Course</title>
+	<title>Login</title>
 					
 		<style type="text/css">
     		<%@include file="style.css" %>
@@ -13,6 +13,16 @@
 		
 	</head>
 	<body>
+		
+		<p3>
+		<form action="${pageContext.request.contextPath}/home">
+			<button type="submit">Index</button>
+		</form>
+		</p3>
+		
+		<h1> Login to ClassWise</h1>
+	
+	
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
 		
 			<label><b>Email</b></label>
