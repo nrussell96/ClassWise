@@ -13,10 +13,11 @@
 		
 	</head>
 	<body>
-		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
+	<h1>Create an Account</h1>
+		<form action="${pageContext.servletContext.contextPath}/createaccount" method = "post">
 		
-			<label><b>Email</b></label>
-			<input type="text" placeholder="Enter Email" name="email" value = "${user.email}" required>
+			<label><b>Email</b></label> 
+			<input type="email" placeholder="Enter Email" name="email" value = "${user.email}" required>
 			<label><b>Password</b></label>
 			<input type="password" placeholder="Enter Password" name="pass" value = "${user.password}" required>
 			
@@ -25,4 +26,3 @@
 			
 		</form>
 	</body>
-</html>

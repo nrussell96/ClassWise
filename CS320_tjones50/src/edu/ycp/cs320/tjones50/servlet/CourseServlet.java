@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.tjones50.controller.AdviceController;
 import edu.ycp.cs320.tjones50.controller.CourseController;
@@ -55,7 +56,15 @@ public class CourseServlet extends HttpServlet {
 		controller.computeAveGrade();
 		controller.computeAveRating();
 		
-		
+		HttpSession session=req.getSession(false);
+		if(session != null){
+			String email = (String)session.getAttribute("email");
+			req.setAttribute("sessionMessage", "Hello " + email); 
+		}
+		else{  
+			req.setAttribute("errorMessage", "Please login first");  
+            req.getRequestDispatcher("/_view/login.jsp").include(req, resp);  
+        }  
 		// Pass model to jsp
 		req.setAttribute("course", model);
 		
