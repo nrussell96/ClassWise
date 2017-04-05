@@ -9,6 +9,8 @@ public class Course {
 	private Double aveGrade;
 	private ArrayList<Advice> arrAdvice = new ArrayList<Advice>();
 	private String errorMessage;
+	private int courseId;
+	private int departmentId;
 	
 	public Course() {
 		
@@ -19,6 +21,20 @@ public class Course {
 	}
 	public String getName(){
 		return this.name;
+	}
+	
+	public void setCourseId(int courseId){
+		this.courseId = courseId;
+	}
+	public int getCourseId(){
+		return this.courseId;
+	}
+	
+	public void setDepartmentId(int departmentId){
+		this.departmentId = departmentId;
+	}
+	public int getDepartmentId(){
+		return this.departmentId;
 	}
 	
 	public void setDepartment(Department department){

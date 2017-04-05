@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Department {
 	private String name;
+	private int departmentId;
 	private ArrayList<Course> courses = new ArrayList<Course>();
 	
 	public Department() {
@@ -18,6 +19,13 @@ public class Department {
 	}
 	public String getName(){
 		return this.name;
+	}
+	
+	public void setDepartmentId(int departmentId){
+		this.departmentId = departmentId;
+	}
+	public int getDepartmentId(){
+		return this.departmentId;
 	}
 	
 	public void setCourses(ArrayList<Course> courses){

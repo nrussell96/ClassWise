@@ -16,7 +16,7 @@
 		
 		<p3>
 		<form action="${pageContext.request.contextPath}/home">
-			<button type="submit">Index</button>
+			<button type="submit">Home</button>
 		</form>
 		</p3>
 		
