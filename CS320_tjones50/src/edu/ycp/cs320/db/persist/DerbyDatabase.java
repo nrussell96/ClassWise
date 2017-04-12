@@ -7,13 +7,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Department;
 
 
 
-public class DerbyDatabase {
+public class DerbyDatabase implements IDatabase {
 	static {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
@@ -194,5 +197,41 @@ public class DerbyDatabase {
 		db.loadInitialData();
 		
 		System.out.println("Library DB successfully initialized!");
+	}
+
+	@Override
+	public ArrayList<Department> getDeptList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Department getDept(Department dept) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Course> getCourseList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Course getCourse(Course course) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getCourseAdviceList(String CourseName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAccountAdviceList(int accountId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
