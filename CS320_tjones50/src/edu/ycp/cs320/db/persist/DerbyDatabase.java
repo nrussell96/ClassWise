@@ -6,14 +6,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Department;
 
 
 
-public class DerbyDatabase {
+public class DerbyDatabase implements IDatabase {
 	static {
 		try {
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
@@ -79,7 +83,7 @@ public class DerbyDatabase {
 	// TODO: You will need to change this location to the same path as your workspace for this example
 	// TODO: Change it here and in SQLDemo under CS320_Lab06->edu.ycp.cs320.sqldemo	
 	private Connection connect() throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:derby:C:/Users/Kyle/Desktop/Code/York College/library.db;create=true");		
+		Connection conn = DriverManager.getConnection("jdbc:derby:C:/Users/Kyle/Desktop/Code/York College/CS320/library.db;create=true");		
 		
 		// Set autocommit() to false to allow the execution of
 		// multiple queries/statements as part of the same transaction.
@@ -194,5 +198,178 @@ public class DerbyDatabase {
 		db.loadInitialData();
 		
 		System.out.println("Library DB successfully initialized!");
+	}
+	
+	// Gets a list of all departments
+	@Override
+	public ArrayList<Department> getDeptList() {
+		return executeTransaction(new Transaction<ArrayList<Department>>() {
+			@Override
+			public ArrayList<Department> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve all departments in database
+				try {
+					stmt = conn.prepareStatement(
+							"select * from departments"
+					);
+					
+					// establish the ArrayList of Department objects to receive the result
+					// and establish arrayList of courses to be added to department
+					ArrayList<Department> result = new ArrayList<Department>();
+					ArrayList<Course> courses = new ArrayList<Course>();
+					
+					// execute the query, get the results, and assemble them in an ArrayLsit
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						Department dept = new Department();
+						loadDepartment(dept, resultSet, 1);
+						courses = getCourseList(dept);
+						dept.setCourses(courses);
+						
+						result.add(dept);
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+
+	@Override
+	public Department getDept(Department dept) {
+		return executeTransaction(new Transaction<Department>() {
+			@Override
+			public Department execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Course> courses = null;
+
+				// try to retrieve course
+				try {
+					stmt = conn.prepareStatement(
+							"select * from departments" + 
+							" where departments.department_id = ?"
+					);
+					
+					stmt.setInt(1, dept.getDepartmentId());
+					
+					// establish the Department object to receive the result
+					Department dept = new Department();
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadDepartment(dept, resultSet, 1);
+						courses = getCourseList(dept);
+						dept.setCourses(courses);
+					}
+					return dept;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+
+	@Override
+	public ArrayList<Course> getCourseList(Department dept) {
+		return executeTransaction(new Transaction<ArrayList<Course>>() {
+			@Override
+			public ArrayList<Course> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve all courses in specified department
+				try {
+					stmt = conn.prepareStatement(
+							"select * from courses, departments where" + 
+							" courses.department_id = departments.department_id" +
+							" and departments.department_id = ?"
+					);
+					
+					stmt.setInt(1, dept.getDepartmentId());
+					
+					// establish the ArrayList of Course objects to receive the result
+					ArrayList<Course> courses = new ArrayList<Course>();
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						Course course = new Course();
+						loadCourse(course, resultSet, 1);
+						courses.add(course);
+					}
+					
+					return courses;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+
+
+	@Override
+	public Course getCourse(Course course) {
+		return executeTransaction(new Transaction<Course>() {
+			@Override
+			public Course execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve course
+				try {
+					stmt = conn.prepareStatement(
+							"select * from courses" + 
+							" where courses.course_id = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// establish the Course object to receive the result
+					Course course = new Course();
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadCourse(course, resultSet, 1);
+					}
+					return course;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+
+	@Override
+	public ArrayList<Advice> getCourseAdviceList(Course course) {
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAccountAdviceList(int accountId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// retrieves Department information from query result set
+	private void loadDepartment(Department dept, ResultSet resultSet, int index) throws SQLException {
+		dept.setDepartmentId(resultSet.getInt(index++));
+		dept.setName(resultSet.getString(index++));
+	}
+		
+	private void loadCourse(Course course, ResultSet resultSet, int index) throws SQLException {
+		course.setCourseId(resultSet.getInt(index++));
+		course.setDepartmentId(resultSet.getInt(index++));
+		course.setName(resultSet.getString(index++));
 	}
 }
