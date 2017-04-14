@@ -98,6 +98,10 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;
+				PreparedStatement stmt3 = null;
+				PreparedStatement stmt4 = null;
+				PreparedStatement stmt5 = null;
+				PreparedStatement stmt6 = null;
 	
 			
 				try {
@@ -118,17 +122,88 @@ public class DerbyDatabase implements IDatabase {
 							"	course_id integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
 							"	department_id integer constraint department_id references departments, " +
-							"	name varchar(150)" +
+							"	name varchar(150)" +	
 							")"
 					);
 					stmt2.executeUpdate();
 					
-					System.out.println("Courses table created");										
+					System.out.println("Courses table created");
+					
+					stmt3 = conn.prepareStatement(
+							"create table users (" +
+							"	user_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	email varchar(150)," +
+							"	password varchar(150)," +
+							"   activated boolean, " +
+							"   email_verified boolean, " + 
+							"	major varchar(150)," +
+							"	GPA double precision," +
+							"	class_year integer" +
+							")"
+					);
+					stmt3.executeUpdate();
+					
+					System.out.println("Users table created");
+					
+					stmt4 = conn.prepareStatement(
+							"create table admins (" +
+							"	admin_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	email varchar(150)," +
+							"	password varchar(150)," +
+							"   activated boolean, " + 
+							"   email_verified boolean " + 
+							")"
+					);
+					stmt4.executeUpdate();
+					
+					System.out.println("Admins table created");
+					
+					stmt5 = conn.prepareStatement(
+							"create table advices (" +
+							"	advice_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	user_id integer constraint user_id references users, " +
+							"	course_id integer constraint course_id references courses, " +
+							"	semester varchar(150)," +
+							"	professor  varchar(150)," +
+							"	flags integer," + 
+							"	grade double precision," +
+							"	class_year integer," +
+							"   approved boolean " + 
+							")"
+					);
+					stmt5.executeUpdate();
+					
+					System.out.println("Advices table created");
+					
+					
+					stmt6 = conn.prepareStatement(
+							"create table ratings (" +
+							"	rating_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	advice_id integer constraint advice_id references advices, " +
+							"	difficulty integer," +
+							"	instruction integer," +
+							"	supply_cost integer," +
+							"	enjoyment integer" +
+							")"
+					);
+					stmt6.executeUpdate();
+					
+					System.out.println("Ratings table created");
+					
+					
 										
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
 					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
+					DBUtil.closeQuietly(stmt4);
+					DBUtil.closeQuietly(stmt5);
+					DBUtil.closeQuietly(stmt6);
 				}
 			}
 		});
