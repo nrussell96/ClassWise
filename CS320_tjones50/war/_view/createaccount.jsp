@@ -29,6 +29,8 @@
 			<input type="email" placeholder="Enter Email" name="email" value = "${user.email}" required>
 			<label><b>Password</b></label>
 			<input type="password" placeholder="Enter Password" name="pass" value = "${user.password}" required>
+			<label><b>Reenter Password</b></label>
+			<input type="password" placeholder="Enter Password" name="reenter" value = "${user.reenter}" required>
 			
 			<button type="submit">Create Account</button>
 			<div style="color: #FF0000;">${errorMessage}</div>

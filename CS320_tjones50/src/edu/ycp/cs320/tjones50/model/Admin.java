@@ -4,6 +4,7 @@ public class Admin extends Account {
 	private boolean approved = false;
 	private String email;
 	private String password;
+	private String reenter;
 	private int accountId;
 	
 	public Admin(){
@@ -37,6 +38,14 @@ public class Admin extends Account {
 	
 	public String getPassword(){
 		return this.password;
+	}
+	
+	public void setReenter(String reenter){
+		this.reenter = reenter;
+	}
+	
+	public String getReenter(){
+		return this.reenter;
 	}
 	
 	@Override

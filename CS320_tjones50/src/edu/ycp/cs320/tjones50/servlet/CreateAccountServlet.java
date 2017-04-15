@@ -30,17 +30,24 @@ public class CreateAccountServlet extends HttpServlet {
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
+		String reenter = req.getParameter("reenter");
 		
 		model.setEmail(email);
 		model.setPassword(password);
+		model.setReenter(reenter);
 		
-		boolean accountExists = controller.checkAccountInfo(email, password);
+		boolean emailValid = controller.validate(email);
+		boolean accountExists = controller.checkAccountInfo(email, password, reenter);
 		
 		// Pass model to jsp
 		req.setAttribute("createaccount", model);
+		if(emailValid == false){
+			req.setAttribute("errorMessage", "Please enter a valid email pattern.");
+			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
+		}
 		
 		if(accountExists == true){ //if account exists
-			req.setAttribute("errorMessage", "That account already exists.");
+			req.setAttribute("errorMessage", "Either email taken or passwords don't match.");
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 		}else{
