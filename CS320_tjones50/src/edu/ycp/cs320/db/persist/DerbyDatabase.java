@@ -142,7 +142,7 @@ public class DerbyDatabase implements IDatabase {
 							"   email_verified boolean, " + 
 							"	major varchar(150)," +
 							"	GPA double precision," +
-							"	class_year integer" +
+							"	class_year varchar(20)" +
 							")"
 					);
 					stmt3.executeUpdate();
@@ -174,7 +174,8 @@ public class DerbyDatabase implements IDatabase {
 							"	flags integer," + 
 							"	grade double precision," +
 							"	class_year integer," +
-							"   approved boolean " + 
+							"   approved boolean, " + 
+							"   text varchar(500)" +
 							")"
 					);
 					stmt5.executeUpdate();
@@ -199,6 +200,138 @@ public class DerbyDatabase implements IDatabase {
 					
 					
 										
+					return true;
+				} finally {
+					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
+					DBUtil.closeQuietly(stmt4);
+					DBUtil.closeQuietly(stmt5);
+					DBUtil.closeQuietly(stmt6);
+				}
+			}
+		});
+	}
+	
+//  loads sample users, advice, ratings into db for testing
+	public void loadSampleData() {
+		executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+				PreparedStatement stmt1 = null;
+				PreparedStatement stmt2 = null;
+				PreparedStatement stmt3 = null;
+				PreparedStatement stmt4 = null;
+				PreparedStatement stmt5 = null;
+				PreparedStatement stmt6 = null;
+				PreparedStatement stmt7 = null;
+				PreparedStatement stmt8 = null;
+				PreparedStatement stmt9 = null;
+				PreparedStatement stmt10 = null;
+				PreparedStatement stmt11 = null;
+				PreparedStatement stmt12 = null;
+				PreparedStatement stmt13 = null;
+				PreparedStatement stmt14 = null;
+				PreparedStatement stmt15 = null;
+			
+				try {
+					
+					stmt1 = conn.prepareStatement(
+						"insert into users (email, password, activated, email_verified, major, gpa, class_year) " +
+						"values ('student1@ycp.edu', 'password', true, true, 'Computer Science', 3.7, 'Junior')"
+					);	
+					stmt1.executeUpdate();
+					
+					stmt2 = conn.prepareStatement(
+							"insert into users (email, password, activated, email_verified, major, gpa, class_year) " +
+							"values ('student2@ycp.edu', 'password', true, true, 'Computer Engineering', 3.8, 'Freshman')"
+						);	
+					stmt2.executeUpdate();
+					
+					stmt3 = conn.prepareStatement(
+							"insert into users (email, password, activated, email_verified, major, gpa, class_year) " +
+							"values ('student3@ycp.edu', 'password', true, true, 'Philosophy', 4.0, 'Senior')"
+						);	
+					stmt3.executeUpdate();
+					
+					System.out.println("User data inserted");
+					
+					stmt4 = conn.prepareStatement(
+							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"values (1, 858, 'Spring', 'Professor Hake', 0, 4, 2017, true, 'great class, lots of work')"
+					);
+					stmt4.executeUpdate();
+					
+					stmt5 = conn.prepareStatement(
+							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"values (1, 857, 'Fall', 'Professor Hovemeyer', 0, 4, 2016, true, 'helpful class, prepared me for CS320')"
+					);
+					stmt5.executeUpdate();
+					
+					stmt6 = conn.prepareStatement(
+							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"values (2, 889, 'Fall', 'Professor Moscola', 0, 3, 2016, true, 'easy class, I love circuits!')"
+					);
+					stmt6.executeUpdate();
+					
+					stmt7 = conn.prepareStatement(
+							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"values (2, 890, 'Spring', 'Professor Moscola', 0, 3.5, 2017, true, 'I learned a lot! ECE 220 helped!')"
+					);
+					stmt7.executeUpdate();
+					
+					stmt8 = conn.prepareStatement(
+							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"values (3, 1063, 'Summer', 'Professor Guy', 0, 3, 2016, true, 'this class opened my mind, I am renewed')"
+					);
+					stmt8.executeUpdate();
+					
+					stmt9 = conn.prepareStatement(
+							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"values (3, 1075, 'Spring', 'Professor Woman', 0, 4.0, 2017, true, 'This class taught me how to be a good person')"
+					);
+					stmt9.executeUpdate();
+					System.out.println("Advice added");
+					
+					stmt10 = conn.prepareStatement(
+							"insert into ratings (advice_id, difficulty, instruction, supply_cost, enjoyment) " +
+							"values (1,1,1,1,1)"
+					);
+					stmt10.executeUpdate();
+					
+					stmt11 = conn.prepareStatement(
+							"insert into ratings (advice_id, difficulty, instruction, supply_cost, enjoyment) " +
+							"values (2,2,3,4,5)"
+					);
+					stmt11.executeUpdate();
+					
+					stmt12 = conn.prepareStatement(
+							"insert into ratings (advice_id, difficulty, instruction, supply_cost, enjoyment) " +
+							"values (3,5,4,1,4)"
+					);
+					stmt12.executeUpdate();
+					
+					stmt13 = conn.prepareStatement(
+							"insert into ratings (advice_id, difficulty, instruction, supply_cost, enjoyment) " +
+							"values (4,5,5,5,4)"
+					);
+					stmt13.executeUpdate();
+					
+					stmt14 = conn.prepareStatement(
+							"insert into ratings (advice_id, difficulty, instruction, supply_cost, enjoyment) " +
+							"values (5,1,2,3,3)"
+					);
+					stmt14.executeUpdate();
+					
+					stmt15 = conn.prepareStatement(
+							"insert into ratings (advice_id, difficulty, instruction, supply_cost, enjoyment) " +
+							"values (6,1,1,1,5)"
+					);
+					stmt15.executeUpdate();
+					
+					System.out.println("Ratings added");
+					
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -274,6 +407,9 @@ public class DerbyDatabase implements IDatabase {
 		System.out.println("Loading initial data...");
 		db.loadInitialData();
 		
+		System.out.println("Loading sample data...");
+		db.loadSampleData();
+		
 		System.out.println("Library DB successfully initialized!");
 	}
 	
@@ -334,6 +470,43 @@ public class DerbyDatabase implements IDatabase {
 					);
 					
 					stmt.setInt(1, dept.getDepartmentId());
+					
+					// establish the Department object to receive the result
+					Department dept = new Department();
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadDepartment(dept, resultSet, 1);
+						courses = getCourseList(dept);
+						dept.setCourses(courses);
+					}
+					return dept;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	@Override
+	public Department getDepartmentByName (String name) {
+		return executeTransaction(new Transaction<Department>() {
+			@Override
+			public Department execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Course> courses = null;
+
+				// try to retrieve course
+				try {
+					stmt = conn.prepareStatement(
+							"select * from departments" + 
+							" where departments.name = ?"
+					);
+					
+					stmt.setString(1, name);
 					
 					// establish the Department object to receive the result
 					Department dept = new Department();
@@ -426,34 +599,159 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+	
+	@Override
+	public Course getCourseByName(String name) {
+		return executeTransaction(new Transaction<Course>() {
+			@Override
+			public Course execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve course
+				try {
+					stmt = conn.prepareStatement(
+							"select * from courses" + 
+							" where courses.name = ?"
+					);
+					
+					stmt.setString(1, name);
+					
+					// establish the Course object to receive the result
+					Course course = new Course();
+					
+					// execute the query, get the results, and assemble them in course object
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadCourse(course, resultSet, 1);
+					}
+					return course;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
 
 	@Override
 	public ArrayList<Advice> getCourseAdviceList(Course course) {
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices where " +
+							"advices.course_id= ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// establish the Advice Object to receive the result
+					Advice advice = new Advice();
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingFromAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
+	private Rating getRatingFromAdvice(Advice advice) {
+		return executeTransaction(new Transaction<Rating>() {
+			@Override
+			public Rating execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve Rating
+				try {
+					stmt = conn.prepareStatement(
+							"select * from ratings where " +
+							"ratings.advice_id = ?"
+					);
+					
+					stmt.setInt(1, advice.getAdviceId());
+					
+					// establish the Rating Object to receive the result
+					Rating rating  = new Rating();
+					
+					// execute the query, get the results, and assemble them in the object
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadRating(rating, resultSet, 1);
+					}
+					return rating;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+
+			
+		});
 	}
 
 	@Override
-	public ArrayList<Advice> getAccountAdviceList(int accountId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	// retrieves Department information from query result set
-	private void loadDepartment(Department dept, ResultSet resultSet, int index) throws SQLException {
-		dept.setDepartmentId(resultSet.getInt(index++));
-		dept.setName(resultSet.getString(index++));
-	}
-		
-	private void loadCourse(Course course, ResultSet resultSet, int index) throws SQLException {
-		course.setCourseId(resultSet.getInt(index++));
-		course.setDepartmentId(resultSet.getInt(index++));
-		course.setName(resultSet.getString(index++));
+	public ArrayList<Advice> getAccountAdviceList(int userId) {
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+				
+				// try to retrieve Rating
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, users where " +
+							"advices.user_id = ? and advices.user_id = users.user_id"
+					);
+					
+					stmt.setInt(1, userId);
+					
+					
+					
+					// execute the query, get the results, and assemble them in the object
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+
+			
+		});
 	}
 
 	@Override
 	public void addAdviceToCourse(User user, Course course, double grade, String semester, int year, String professor,
 			Rating rating) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -527,5 +825,41 @@ public class DerbyDatabase implements IDatabase {
 	public void flagAdvice(Advice advice) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	// retrieves Department information from query result set
+	private void loadDepartment(Department dept, ResultSet resultSet, int index) throws SQLException {
+		dept.setDepartmentId(resultSet.getInt(index++));
+		dept.setName(resultSet.getString(index++));
+	}
+	
+	// retrieves Course information from query result set
+	private void loadCourse(Course course, ResultSet resultSet, int index) throws SQLException {
+		course.setCourseId(resultSet.getInt(index++));
+		course.setDepartmentId(resultSet.getInt(index++));
+		course.setName(resultSet.getString(index++));
+	}
+		
+	// retrieves Advice information from query result set
+	private void loadAdvice(Advice advice, ResultSet resultSet, int index) throws SQLException {
+		advice.setAdviceId(resultSet.getInt(index++));
+		advice.setUserId(resultSet.getInt(index++));
+		advice.setCourseId(resultSet.getInt(index++));
+		advice.setSemester(resultSet.getString(index++));
+		advice.setProfessor(resultSet.getString(index++));
+		advice.setFlags(resultSet.getInt(index++));
+		advice.setGradeReceived(resultSet.getInt(index++));
+		advice.setClassYear(resultSet.getInt(index++));
+		advice.setApproved(resultSet.getBoolean(index++));
+		advice.setText(resultSet.getString(index++));
+		
+	}
+	
+	private void loadRating(Rating rating, ResultSet resultSet, int index) throws SQLException {
+		rating.setAdviceId(resultSet.getInt(index++));
+		rating.setDifficulty(resultSet.getDouble(index++));
+		rating.setInstruction(resultSet.getDouble(index++));
+		rating.setSuppliesCost(resultSet.getDouble(index++));
+		rating.setEnjoyment(resultSet.getDouble(index++));
 	}
 }
