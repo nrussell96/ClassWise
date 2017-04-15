@@ -85,7 +85,7 @@ public class DerbyDatabase implements IDatabase {
 	// TODO: You will need to change this location to the same path as your workspace for this example
 	// TODO: Change it here and in SQLDemo under CS320_Lab06->edu.ycp.cs320.sqldemo	
 	private Connection connect() throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:derby:C:/Users/Kyle/Desktop/Code/York College/CS320/library.db;create=true");		
+		Connection conn = DriverManager.getConnection("jdbc:derby:C:/Users/User/workspacelibrary.db;create=true");		
 		
 		// Set autocommit() to false to allow the execution of
 		// multiple queries/statements as part of the same transaction.
@@ -756,12 +756,6 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Rating getRating(Rating rating) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<Advice> getAdviceListSortedByGrade(Course course) {
 		// TODO Auto-generated method stub
 		return null;
@@ -861,5 +855,89 @@ public class DerbyDatabase implements IDatabase {
 		rating.setInstruction(resultSet.getDouble(index++));
 		rating.setSuppliesCost(resultSet.getDouble(index++));
 		rating.setEnjoyment(resultSet.getDouble(index++));
+	}
+
+	@Override
+	public Rating getAdviceRating(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rating getCourseRating(Course course) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListSortedByGPA(Course course) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListSortedByMajor(Course course) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListByGrade(Course course, double grade) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListByGPA(Course course, double GPA) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListSemester(Course course, String semester) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListMajor(Course course, String major) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListYear(Course course, int year) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListProfessor(Course course, String professor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListDifficulty(Course course, double difficulty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListInstruction(Course course, double instruction) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListSupplyCost(Course course, double supplyCost) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getAdviceListEnjoyment(Course course, double Enjoyment) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
