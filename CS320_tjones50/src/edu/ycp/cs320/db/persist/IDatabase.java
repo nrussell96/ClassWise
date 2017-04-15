@@ -48,6 +48,10 @@ public interface IDatabase {
 	
 	abstract public void flagAdvice (Advice advice);
 	
+	abstract public Course getCourseByName (String name);
+	
+	abstract public Department getDepartmentByName (String name);
+	
 	// add methods to get a specific list of advice, i.e when user sorts advice by criteria  
 	
 	

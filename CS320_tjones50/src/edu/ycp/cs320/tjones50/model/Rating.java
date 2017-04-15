@@ -1,6 +1,7 @@
 package edu.ycp.cs320.tjones50.model;
 
 public class Rating {
+	private int adviceId;
 	private double difficulty;
 	private double instruction;
 	private double suppliesCost;
@@ -32,7 +33,7 @@ public class Rating {
 		return this.instruction;
 	}
 	
-	public void setSuppliesCost(Integer suppliesCost){
+	public void setSuppliesCost(double suppliesCost){
 		this.suppliesCost = suppliesCost;
 	}
 	public double getSuppliesCost(){
@@ -44,6 +45,16 @@ public class Rating {
 	}
 	public double getEnjoyment(){
 		return this.enjoyment;
+	}
+
+
+	public int getAdviceId() {
+		return adviceId;
+	}
+
+
+	public void setAdviceId(int adviceId) {
+		this.adviceId = adviceId;
 	}
 	
 	

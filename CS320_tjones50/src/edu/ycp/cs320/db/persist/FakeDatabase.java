@@ -124,6 +124,19 @@ public class FakeDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Course getCourseByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Department getDepartmentByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }
