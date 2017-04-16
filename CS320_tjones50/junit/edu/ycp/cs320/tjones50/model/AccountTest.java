@@ -39,6 +39,14 @@ public class AccountTest {
 	}
 	
 	@Test
+	public void TestSetReenter(){
+		user.setReenter("password");
+		assertEquals("password", user.getReenter());
+		admin.setReenter("password");
+		assertEquals("password", admin.getReenter());
+	}
+	
+	@Test
 	public void TestSetAccountId(){
 		user.setAccountId(1);
 		assertEquals(1, user.getAccountId());

@@ -10,6 +10,10 @@ public abstract class Account{
 	
 	abstract public String getEmail();
 	
+	abstract public void setReenter(String reenter);
+	
+	abstract public String getReenter();
+	
 	abstract public void setPassword(String password);
 	
 	abstract public String getPassword();

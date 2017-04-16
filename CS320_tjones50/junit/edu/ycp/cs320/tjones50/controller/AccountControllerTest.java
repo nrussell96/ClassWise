@@ -24,7 +24,29 @@ public class AccountControllerTest {
 		controller2 = new AccountController();
 		controller2.setModel(model2);
 	}
+	@Test
+	public void testValidateValidEmail(){
+		assertEquals(controller1.validate("tjones50@ycp.edu"), true);
+		assertEquals(controller1.validate("nrussell@ycp.edu"), true);
+		assertEquals(controller1.validate("kjones65@ycp.edu"), true);
+		
+		assertEquals(controller2.validate("tjones50@ycp.edu"), true);
+		assertEquals(controller2.validate("nrussell@ycp.edu"), true);
+		assertEquals(controller2.validate("kjones65@ycp.edu"), true);
+		
+	}
 	
+	@Test
+	public void testValidateInvalidEmail(){
+		assertEquals(controller1.validate("tjones50@ycpedu"), false);
+		assertEquals(controller1.validate("nrussellycp&^.edu"), false);
+		assertEquals(controller1.validate("kjones65@ycp.)u"), false);
+		
+		assertEquals(controller2.validate("tjones50@ycp..edu"), false);
+		assertEquals(controller2.validate("nrussellycp&^.edu"), false);
+		assertEquals(controller2.validate("kjo#$nes65@ycp.)u"), false);
+		
+	}
 	
 	@Test
 	public void testModel() {
@@ -34,10 +56,10 @@ public class AccountControllerTest {
 	
 	@Test
 	public void TestCheckAccountInfo(){
-		assertEquals(controller1.checkAccountInfo("tjones50@ycp.edu", "password1"), true);
-		assertEquals(controller1.checkAccountInfo("tjones50@ycp.edu", "passwor"), false);
-		assertEquals(controller2.checkAccountInfo("tjones50@ycp.edu", "password1"), true);
-		assertEquals(controller2.checkAccountInfo("tjones50@ycp", "password1"), false);
+		assertEquals(controller1.checkAccountInfo("tjones50@ycp.edu", "password1", "password1"), true);
+		assertEquals(controller1.checkAccountInfo("tjones50@ycp.edu", "passwor", "passwor"), false);
+		assertEquals(controller2.checkAccountInfo("tjones50@ycp.edu", "password1", "password1"), true);
+		assertEquals(controller2.checkAccountInfo("tjones50@ycp", "password1", "password1"), false);
 		
 	}
 	

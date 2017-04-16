@@ -32,15 +32,21 @@ public class LoginServlet extends HttpServlet {
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
+		String reenter = req.getParameter("reenter");
 		
 		model.setEmail(email);
 		model.setPassword(password);
+		model.setReenter(reenter);
 		
-		boolean accountExists = controller.checkAccountInfo(email, password);
+		boolean emailValid = controller.validate(email);
+		boolean accountExists = controller.checkAccountInfo(email, password, reenter);
 		
 		// Pass model to jsp
 		req.setAttribute("login", model);
-		
+		if(emailValid == false){
+			req.setAttribute("errorMessage", "Please enter a valid email pattern.");
+			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		}
 		if(accountExists == true){ //if account exists
 			// Pass model to jsp
 /*			HttpSession session = req.getSession(); //Part of my attempt at making a session that persists
