@@ -19,6 +19,17 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		System.out.println("In Home doGet");
+		
+		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		if(email == null){
+			System.out.println("User: <" + email + "> not logged in, or session timed out.");
+			
+			// user is not logged in, or the session expired
+			resp.sendRedirect(req.getContextPath() + "/login");
+			return;
+		}
+		
 		Data data = new Data();
 		data.populate();
 
@@ -36,15 +47,8 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		/*		HttpSession session=req.getSession(false); //Part of my attempt at making a session that persists - Nate 
-		if(session != null){
-			String email = (String)session.getAttribute("email");
-			req.setAttribute("sessionMessage", "Hello " + email); 
-		}
-		else{  
-			req.setAttribute("errorMessage", "Please login first");  
-            req.getRequestDispatcher("/_view/login.jsp").include(req, resp);  
-        } */
+		System.out.println("In Home doPost");
+
 		Home model = new Home();
 		HomeController controller = new HomeController();
 		controller.setModel(model);

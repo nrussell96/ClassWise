@@ -23,6 +23,16 @@ public class GiveAdviceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		System.out.println("In Give Advice doGet");
+		
+		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		if(email == null){
+			System.out.println("User: <" + email + "> not logged in, or session timed out.");
+			
+			// user is not logged in, or the session expired
+			resp.sendRedirect(req.getContextPath() + "/login");
+			return;
+		}
+		
 		// create the course object
 		Course course = new Course();
 		CourseController courseController = new CourseController();

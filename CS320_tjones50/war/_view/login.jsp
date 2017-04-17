@@ -15,9 +15,12 @@
 	<body>
 		
 		<p3>
-		<form action="${pageContext.request.contextPath}/home">
-			<button type="submit">Home</button>
-		</form>
+			<form action="${pageContext.request.contextPath}/home">
+			<button type="submit">Home</button></form><br>
+			
+			<label><b>New to ClassWise?</b></label><form action="${pageContext.request.contextPath}/createaccount">
+			<button type="submit">Create Account</button></form>
+
 		</p3>
 		
 		<h1> Login to ClassWise</h1>
