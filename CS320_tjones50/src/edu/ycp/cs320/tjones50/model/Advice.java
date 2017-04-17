@@ -13,7 +13,8 @@ public class Advice{
 	private String text = null;
 	private String errorMessage;
 	private int adviceId;
-	private int accountId;
+	private int userId;
+	private int courseId;
 	private String professor;
 	
 	public Advice(){
@@ -136,12 +137,20 @@ public class Advice{
 		return this.adviceId;
 	}
 	
-	public void setAccountId(int accountId){
-		this.accountId = accountId;
+	public void setUserId(int userId){
+		this.userId = userId;
 	}
 	
-	public int getAccountId(){
-		return this.accountId;
+	public int getUserId(){
+		return this.userId;
+	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
 	}
 	
 	

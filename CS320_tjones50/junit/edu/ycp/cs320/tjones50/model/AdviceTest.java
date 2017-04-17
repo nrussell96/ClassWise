@@ -80,10 +80,11 @@ public class AdviceTest {
 		assertEquals("This class is the best", model.getText());
 	}
 	
+	//Should this now be testUserId?
 	@Test
 	public void TestAccountId(){
-		model.setAccountId(1);
-		assertEquals(1, model.getAccountId());
+		model.setUserId(1);
+		assertEquals(1, model.getUserId());
 	}
 	
 	@Test
