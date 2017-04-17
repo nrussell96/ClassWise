@@ -17,8 +17,11 @@
 	
 	<p3>
 		<form action="${pageContext.request.contextPath}/home">
-			<button type="submit">Home</button>
-		</form>
+		<button type="submit">Home</button></form><br>
+		
+		<label><b>Already have an account?</b></label>
+		<form action="${pageContext.request.contextPath}/login"><button type="submit">Login</button></form>
+
 	</p3>
 	
 	<h1> Create a ClassWise Account</h1>
