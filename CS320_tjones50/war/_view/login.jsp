@@ -7,18 +7,20 @@
 	<title>Login</title>
 		<style type="text/css">
     		<%@include file="loginstyle.css" %>
-    		
+    	.active {
+		background-color:#4CAF50;
+		}
 		</style>
 		
 	</head>
 	<body>
-		
-		<header>
-		
-			<form action="${pageContext.request.contextPath}/home">
-			<button type="submit">Home</button></form><br>
-			
-		</header>
+		<ul>
+  			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
+  			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
+ 			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
+			<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+		</ul>
+
 		
 		<div id = "container">
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
