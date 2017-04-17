@@ -24,6 +24,17 @@ public class UserAccountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		System.out.println("In the userAccount doGet");
+		
+		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		if(email == null){
+			System.out.println("User: <" + email + "> not logged in, or session timed out.");
+			
+			// user is not logged in, or the session expired
+			resp.sendRedirect(req.getContextPath() + "/login");
+			return;
+		}
+		
 		User model = new User();
 		AccountController controller = new AccountController();
 		controller.setModel(model);
@@ -64,6 +75,7 @@ public class UserAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		System.out.println("In the userAccount doPost");
 		// Forward to view to render the result HTML document
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}

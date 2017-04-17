@@ -19,12 +19,16 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		System.out.println("In the login doGet");
+		
 		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		System.out.println("In the login doPost");
 		
 		User model = new User();
 		AccountController controller = new AccountController();
@@ -49,9 +53,13 @@ public class LoginServlet extends HttpServlet {
 		}
 		if(accountExists == true){ //if account exists
 			// Pass model to jsp
-/*			HttpSession session = req.getSession(); //Part of my attempt at making a session that persists
-			session.setAttribute("login", model); */
-					
+			
+			req.setAttribute("email", req.getParameter("email")); //session code modeled after in-class example by Professor Hake
+			req.setAttribute("pass", req.getParameter("pass"));
+			
+			// store email obj in session
+			req.getSession().setAttribute("email", email);
+			
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 		}else{

@@ -14,15 +14,19 @@ public class IndexServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-/*		HttpSession session=req.getSession(false); //Part of my attempt at making a session that persists - Nate 
-		if(session != null){
-			String email = (String)session.getAttribute("email");
-			req.setAttribute("sessionMessage", "Hello " + email); 
+		
+		System.out.println("In Index doGet");
+		
+		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		if(email == null){
+			System.out.println("User: <" + email + "> not logged in, or session timed out.");
+			
+			// user is not logged in, or the session expired
+			resp.sendRedirect(req.getContextPath() + "/login");
+			return;
 		}
-		else{  
-			req.setAttribute("errorMessage", "Please login first");  
-            req.getRequestDispatcher("/_view/login.jsp").include(req, resp);  
-        } */
+		
+		System.out.println("   User: <" + email + "> logged in");
 		
 		req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 	}

@@ -23,7 +23,20 @@ public class CourseServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
 		System.out.println("in the course doGet");
+		
+		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		if(email == null){
+			System.out.println("User: <" + email + "> not logged in, or session timed out.");
+			
+			// user is not logged in, or the session expired
+			resp.sendRedirect(req.getContextPath() + "/login");
+			return;
+		}
+		
+		System.out.println("   User: <" + email + "> logged in");
+		
 		Course model = new Course();
 		CourseController controller = new CourseController();
 		controller.setModel(model);
@@ -56,15 +69,6 @@ public class CourseServlet extends HttpServlet {
 		controller.computeAveGrade();
 		controller.computeAveRating();
 		
-		HttpSession session=req.getSession(false);
-		if(session != null){
-			String email = (String)session.getAttribute("email");
-			req.setAttribute("sessionMessage", "Hello " + email); 
-		}
-		else{  
-			req.setAttribute("errorMessage", "Please login first");  
-            req.getRequestDispatcher("/_view/login.jsp").include(req, resp);  
-        }  
 		// Pass model to jsp
 		req.setAttribute("course", model);
 		req.setAttribute("department", department);
