@@ -18,13 +18,6 @@ public class IndexServlet extends HttpServlet {
 		System.out.println("In Index doGet");
 		
 		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
-		if(email == null){
-			System.out.println("User: <" + email + "> not logged in, or session timed out.");
-			
-			// user is not logged in, or the session expired
-			resp.sendRedirect(req.getContextPath() + "/login");
-			return;
-		}
 		
 		System.out.println("   User: <" + email + "> logged in");
 		

@@ -33,6 +33,8 @@ public class GiveAdviceServlet extends HttpServlet {
 			return;
 		}
 		
+		System.out.println("   User: <" + email + "> logged in");
+		
 		// create the course object
 		Course course = new Course();
 		CourseController courseController = new CourseController();
