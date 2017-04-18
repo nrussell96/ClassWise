@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.tjones50.controller.AccountController;
 import edu.ycp.cs320.tjones50.controller.AdviceController;
@@ -27,7 +28,11 @@ public class UserAccountServlet extends HttpServlet {
 		System.out.println("In the userAccount doGet");
 		
 		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
-		if(email == null){
+		
+		HttpSession session = req.getSession();
+		session.setMaxInactiveInterval(60 * 20); //20 minute session
+		
+		if(email == null || session == null){
 			System.out.println("User: <" + email + "> not logged in, or session timed out.");
 			
 			// user is not logged in, or the session expired
