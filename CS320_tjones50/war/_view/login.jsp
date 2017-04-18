@@ -31,9 +31,11 @@
   	        <input type="password" name="pass" placeholder="password" value = "${user.password}" required><br>
   	        <label for="password">Password Reentry: </label>
   	        <input type="password" name="reenter" placeholder="reenter password" value = "${user.reenter}" required>
-  	        <input type="submit" value = "Login">
-  	        <label for = "createAccount">New to ClassWise?</label>
-  	        <input type="submit" value = "New Account"></form>
+  	        <input type="submit" value = "Login"></form>
+  	        
+  	    <form action="${pageContext.servletContext.contextPath}/createaccount" method = "post">
+  	    
+  	        <div id = "accountButton"><input type="submit" value = "New Account?"></div></form>
 		</div>
  		   
 <!--			<label><b>Email</b></label>
