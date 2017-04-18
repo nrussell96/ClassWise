@@ -47,13 +47,6 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public void addAdviceToCourse(User user, Course course, double grade, String semester, int year, String professor,
-			Rating rating) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ArrayList<Advice> getAdviceListSortedByGrade(Course course) {
 		// TODO Auto-generated method stub
 		return null;
@@ -102,21 +95,21 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public void createUserAccount(String major, double GPA, int year, String email, String password) {
+	public Integer createUserAccount(String major, double GPA, int year, String email, String password) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public boolean login(String email, String password) {
+	public Boolean login(String email, String password) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void flagAdvice(Advice advice) {
+	public Integer flagAdvice(Advice advice) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
@@ -211,6 +204,43 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public ArrayList<Advice> getAdviceListEnjoyment(Course course, double Enjoyment) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rating getRatingByAdvice(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer addAdviceToCourse(User user, Course course, String semester, String professor, double grade, int year, String text, Rating rating) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer insertRating(Advice advice, double difficulty, double instruction, double supplyCost,
+			double enjoyment) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserFromUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Advice getAdviceByAdviceId(int adviceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rating getRatingByRatingId(int ratingId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

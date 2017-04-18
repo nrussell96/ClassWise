@@ -80,7 +80,6 @@ public class AdviceTest {
 		assertEquals("This class is the best", model.getText());
 	}
 	
-	//Should this now be testUserId?
 	@Test
 	public void TestAccountId(){
 		model.setUserId(1);

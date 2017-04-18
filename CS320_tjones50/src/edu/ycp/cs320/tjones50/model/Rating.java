@@ -6,6 +6,7 @@ public class Rating {
 	private double instruction;
 	private double suppliesCost;
 	private double enjoyment;
+	private int ratingId;
 	
 	public Rating() {
 		
@@ -55,6 +56,16 @@ public class Rating {
 
 	public void setAdviceId(int adviceId) {
 		this.adviceId = adviceId;
+	}
+
+
+	public int getRatingId() {
+		return ratingId;
+	}
+
+
+	public void setRatingId(int ratingId) {
+		this.ratingId = ratingId;
 	}
 	
 	
