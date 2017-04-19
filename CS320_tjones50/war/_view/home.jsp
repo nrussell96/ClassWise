@@ -21,26 +21,6 @@
 		</style> -->
 		
 		
-		<p3>
-		
-		<table>
-		<form action="${pageContext.request.contextPath}/index">
-			<button type="submit">Index</button>
-		</form>
-		
-		
-		<form action="${pageContext.request.contextPath}/login">
-		<button type="submit">Login</button>
-		</form>
-		
-		
-		<form action="${pageContext.request.contextPath}/createaccount">
-		<button type="submit">Create Account</button>
-		</form>
-		</table>
-		
-		</p3>
-		
 
 	</head>
 

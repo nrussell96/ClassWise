@@ -5,17 +5,6 @@
 
 <html>
 	<head>
-		<p3>
-		
-		<form action="${pageContext.request.contextPath}/giveAdvice">
-			<button type="submit">Give advice</button>
-			<input name="courseName" type="hidden" value="${course.name}" />
-			<input name="departmentName" type="hidden" value="${department.name}" />
-		</form>
-		
-		</table>
-		
-		</p3>
 		
 		<title>Course</title>
 						
@@ -36,7 +25,7 @@
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-			<!--  <li><a href="http://localhost:8081/tjones50/giveAdvice">Give Advice</a></li> -->
+			<li><a href="http://localhost:8081/tjones50/giveAdvice">Give Advice</a></li>
 		</ul>
 		
 		<h1>
