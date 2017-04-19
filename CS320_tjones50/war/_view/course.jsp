@@ -33,16 +33,32 @@
 		</p3>
 		
 		<title>Course</title>
-					
-		<style type="text/css">
+		
+			<!--This is commented out until I figure
+			out how to do both .css files at once
+			<style type="text/css">
+    			<%@include file="loginstyle.css" %>
+    		.active {
+			background-color:#4CAF50;
+			}
+			</style> -->
+						
+		  <style type="text/css">
     		<%@include file="style.css" %>
     		
-		</style>
+		</style> 
 		
 		
 	</head>
 
 	<body>
+	<!--  	<ul>
+  			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
+  			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
+  			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
+ 			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
+			<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+		</ul> Commented out for now-->
 		
 		<h1>
 		

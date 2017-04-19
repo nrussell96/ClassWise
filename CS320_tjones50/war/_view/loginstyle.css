@@ -61,7 +61,14 @@ input[type=submit] {
     height: 30px;
 }
 
-#accountButton{
+#l_accountButton{
+	float:left;
+	margin-left:40px;
+	margin-top:-20px;
+	width:80px;
+	height:30px;
+}
+#ca_accountButton{
 	float:left;
 	margin-left:40px;
 	margin-top:-20px;
