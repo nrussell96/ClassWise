@@ -7,21 +7,6 @@
 	<head>
 		<p3>
 		
-		<table>
-		<form action="${pageContext.request.contextPath}/home">
-			<button type="submit">Home</button>
-		</form>
-		
-		
-		<form action="${pageContext.request.contextPath}/login">
-		<button type="submit">Login</button>
-		</form>
-		
-		
-		<form action="${pageContext.request.contextPath}/createaccount">
-		<button type="submit">Create Account</button>
-		</form>
-		
 		<form action="${pageContext.request.contextPath}/giveAdvice">
 			<button type="submit">Give advice</button>
 			<input name="courseName" type="hidden" value="${course.name}" />
@@ -33,32 +18,26 @@
 		</p3>
 		
 		<title>Course</title>
-		
-			<!--This is commented out until I figure
-			out how to do both .css files at once
-			<style type="text/css">
-    			<%@include file="loginstyle.css" %>
-    		.active {
-			background-color:#4CAF50;
-			}
-			</style> -->
 						
 		  <style type="text/css">
     		<%@include file="style.css" %>
-    		
+    	    .active {
+			background-color:#4CAF50;
+			}	    		
 		</style> 
 		
 		
 	</head>
 
 	<body>
-	<!--  	<ul>
+	  	<ul>
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-		</ul> Commented out for now-->
+			<!--  <li><a href="http://localhost:8081/tjones50/giveAdvice">Give Advice</a></li> -->
+		</ul>
 		
 		<h1>
 		

@@ -7,7 +7,7 @@
 		<title>Index view</title>
 		
 		<style type="text/css">
-    		<%@include file="loginstyle.css" %>
+    		<%@include file="style.css" %>
     	.active {
 		background-color:#4CAF50;
 		}
