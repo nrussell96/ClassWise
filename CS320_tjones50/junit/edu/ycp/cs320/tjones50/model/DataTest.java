@@ -61,9 +61,18 @@ public class DataTest {
 		assertEquals("PHY 110 General Physics I", data.getDepts().get(data.getDepts().size()-1).getCourses().get(0).getName());
 		assertEquals("PHY 263 Engineering Physics Optics and Modern Physics", data.getDepts().get(data.getDepts().size()-1).getCourses().get(data.getDepts().get(data.getDepts().size()-1).getCourses().size()-1).getName());
 		
-		Course course =  new Course();
-		data.setCourse(course);
-		assertEquals(course, data.getCourse());
+		Course course =  data.getDepts().get(0).getCourses().get(0);
+		assertEquals(course, data.getCourse(course));
+	}
+	
+	@Test 
+	public void testGetAndSetCourses(){	
+
+		assertEquals("ANT 210 Introduction to Physical Anthropology", data.getCourses().get(0).getName());
+		
+		ArrayList<Course> courses =  new ArrayList<Course>();
+		data.setCourses(courses);
+		assertEquals(courses, data.getCourses());
 	}
 }
 	

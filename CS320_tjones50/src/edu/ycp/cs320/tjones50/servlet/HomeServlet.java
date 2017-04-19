@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs320.db.persist.DerbyDatabase;
+import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.HomeController;
 import edu.ycp.cs320.tjones50.model.Data;
 import edu.ycp.cs320.tjones50.model.Department;
@@ -19,19 +21,23 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		// session info 
 		System.out.println("In Home doGet");
 		
 		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
 		
 		System.out.println("   User: <" + email + "> logged in");
 		
-		Data data = new Data();
-		data.populate();
-
+		// initialize variables
+		
+		//FakeDatabase database = new FakeDatabase();
+		DerbyDatabase database = new DerbyDatabase();
 		Home model = new Home();
 		HomeController controller = new HomeController();
 		controller.setModel(model);
-		model.setDepartments(data.getDepts());
+		
+		// add info to model
+		model.setDepartments(database.getDeptList());
 		
 		// Pass model to jsp
 		req.setAttribute("home", model);
@@ -42,13 +48,16 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		// session info
 		System.out.println("In Home doPost");
-
+		
+		// initialize variables
 		Home model = new Home();
 		HomeController controller = new HomeController();
 		controller.setModel(model);
 		
-		// Reconstruct current GuessingGame model object
+		// get info from parameters
 		String departmentName = req.getParameter("departmentName");
 		
 		

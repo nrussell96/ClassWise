@@ -38,7 +38,7 @@ private IDatabase db = null;
 	public void setUp() throws Exception {
 		// creating DB instance here
 		DatabaseProvider.setInstance(new DerbyDatabase());
-		db = DatabaseProvider.getInstance();	
+		db = DatabaseProvider.getInstance();
 		
 	}
 
