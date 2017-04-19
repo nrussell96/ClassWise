@@ -34,9 +34,9 @@ public interface IDatabase {
 			
 	abstract public Integer insertRating (Advice advice, double difficulty, double instruction, double supplyCost, double enjoyment);	//derby done
 	
-	abstract public Rating getAdviceRating (Advice advice);
+	abstract public Rating getAdviceRating (Advice advice);			//done as getAdviceByRating?
 	
-	abstract public Rating getCourseRating (Course course);
+	abstract public Rating getCourseRating (Course course);			// Is this getting the average grade? should it return an array list of ratings?
 	
 	abstract public User getUserFromUserId (int userId);	//derby done
 	
@@ -48,45 +48,45 @@ public interface IDatabase {
 	
 	abstract public ArrayList<Advice> getAdviceListSortedByGrade (Course course);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSortedByGPA (Course course);
+	abstract public ArrayList<Advice> getAdviceListSortedByGPA (Course course);	//derby done
 	
 	abstract public ArrayList<Advice> getAdviceListSortedBySemester (Course course);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSortedByMajor (Course course);
+	abstract public ArrayList<Advice> getAdviceListSortedByMajor (Course course);	//derby done
 	
 	abstract public ArrayList<Advice> getAdviceListSortedByYear (Course course);	//derby done
 	
 	abstract public ArrayList<Advice> getAdviceListSortedByProfessor (Course course);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSortedByDifficulty (Course course);
+	abstract public ArrayList<Advice> getAdviceListSortedByDifficulty (Course course);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSortedByInstruction (Course course);
+	abstract public ArrayList<Advice> getAdviceListSortedByInstruction (Course course);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSortedBySupplyCost (Course course);
+	abstract public ArrayList<Advice> getAdviceListSortedBySupplyCost (Course course);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSortedByEnjoyment (Course course);
+	abstract public ArrayList<Advice> getAdviceListSortedByEnjoyment (Course course);	//derby done
 	
 	// get specific searches
 	
-	abstract public ArrayList<Advice> getAdviceListByGrade (Course course, double grade);
+	abstract public ArrayList<Advice> getAdviceListByGrade (Course course, double grade);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListByGPA (Course course, double GPA);
+	abstract public ArrayList<Advice> getAdviceListByGPA (Course course, double GPA);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSemester (Course course, String semester);
+	abstract public ArrayList<Advice> getAdviceListSemester (Course course, String semester);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListMajor (Course course, String major);
+	abstract public ArrayList<Advice> getAdviceListMajor (Course course, String major);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListYear (Course course, int year);
+	abstract public ArrayList<Advice> getAdviceListYear (Course course, int year);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListProfessor (Course course, String professor);
+	abstract public ArrayList<Advice> getAdviceListProfessor (Course course, String professor);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListDifficulty (Course course, double difficulty);
+	abstract public ArrayList<Advice> getAdviceListDifficulty (Course course, double difficulty);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListInstruction (Course course, double instruction);
+	abstract public ArrayList<Advice> getAdviceListInstruction (Course course, double instruction);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListSupplyCost (Course course, double supplyCost);
+	abstract public ArrayList<Advice> getAdviceListSupplyCost (Course course, double supplyCost);	//derby done
 	
-	abstract public ArrayList<Advice> getAdviceListEnjoyment (Course course, double enjoyment);
+	abstract public ArrayList<Advice> getAdviceListEnjoyment (Course course, double enjoyment);	//derby done
 	
 	// account methods
 	

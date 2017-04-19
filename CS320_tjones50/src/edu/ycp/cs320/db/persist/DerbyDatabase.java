@@ -85,7 +85,7 @@ public class DerbyDatabase implements IDatabase {
 	// TODO: You will need to change this location to the same path as your workspace for this example
 	// TODO: Change it here and in SQLDemo under CS320_Lab06->edu.ycp.cs320.sqldemo	
 	private Connection connect() throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:derby:C:/Users/Kyle/Desktop/Code/York College/CS320/library.db;create=true");		
+		Connection conn = DriverManager.getConnection("jdbc:derby:C:/library.db;create=true");		
 		
 		// Set autocommit() to false to allow the execution of
 		// multiple queries/statements as part of the same transaction.
@@ -1148,26 +1148,158 @@ public class DerbyDatabase implements IDatabase {
 
 	@Override
 	public ArrayList<Advice> getAdviceListSortedByDifficulty(Course course) {
-		// TODO Auto-generated method stub
-				return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.difficulty"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListSortedByInstruction(Course course) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.instruction"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListSortedBySupplyCost(Course course) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.supply_cost"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListSortedByEnjoyment(Course course) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.enjoyment"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
@@ -1388,73 +1520,480 @@ public class DerbyDatabase implements IDatabase {
 
 	@Override
 	public ArrayList<Advice> getAdviceListSortedByGPA(Course course) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, users where " +
+							"advices.course_id = ? and advices.user_id = users.user_id order by users.gpa"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListSortedByMajor(Course course) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, users where " +
+							"advices.course_id = ? and advices.user_id = users.user_id order by users.major"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListByGrade(Course course, double grade) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices where " +
+							"advices.course_id = ? and advices.grade = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setDouble(2, grade);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListByGPA(Course course, double GPA) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+			
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, users where " +
+							"advices.course_id = ? and users.user_id = advices.user_id and users.gpa = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setDouble(2, GPA);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListSemester(Course course, String semester) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices where " +
+							"advices.course_id = ? and advices.semester = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setString(2, semester);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListMajor(Course course, String major) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, users where " +
+							"advices.course_id = ? and users.user_id = advices.user_id and users.major = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setString(2, major);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListYear(Course course, int year) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices where " +
+							"advices.course_id = ? and advices.class_year = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setInt(2, year);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListProfessor(Course course, String professor) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices where " +
+							"advices.course_id = ? and advices.professor = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setString(2, professor);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListDifficulty(Course course, double difficulty) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id and ratings.difficulty = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setDouble(2, difficulty);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListInstruction(Course course, double instruction) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id and ratings.instruction = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setDouble(2, instruction);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListSupplyCost(Course course, double supplyCost) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id and ratings.supply_cost = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setDouble(2, supplyCost);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 
 	@Override
 	public ArrayList<Advice> getAdviceListEnjoyment(Course course, double Enjoyment) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices, ratings where " +
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id and ratings.enjoyment = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					stmt.setDouble(2, Enjoyment);
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						
+						loadAdvice(advice, resultSet, 1);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
 	}
 }
