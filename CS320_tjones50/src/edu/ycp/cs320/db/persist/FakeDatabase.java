@@ -245,6 +245,18 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 
+	@Override
+	public Integer setFlags(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }
