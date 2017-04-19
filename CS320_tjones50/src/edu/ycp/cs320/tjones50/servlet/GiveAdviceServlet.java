@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.ycp.cs320.db.persist.DerbyDatabase;
+import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.AdviceController;
 import edu.ycp.cs320.tjones50.controller.CourseController;
 import edu.ycp.cs320.tjones50.controller.DepartmentController;
@@ -23,6 +25,8 @@ public class GiveAdviceServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		// session info
 		System.out.println("In Give Advice doGet");
 		
 		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
@@ -84,6 +88,10 @@ public class GiveAdviceServlet extends HttpServlet {
 				int classYear = Integer.parseInt(req.getParameter("classYear"));
 				String professor = req.getParameter("professor");
 				String text = req.getParameter("text");
+				
+				// create database
+				FakeDatabase database = new FakeDatabase();
+				//DerbyDatabase database = new DerbyDatabase();
 
 				//Set user
 				User user  = new User();
@@ -150,20 +158,6 @@ public class GiveAdviceServlet extends HttpServlet {
 		
 				// Forward to view to render the result HTML document
 				req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
-//		Advice model = new Advice();
-//		Rating rating = new Rating();
-//		AdviceController controller = new AdviceController();
-//		controller.setModel(model);
-//			
-//			if (approved == null || difficulty == null || instruction == null || suppliesCost == null || enjoyment == null ||  gradeReceived == null || flags == null || semester == null || classYear == null || text == null) {
-//				model.setErrorMessage("Please enter valid values for all fields");
-//			} else {
-//				rating.setDifficulty(difficulty);
-//				rating.setEnjoyment(enjoyment);
-//				rating.setInstruction(instruction);
-//				rating.setSuppliesCost(suppliesCost);
-//				model.setAdviceRating(rating);
-//			}
 
 			
 	}	

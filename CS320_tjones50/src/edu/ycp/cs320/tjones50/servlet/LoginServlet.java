@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("email", email);
 			
 			// Forward to view to render the result HTML document
-			req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 		}else{
 			req.setAttribute("errorMessage", "Email and/or password invalid.");
 			// Forward to view to render the result HTML document
