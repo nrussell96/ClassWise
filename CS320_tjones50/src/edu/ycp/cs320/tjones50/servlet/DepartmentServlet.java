@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs320.db.persist.DerbyDatabase;
+import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.DepartmentController;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Data;
@@ -19,22 +21,28 @@ public class DepartmentServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		// session info 
 		System.out.println("In the department doGet");
 		
 		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
 
 		System.out.println("   User: <" + email + "> logged in");
 		
-		Data data = new Data();
-		data.populate();
+		// initialize variables
+
+		//FakeDatabase database = new FakeDatabase();
+		DerbyDatabase database = new DerbyDatabase();
 		Department model = new Department();
 		DepartmentController controller = new DepartmentController();
 		controller.setModel(model);
 		
+		// get info from parameters
 		String departmentName = req.getParameter("departmentName");
 		
+		// add info to model
 		model.setName(departmentName);
-		model.setCourses(data.getDept(departmentName).getCourses());
+		model.setCourses(database.getDepartmentByName(departmentName).getCourses());
 		
 		// Pass model to jsp
 		req.setAttribute("department", model);
@@ -45,12 +53,16 @@ public class DepartmentServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		// session info 
 		System.out.println("In the department doPost");
+		
+		// initialize variables
 		Department model = new Department();
 		DepartmentController controller = new DepartmentController();
 		controller.setModel(model);
 		
-		// Reconstruct current GuessingGame model object
+		// get info from parameters
 		String courseName = req.getParameter("courseName");
 		String departmentName = req.getParameter("departmentName");
 				

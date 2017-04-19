@@ -10,11 +10,14 @@ public class Data {
 private Department dept;
 private Course course;
 private ArrayList<Department> depts;
+private ArrayList<Course> courses;
 
 	public Data(){
 		course = new Course();
+		courses = new ArrayList<Course>();
 		dept = new Department();
 		depts = new ArrayList<Department>();
+		
 	}
 	// Found online, parses from csv files
 	public void populate() {
@@ -50,6 +53,7 @@ private ArrayList<Department> depts;
                 course.setDepartment(dept);
             	course.setName(tokens[2]);       	
             	dept.addCourse(course);
+            	courses.add(course);
             
                 previousDept = tokens[1];
             }
@@ -86,8 +90,8 @@ private ArrayList<Department> depts;
 		this.dept = dept;
 	}
 
-	public Course getCourse() {
-		return course;
+	public Course getCourse(Course course) {
+		return courses.get(courses.indexOf(course));
 	}
 
 
@@ -103,5 +107,13 @@ private ArrayList<Department> depts;
 
 	public void setDepts(ArrayList<Department> depts) {
 		this.depts = depts;
-	}	
+	}
+	
+	public void setCourses(ArrayList<Course> courses){
+		this.courses = courses;
+	}
+	
+	public ArrayList<Course> getCourses(){
+		return this.courses;
+	}
 }
