@@ -89,7 +89,7 @@ public interface IDatabase {
 	
 	// account methods
 	
-	abstract public Integer createUserAccount (String major, double GPA, int year, String email, String password);	//derby done
+	abstract public Integer createUserAccount (String major, double GPA, String year, String email, String password);	//derby done
 	
 	abstract public Boolean login (String email, String password);	//derby done
 	

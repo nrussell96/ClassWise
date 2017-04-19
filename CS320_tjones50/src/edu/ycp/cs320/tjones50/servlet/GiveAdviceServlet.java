@@ -90,8 +90,8 @@ public class GiveAdviceServlet extends HttpServlet {
 				String text = req.getParameter("text");
 				
 				// create database
-				FakeDatabase database = new FakeDatabase();
-				//DerbyDatabase database = new DerbyDatabase();
+				//FakeDatabase database = new FakeDatabase();
+				DerbyDatabase database = new DerbyDatabase();
 
 				//Set user
 				User user  = new User();

@@ -1303,7 +1303,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer createUserAccount(String major, double GPA, int year, String email, String password) {
+	public Integer createUserAccount(String major, double GPA, String year, String email, String password) {
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
@@ -1341,7 +1341,7 @@ public class DerbyDatabase implements IDatabase {
 								stmt2.setString(2, password);
 								stmt2.setString(3, major);
 								stmt2.setDouble(4, GPA);
-								stmt2.setInt(5, year);
+								stmt2.setString(5, year);
 								
 								// execute the update
 								stmt2.executeUpdate();
@@ -1505,6 +1505,7 @@ public class DerbyDatabase implements IDatabase {
 		user.setGPA(resultSet.getDouble(index++));
 		user.setUserClassYear(resultSet.getString(index++));
 	}
+
 
 	@Override
 	public ArrayList<Advice> getAdviceListSortedByGPA(Course course) {
