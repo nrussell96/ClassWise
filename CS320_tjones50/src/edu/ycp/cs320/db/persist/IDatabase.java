@@ -43,6 +43,7 @@ public interface IDatabase {
 	abstract public Advice getAdviceByAdviceId(int adviceId);
 	
 	abstract public Rating getRatingByRatingId(int ratingId);
+
 	
 	// get sorted lists
 	
@@ -96,6 +97,9 @@ public interface IDatabase {
 	
 	abstract public Integer flagAdvice (Advice advice);	//derby done
 	
+	abstract public Integer setFlags(Advice advice);
+	
+	abstract public User getUserByEmail(String email);
 	  
 	
 	
