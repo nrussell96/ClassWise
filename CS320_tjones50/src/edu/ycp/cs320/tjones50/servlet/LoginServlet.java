@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		
 		model.setEmail(email);
 		model.setPassword(password);
-		model.setReenter(reenter);
+		model.setReenter(password);
 		
 		boolean emailValid = controller.validate(email);
 		boolean accountExists = controller.checkAccountInfo(email, password, reenter);
