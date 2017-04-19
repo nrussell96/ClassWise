@@ -34,9 +34,7 @@ public interface IDatabase {
 			
 	abstract public Integer insertRating (Advice advice, double difficulty, double instruction, double supplyCost, double enjoyment);	//derby done
 	
-	abstract public Rating getAdviceRating (Advice advice);			//done as getAdviceByRating?
-	
-	abstract public Rating getCourseRating (Course course);			// Is this getting the average grade? should it return an array list of ratings?
+	abstract public ArrayList<Rating> getCourseRatings (Course course);			// Is this getting the average grade? should it return an array list of ratings?
 	
 	abstract public User getUserFromUserId (int userId);	//derby done
 	
@@ -99,9 +97,7 @@ public interface IDatabase {
 	
 	abstract public Integer setFlags(Advice advice);
 	
-	abstract public User getUserByEmail(String email);
-	  
-	
+	abstract public User getUserByEmail(String email);  
 	
 	
 	

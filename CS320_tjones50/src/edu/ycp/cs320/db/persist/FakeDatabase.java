@@ -158,18 +158,6 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public Rating getAdviceRating(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rating getCourseRating(Course course) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<Advice> getAdviceListSortedByGPA(Course course) {
 		// TODO Auto-generated method stub
 		return null;
@@ -286,6 +274,12 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public User getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Rating> getCourseRatings(Course course) {
 		// TODO Auto-generated method stub
 		return null;
 	}
