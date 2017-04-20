@@ -13,13 +13,6 @@
 		}
 		</style>
 		
-		<!--This is commented out until I figure
-		out how to do both .css files at once
-		  <style type="text/css">
-    		<%@include file="style.css" %>
-    		
-		</style> -->
-		
 		
 
 	</head>
@@ -42,7 +35,7 @@
        				<td>
        					<p3>
 						<form action="${pageContext.request.contextPath}/department">
-							<button type="submit">${department.name}</button>
+							<button type="submit" class = "home">${department.name}</button>
 							<input name="departmentName" type="hidden" value="${department.name}" />
 						</form>
 						</p3>
