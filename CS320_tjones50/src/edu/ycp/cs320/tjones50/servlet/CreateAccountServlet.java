@@ -66,13 +66,9 @@ public class CreateAccountServlet extends HttpServlet {
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 		}else{
-			// Pass model to jsp
-			//req.setAttribute("createaccount", model);
 			
 			database.createUserAccount(major, GPA, year, email, password);
-			
-			
-								
+							
 			// Forward to view to render the result HTML document
 			resp.sendRedirect(req.getContextPath() + "/home");
 		}

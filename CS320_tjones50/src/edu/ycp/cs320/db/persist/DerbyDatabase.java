@@ -778,7 +778,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text)" +
-							" values(?,?,?,?,0,?,?,false,?)"
+							" values(?,?,?,?,0,?,?,true,?)"
 					);
 					
 					stmt.setInt(1, user.getAccountId());

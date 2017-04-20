@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 		User model = new User();
 		AccountController controller = new AccountController();
 		controller.setModel(model);
+	
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
@@ -50,6 +51,8 @@ public class LoginServlet extends HttpServlet {
 		req.setAttribute("login", model);
 		if(emailValid == false){
 			req.setAttribute("errorMessage", "Please enter a valid email pattern.");
+			req.setAttribute("email", email);
+			req.setAttribute("pass", password);
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 		}
 		if(accountExists == true){ //if account exists
@@ -78,6 +81,7 @@ public class LoginServlet extends HttpServlet {
 			
 		}else{
 			req.setAttribute("errorMessage", "Email and/or password invalid.");
+			req.setAttribute("email", email);
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 		}

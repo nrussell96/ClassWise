@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.db.persist.FakeDatabase;
@@ -29,6 +30,10 @@ public class DepartmentServlet extends HttpServlet {
 
 		System.out.println("   User: <" + email + "> logged in");
 		
+		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
+
+		System.out.println("   Departement: <" + departmentName + ">");
+		
 		// initialize variables
 
 		//FakeDatabase database = new FakeDatabase();
@@ -36,9 +41,6 @@ public class DepartmentServlet extends HttpServlet {
 		Department model = new Department();
 		DepartmentController controller = new DepartmentController();
 		controller.setModel(model);
-		
-		// get info from parameters
-		String departmentName = req.getParameter("departmentName");
 		
 		// add info to model
 		model.setName(departmentName);
@@ -57,6 +59,10 @@ public class DepartmentServlet extends HttpServlet {
 		// session info 
 		System.out.println("In the department doPost");
 		
+		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
+
+		System.out.println("   Departement: <" + departmentName + ">");
+		
 		// initialize variables
 		Department model = new Department();
 		DepartmentController controller = new DepartmentController();
@@ -64,16 +70,13 @@ public class DepartmentServlet extends HttpServlet {
 		
 		// get info from parameters
 		String courseName = req.getParameter("courseName");
-		String departmentName = req.getParameter("departmentName");
-				
-				
-		// Pass model to jsp
-		req.setAttribute("courseName", courseName);
-		req.setAttribute("departmentName", departmentName);
+		
+		// store courseName obj in session
+		req.getSession().setAttribute("courseName", courseName);
 		
 		
 		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
+		resp.sendRedirect(req.getContextPath() + "/course");
 	}
 
 }

@@ -34,7 +34,7 @@
     			<tr>      
        				<td>
        					<p3>
-						<form action="${pageContext.request.contextPath}/department">
+						<form action="${pageContext.request.contextPath}/home" method = "post">
 							<button type="submit" class = "home">${department.name}</button>
 							<input name="departmentName" type="hidden" value="${department.name}" />
 						</form>
