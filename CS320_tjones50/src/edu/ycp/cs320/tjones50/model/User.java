@@ -6,7 +6,6 @@ public class User extends Account {
 	private boolean approved = false;
 	private String email;
 	private String password;
-	private String reenter;
 	private int accountId;
 	private String userClassYear;
 	private String major;
@@ -50,13 +49,6 @@ public class User extends Account {
 		return this.password;
 	}
 	
-	public void setReenter(String reenter){
-		this.reenter = reenter;
-	}
-	
-	public String getReenter(){
-		return this.reenter;
-	}
 	
 	@Override
 	public void setAccountId(int accountId) {

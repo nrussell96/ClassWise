@@ -70,19 +70,20 @@ input[type=submit] {
 }
 #ca_accountButton{
 	float:left;
-	margin-left:40px;
-	margin-top:-20px;
-	width:80px;
+	text-align: center;
+	margin-left:75px;
+	margin-top:10px;
+	width:180px;
 	height:30px;
 }
 
 #container {
     position: fixed;
     width: 340px;
-    height: 375px;
+    height: 500px;
     top: 45%;
     left: 50%;
-    margin-top: -140px;
+    margin-top: -200px;
     margin-left: -170px;
 	background: #fff;
     border-radius: 3px;
@@ -169,7 +170,21 @@ p3{
     width: 300px;
     height: 20px;
     float: right
+    display: flex;   
+    flex-wrap: wrap;
       
+}
+
+button{
+    background-color: #096333;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 0px 50px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
 

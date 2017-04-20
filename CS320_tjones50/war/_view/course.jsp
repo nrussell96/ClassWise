@@ -5,24 +5,13 @@
 
 <html>
 	<head>
-		<p3>
-		
-		<form action="${pageContext.request.contextPath}/giveAdvice">
-			<button type="submit">Give advice</button>
-			<input name="courseName" type="hidden" value="${course.name}" />
-			<input name="departmentName" type="hidden" value="${department.name}" />
-		</form>
-		
-		</table>
-		
-		</p3>
 		
 		<title>Course</title>
 						
 		  <style type="text/css">
     		<%@include file="style.css" %>
     	    .active {
-			background-color:#4CAF50;
+			background-color:#096333;
 			}	    		
 		</style> 
 		
@@ -36,8 +25,16 @@
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-			<!--  <li><a href="http://localhost:8081/tjones50/giveAdvice">Give Advice</a></li> -->
 		</ul>
+		<p3>
+		<form action="${pageContext.request.contextPath}/giveAdvice">
+			<button type="submit">Give Advice</button>
+			<input name="courseName" type="hidden" value="${course.name}" />
+			<input name="departmentName" type="hidden" value="${department.name}" />
+			<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+			<input name="flags" type="hidden" value="${advice.flags}" />
+		</form>
+		</p3>
 		
 		<h1>
 		

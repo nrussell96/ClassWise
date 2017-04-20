@@ -28,34 +28,46 @@
 				<table>
 				<tr>
 					<td class="label">Difficulty (1-10):</td>
-					<td><input type="text" name="difficulty" size="12" value="${adviceModel.adviceRating.difficulty}" /></td>
+					<td> <input type="number" step = "1" name="difficulty" min="0" max="10" placeholder="0" value = "${adviceModel.adviceRating.difficulty}" required></td>
 				</tr>
 				<tr>
 					<td class="label">Quality of instruction (1-10):</td>
-					<td><input type="text" name="instruction" size="12" value="${adviceModel.adviceRating.instruction}" /></td>
+					<td> <input type="number" step = "1" name="instruction" min="0" max="10" placeholder="0" value = "${adviceModel.adviceRating.instruction}" required></td>
 				</tr>
 				<tr>
 					<td class="label">Cost of Supplies (1-10):</td>
-					<td><input type="text" name="suppliesCost" size="12" value="${adviceModel.adviceRating.suppliesCost}" /></td>
+					<td> <input type="number" step = "1" name="suppliesCost" min="0" max="10" placeholder="0" value = "${adviceModel.adviceRating.suppliesCost}" required></td>
 				</tr>
 				<tr>
 					<td class="label">Enjoyment (1-10):</td>
-					<td><input type="text" name="enjoyment" size="12" value="${adviceModel.adviceRating.enjoyment}" /></td>
+					<td> <input type="number" step = "1" name="enjoyment" min="0" max="10" placeholder="0" value = "${adviceModel.adviceRating.enjoyment}" required></td>
 				</tr>
+				
+				</table>
+				
+				<table>
 				<tr>
 					<td class="label">Grade Received (0-4):</td>
-					<td><input type="text" name="gradeReceived" size="12" value="${adviceModel.gradeRecieved}" /></td>
-					</tr>
-				</table>
+					<td><input type="radio" name="gradeReceived" value="4.0" checked> 4.0</td>
+  					<td><input type="radio" name="gradeReceived" value="3.5">3.5</td>
+  					<td><input type="radio" name="gradeReceived" value="3.0">3.0</td>
+  					<td><input type="radio" name="gradeReceived" value="2.5">2.5</td>
+  					<td><input type="radio" name="gradeReceived" value="2.0">2.0</td>
+  					<td><input type="radio" name="gradeReceived" value="1.0">1.0</td>
+				</tr>
+					
+				<tr>
 					<td class="label">Semester:</td>
 					<td><input type="radio" name="semester" value="Fall" checked> Fall</td>
   					<td><input type="radio" name="semester" value="Spring"> Spring</td>
   					<td><input type="radio" name="semester" value="Summer">Summer</td>
+				</tr>
+				</table>
 				
 				<table>
 				<tr>
 					<td class="label">Year the class was taken:</td>
-					<td><input type="text" name="classYear" size="12" value="${adviceModel.classYear}" /></td>
+					<td> <input type="number" name="classYear" min="2010" max="2100" placeholder="2010" value = "${adviceModel.classYear}" required></td>
 				</tr>
 				<tr>
 					<td class="label">Professor:</td>

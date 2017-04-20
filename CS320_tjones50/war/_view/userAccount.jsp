@@ -5,12 +5,6 @@
 <html>
 	<head>
 		<title>Account</title>
-		
-		<p3>
-		<form action="${pageContext.request.contextPath}/home">
-			<button type="submit">Home</button>
-		</form>
-		</p3>	
 			
 		<style type="text/css">
     		<%@include file="style.css" %>

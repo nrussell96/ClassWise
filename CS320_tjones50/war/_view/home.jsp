@@ -9,7 +9,7 @@
 		<style type="text/css">
     		<%@include file="style.css" %>
     	.active {
-		background-color:#4CAF50;
+		background-color:#096333;
 		}
 		</style>
 		
@@ -20,26 +20,6 @@
     		
 		</style> -->
 		
-		
-		<p3>
-		
-		<table>
-		<form action="${pageContext.request.contextPath}/index">
-			<button type="submit">Index</button>
-		</form>
-		
-		
-		<form action="${pageContext.request.contextPath}/login">
-		<button type="submit">Login</button>
-		</form>
-		
-		
-		<form action="${pageContext.request.contextPath}/createaccount">
-		<button type="submit">Create Account</button>
-		</form>
-		</table>
-		
-		</p3>
 		
 
 	</head>
@@ -60,11 +40,12 @@
 		<c:forEach items="${home.departments}" var="department">
     			<tr>      
        				<td>
-       				
+       					<p3>
 						<form action="${pageContext.request.contextPath}/department">
 							<button type="submit">${department.name}</button>
 							<input name="departmentName" type="hidden" value="${department.name}" />
 						</form>
+						</p3>
 					</td> 
     			</tr>
     			<br>

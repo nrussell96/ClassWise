@@ -30,13 +30,18 @@
   	 	    <input type="email" name="email" placeholder="yourname@ycp.edu" value = "${user.email}" required><br>
   	        <label for="password">Password: </label>
   	        <input type="password" name="pass" placeholder="password" value = "${user.password}" required><br>
-  	        <label for="password">Password Reentry: </label>
-  	        <input type="password" name="reenter" placeholder="reenter password" value = "${user.reenter}" required>
-  	        <input type="submit" value = "Login"></form>
-  	        
+  	        <input id = "ca_accountButton" type="submit" value = "Login">
+  	     </form>
+  	    
+  	    <br>
+  	    
   	    <form action="${pageContext.servletContext.contextPath}/createaccount" method = "post">
   	    
-  	        <div id = "l_accountButton"><input type="submit" value = "New Account?"></div></form>
+  	        <div>
+  	        	<input id = "ca_accountButton" type="submit" value = "New Account?">
+  	        </div>
+  	    </form>
+  	    
 		</div>
  		   
 <!--			<label><b>Email</b></label>
