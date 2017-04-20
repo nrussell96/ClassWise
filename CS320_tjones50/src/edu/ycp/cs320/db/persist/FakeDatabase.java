@@ -267,12 +267,6 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer setFlags(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return null;
@@ -284,6 +278,17 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 
+	@Override
+	public Integer setFlags(Advice advice, int flagNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByAdvice(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

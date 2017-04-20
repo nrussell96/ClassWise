@@ -34,13 +34,16 @@ public interface IDatabase {
 			
 	abstract public Integer insertRating (Advice advice, double difficulty, double instruction, double supplyCost, double enjoyment);	//derby done
 	
-	abstract public ArrayList<Rating> getCourseRatings (Course course);			// Is this getting the average grade? should it return an array list of ratings?
+	abstract public ArrayList<Rating> getCourseRatings (Course course);		//derby done
 	
 	abstract public User getUserFromUserId (int userId);	//derby done
 	
-	abstract public Advice getAdviceByAdviceId(int adviceId);
+	abstract public Advice getAdviceByAdviceId(int adviceId);	//derby done
 	
-	abstract public Rating getRatingByRatingId(int ratingId);
+	abstract public Rating getRatingByRatingId(int ratingId);	//derby done
+	
+	abstract public User getUserByAdvice(Advice advice);	//derby done
+
 
 	
 	// get sorted lists
@@ -95,9 +98,9 @@ public interface IDatabase {
 	
 	abstract public Integer flagAdvice (Advice advice);	//derby done
 	
-	abstract public Integer setFlags(Advice advice);
+	abstract public Integer setFlags(Advice advice, int flagNumber);	//derby done
 	
-	abstract public User getUserByEmail(String email);  
+	abstract public User getUserByEmail(String email);	//derby done
 	
 	
 	

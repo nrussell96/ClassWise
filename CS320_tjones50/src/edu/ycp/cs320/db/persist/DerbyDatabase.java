@@ -943,6 +943,13 @@ public class DerbyDatabase implements IDatabase {
 					resultSet = stmt.executeQuery();
 					while (resultSet.next()) {
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 					}
 					return advice;
 				} finally {
@@ -989,7 +996,7 @@ public class DerbyDatabase implements IDatabase {
 			
 		});
 	}
-	/////////////////////////////////////////////////////////////////////
+
 	@Override
 	public ArrayList<Advice> getAdviceListSortedByGrade(Course course) {
 		return executeTransaction(new Transaction<ArrayList<Advice>>() {
@@ -1014,10 +1021,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1053,10 +1064,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1092,10 +1107,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1131,10 +1150,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1170,10 +1193,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1209,10 +1236,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1248,10 +1279,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1287,10 +1322,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1508,6 +1547,44 @@ public class DerbyDatabase implements IDatabase {
 
 
 	@Override
+	public ArrayList<Rating> getCourseRatings(Course course) {
+		return executeTransaction(new Transaction<ArrayList<Rating>>() {
+			@Override
+			public ArrayList<Rating> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve all courses in specified department
+				try {
+					stmt = conn.prepareStatement(
+							"select * from ratings, advices where "
+							+ "ratings.advice_id = advices.advice_id"
+							+ " and advices.course_id = ?"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// establish the ArrayList of Course objects to receive the result
+					ArrayList<Rating> ratings = new ArrayList<Rating>();
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						Rating rating = new Rating();
+						loadRating(rating, resultSet, 1);
+						ratings.add(rating);
+					}
+					
+					return ratings;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+
+	@Override
 	public ArrayList<Advice> getAdviceListSortedByGPA(Course course) {
 		return executeTransaction(new Transaction<ArrayList<Advice>>() {
 			@Override
@@ -1531,10 +1608,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1570,10 +1651,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1610,10 +1695,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1651,10 +1740,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1691,10 +1784,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1731,10 +1828,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1771,10 +1872,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1811,10 +1916,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1851,10 +1960,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1891,10 +2004,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1931,10 +2048,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1971,10 +2092,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1987,20 +2112,100 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer setFlags(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer setFlags(Advice advice, int flagNumber) {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt1 = null;
+				// set flags
+				try {
+					stmt1 = conn.prepareStatement(
+							"update advices set flags = ? where advices.advice_id = ?"
+					);
+					
+					stmt1.setInt(1, flagNumber);
+					stmt1.setInt(2, advice.getAdviceId());
+					
+					stmt1.executeUpdate();
+					
+					return flagNumber;
+				} finally {
+					DBUtil.closeQuietly(stmt1);
+				}
+			}
+
+			
+		});
 	}
 
 	@Override
 	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<User>() {
+			@Override
+			public User execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve user
+				try {
+					stmt = conn.prepareStatement(
+							"select * from users where users.email = ?"
+					);
+					
+					stmt.setString(1, email);
+					
+					// establish the Rating Object to receive the result
+					User user = new User();
+					
+					// execute the query, get the results, and assemble them in the object
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadUser(user, resultSet, 1);
+					}
+					return user;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+
+			
+		});
 	}
 
 	@Override
-	public ArrayList<Rating> getCourseRatings(Course course) {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUserByAdvice(Advice advice) {
+		return executeTransaction(new Transaction<User>() {
+			@Override
+			public User execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+
+				// try to retrieve user
+				try {
+					stmt = conn.prepareStatement(
+							"select * from users,advices where advices.user_id = users.user_id"
+							+ " and advices.advice_id = ?"
+					);
+					
+					stmt.setInt(1, advice.getAdviceId());
+					
+					// establish the User Object to receive the result
+					User user = new User();
+					
+					// execute the query, get the results, and assemble them in the object
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						loadUser(user, resultSet, 1);
+					}
+					return user;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+
+			
+		});
 	}
 }

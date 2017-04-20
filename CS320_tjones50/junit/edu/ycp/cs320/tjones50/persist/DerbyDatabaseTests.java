@@ -422,11 +422,13 @@ private IDatabase db = null;
 	}
 	
 	@Test
-	public void testFlagAdvice() {
-		System.out.println("\n*** Testing flagAdvice***");
+	public void testFlagAdviceAndSetFlags() {
+		System.out.println("\n*** Testing flagAdviceAndSetFlags***");
 		
 		Advice advice = db.getAdviceByAdviceId(1);
+		db.setFlags(advice, 0);
 		//should have no flags
+		advice = db.getAdviceByAdviceId(1);
 		assertTrue(advice.getFlags() == 0);
 		
 		db.flagAdvice(advice);
@@ -437,6 +439,8 @@ private IDatabase db = null;
 		
 		advice = db.getAdviceByAdviceId(1);
 		assertTrue(advice.getFlags() == 2);
+		
+		db.setFlags(advice, 0);
 	}
 	
 	@Test
@@ -867,6 +871,122 @@ private IDatabase db = null;
 		else {			
 			for(Advice advice: adviceList){
 				System.out.println(advice.getAdviceRating().getEnjoyment());
+			}
+		}
+	}
+	
+	@Test
+	public void testGetCourseRatings() {
+		System.out.println("\n*** Testing getCourseRatings***");
+
+		String name = "CS 320 Software Engineering and Design";
+		
+		// get the course object from database and use that object to get the arraylist of ratings from db
+		Course course = db.getCourseByName(name);
+		ArrayList<Rating> ratingsList = db.getCourseRatings(course);
+		
+		// NOTE: this is a simple test to check if no results were found in the DB
+		if (course == null) {
+			System.out.println("No course by that name found in db!");
+			fail("No courses returned from Library DB");
+		}
+		if (ratingsList.isEmpty()) {
+			System.out.println("No ratings retrieved from db!");
+			fail("No ratings returned from Library DB");
+		}
+		// NOTE: print out each department objects name and id to check to make sure they're correct
+		else {			
+			for(Rating rating: ratingsList){
+				System.out.println("Difficulty: " + rating.getDifficulty() +" Instruction: " + rating.getInstruction()
+				+ " Supples Cost: " + rating.getSuppliesCost() + " Enjoyment: " + rating.getEnjoyment());
+			}
+		}
+	}
+	
+	@Test
+	public void testGetAdviceByAdviceId() {
+		System.out.println("\n*** Testing getAdviceByAdviceId***");
+
+		int adviceId = 1;
+		
+		Advice advice = db.getAdviceByAdviceId(adviceId);
+		// NOTE: this is a simple test to check if no results were found in the DB
+		
+		
+		if (advice == null) {
+			System.out.println("No advice with that ID found in db!");
+			fail("No advice returned from Library DB");
+		}
+		// NOTE: print out each department objects name and id to check to make sure they're correct
+		else {			
+			System.out.println(advice.getAdviceId());
+		}
+	}
+	
+	@Test
+	public void testGetRatingByRatingId() {
+		System.out.println("\n*** Testing getRatingByRatingId***");
+
+		int ratingId = 1;
+		
+		Rating rating = db.getRatingByRatingId(ratingId);
+
+		if (rating == null) {
+			System.out.println("No rating with that ID found in db!");
+			fail("No rating returned from Library DB");
+		}
+		// NOTE: print out each department objects name and id to check to make sure they're correct
+		else {			
+			System.out.println(rating.getAdviceId());
+		}
+	}
+	
+	@Test
+	public void testGetUserByEmail() {
+		System.out.println("\n*** Testing getUserByEmail***");
+
+		String email = "student1@ycp.edu";
+		
+		//Get course from db
+		User user = db.getUserByEmail(email);
+		
+		// NOTE: this is a simple test to check if no results were found in the DB
+		if (user == null) {
+			System.out.println("No user by that name found in db!");
+			fail("No user returned from Library DB");
+		}
+		// NOTE: print out each department objects name and id to check to make sure they're correct
+		else {			
+			System.out.println(user.getEmail());
+		}
+	}
+	
+	@Test
+	public void testGetUserByAdvice() {
+		System.out.println("\n*** Testing getUserByAdvice***");
+
+		String name = "CS 320 Software Engineering and Design";
+		
+		// get the course object from database and use that object to get the arraylist of ratings from db
+		Course course = db.getCourseByName(name);
+		
+		//Get course from db
+		ArrayList<Advice> adviceList = db.getCourseAdviceList(course);
+		
+		// NOTE: this is a simple test to check if no results were found in the DB
+		if (adviceList.isEmpty()) {
+			System.out.println("No advice found in db!");
+			fail("No advice returned from Library DB");
+		}
+		
+		if (course == null) {
+			System.out.println("No course found in db!");
+			fail("No course returned from Library DB");
+		}
+		// NOTE: print out each department objects name and id to check to make sure they're correct
+		else {			
+			for(Advice adv: adviceList){
+				System.out.println(adv.getUserId());
 			}
 		}
 	}
