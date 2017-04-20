@@ -112,13 +112,15 @@ public class GiveAdviceServlet extends HttpServlet {
 		Course model = database.getCourseByName(courseName);
 		
 		//create rating object /////////////////////// Don't need, take rating out of addAdviceToCourse?
-		Rating rating = new Rating(difficulty,instruction, suppliesCost, enjoyment);
+		//Rating rating = new Rating(difficulty,instruction, suppliesCost, enjoyment);
 		
 		//add advice to database
-		int adviceId = database.addAdviceToCourse(user, model, semester, professor, gradeReceived, classYear, text, rating);
+//		int adviceId = database.addAdviceToCourse(user, model, semester, professor, gradeReceived, classYear, text, rating);
+//		
+//		database.insertRating(database.getAdviceByAdviceId(adviceId), difficulty, instruction, suppliesCost, enjoyment);	
 		
-		database.insertRating(database.getAdviceByAdviceId(adviceId), difficulty, instruction, suppliesCost, enjoyment);	
-		
+		CourseController courseController = new CourseController();
+		courseController.addAdviceAndRatingToCourse(user, model, semester, professor, gradeReceived, classYear, text, difficulty, instruction, suppliesCost, enjoyment);
 		// Forward to view to render the result HTML document
 		//req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 		resp.sendRedirect(req.getContextPath() + "/course");

@@ -30,9 +30,9 @@ public interface IDatabase {
 
 	abstract public Rating getRatingByAdvice(Advice advice);	//derby done
 	
-	abstract public Integer addAdviceToCourse (User user, Course course, String semester, String professor, double grade, int year, String text, Rating rating); 	//derby done
+	abstract public Integer addAdviceToCourse (User user, Course course, String semester, String professor, double grade, int year, String text); 	//derby done
 			
-	abstract public Integer insertRating (Advice advice, double difficulty, double instruction, double supplyCost, double enjoyment);	//derby done
+	abstract public Integer insertRating (int adviceId, double difficulty, double instruction, double supplyCost, double enjoyment);	//derby done
 	
 	abstract public ArrayList<Rating> getCourseRatings (Course course);		//derby done
 	
