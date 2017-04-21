@@ -26,17 +26,17 @@
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<c:if test="${!empty email}">
 				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+			<!--<li><a>Hello, ${user.email}</a></li>-->
 			</c:if>
 		</ul>
-		<p3>
+		
 		<form action="${pageContext.request.contextPath}/giveAdvice">
-			<button type="submit">Give Advice</button>
+			<button type="submit" class = "giveAdvice">Give Advice</button>
 			<input name="courseName" type="hidden" value="${course.name}" />
 			<input name="departmentName" type="hidden" value="${department.name}" />
 			<input name="adviceId" type="hidden" value="${advice.adviceId}" />
 			<input name="flags" type="hidden" value="${advice.flags}" />
 		</form>
-		</p3>
 		
 		<h1>
 		
@@ -46,23 +46,23 @@
 		
 		
 		<p2>
-			Average grade received was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveGrade}"/>
+			Average grade: <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveGrade}"/> out of 4.0
 		</p2>
 		
 		<p2>
-			Average difficulty was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.difficulty}"/>
+			Average difficulty: <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.difficulty}"/> out of 10
 		</p2>
 		
 		<p2>
-			Average instruction quality was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.instruction}"/>
+			Average of instruction quality: <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.instruction}"/> out of 10
 		</p2>
 		
 		<p2>
-			Average cost of supplies was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.suppliesCost}"/>
+			Average supply cost: <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.suppliesCost}"/> out of 10
 		</p2>
 		
 		<p2>
-			Average enjoyment was <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.enjoyment}"/>
+			Average enjoyment: <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.enjoyment}"/> out of 10
 		</p2>
 		
 		<br>
