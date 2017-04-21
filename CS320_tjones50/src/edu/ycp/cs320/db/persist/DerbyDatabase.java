@@ -672,10 +672,14 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
 						Rating rating = getRatingByAdvice(advice);
 						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -764,21 +768,19 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer addAdviceToCourse(User user, Course course, String semester, String professor, double grade, int year, String text,
-			Rating rating) {
+	public Integer addAdviceToCourse(User user, Course course, String semester, String professor, double grade, int year, String text) {
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				PreparedStatement stmt2 = null;
-				PreparedStatement stmt3 = null;
 				ResultSet resultSet2 = null;
-				
+				System.out.print("1");
 				// insert advice into db
 				try {
 					stmt = conn.prepareStatement(
 							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text)" +
-							" values(?,?,?,?,0,?,?,false,?)"
+							" values(?,?,?,?,0,?,?,true,?)"
 					);
 					
 					stmt.setInt(1, user.getAccountId());
@@ -805,13 +807,28 @@ public class DerbyDatabase implements IDatabase {
 					stmt2.setString(7, text);
 					
 					resultSet2 = stmt2.executeQuery();
+					System.out.print("2");
 					// establish the Advice Object to receive the result
 					Advice advice = new Advice();
-					
 					while (resultSet2.next()) {
 						loadAdvice(advice, resultSet2, 1);
+//						System.out.println("before");
+//						User user = getUserByAdvice(advice);
+//						System.out.println("10");
+						//System.out.println("User ID: " + user.getAccountId());
+						//Rating rating = getRatingByAdvice(advice);
+						//advice.setAdviceRating(rating);
+//						advice.setUserClassYear(user.getUserClassYear());
+//						System.out.println("11");
+//						advice.setUserGPA(user.getGPA());
+//						System.out.println("12");
+//						advice.setUserId(user.getAccountId());
+//						System.out.println("13");
+//						advice.setUserMajor(user.getMajor());
+//						System.out.println("14");
+
 					}
-					
+					System.out.print("3");
 					//insert rating into db
 //					int ratingID = insertRating(advice, rating.getDifficulty(), rating.getInstruction(), rating.getSuppliesCost(), rating.getEnjoyment());
 //					if(ratingID>0){
@@ -833,7 +850,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	@Override
-	public Integer insertRating(Advice advice, double difficulty, double instruction, double supplyCost, double enjoyment) {
+	public Integer insertRating(int adviceId, double difficulty, double instruction, double supplyCost, double enjoyment) {
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
@@ -848,7 +865,7 @@ public class DerbyDatabase implements IDatabase {
 							" values(?,?,?,?,?)"
 					);
 					
-					stmt.setInt(1, advice.getAdviceId());
+					stmt.setInt(1, adviceId);
 					stmt.setDouble(2, difficulty);
 					stmt.setDouble(3, instruction);
 					stmt.setDouble(4, supplyCost);
@@ -861,7 +878,7 @@ public class DerbyDatabase implements IDatabase {
 							"select * from ratings where ratings.advice_id = ?"
 					);
 					
-					stmt2.setInt(1, advice.getAdviceId());
+					stmt2.setInt(1, adviceId);
 					
 					
 					resultSet2 = stmt2.executeQuery();
@@ -2180,23 +2197,27 @@ public class DerbyDatabase implements IDatabase {
 			public User execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-
+				System.out.println("In get UserByAdvice");
 				// try to retrieve user
 				try {
 					stmt = conn.prepareStatement(
 							"select * from users,advices where advices.user_id = users.user_id"
 							+ " and advices.advice_id = ?"
 					);
-					
+					System.out.println("after getUserByAdvice stmt");
 					stmt.setInt(1, advice.getAdviceId());
-					
+					System.out.println("after getUserByAdvice setInt");
 					// establish the User Object to receive the result
 					User user = new User();
-					
+					System.out.println("after getUserByAdvice new User");
+					System.out.println(advice.getAdviceId() + " " + advice.getUserId());
 					// execute the query, get the results, and assemble them in the object
+					System.out.println("before getUserByAdvice execute");
 					resultSet = stmt.executeQuery();
+					System.out.println("executed Query in getUserByAdvice");
 					while (resultSet.next()) {
 						loadUser(user, resultSet, 1);
+						System.out.println("in getUserByAdvice while loop");
 					}
 					return user;
 				} finally {

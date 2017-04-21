@@ -2,6 +2,9 @@ package edu.ycp.cs320.tjones50.controller;
 
 import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.tjones50.model.Account;
+import edu.ycp.cs320.tjones50.model.Course;
+import edu.ycp.cs320.tjones50.model.User;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +19,7 @@ public class AccountController{
 	private static final String EMAIL_PATTERN =
 			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
 	public AccountController() {
 		pattern = Pattern.compile(EMAIL_PATTERN);
 		database = new DerbyDatabase();
@@ -40,4 +44,5 @@ public class AccountController{
 		matcher = pattern.matcher(hex);
 		return matcher.matches();
 	}
+	
 }

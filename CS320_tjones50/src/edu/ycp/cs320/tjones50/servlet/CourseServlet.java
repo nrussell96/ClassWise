@@ -33,22 +33,23 @@ public class CourseServlet extends HttpServlet {
 		
 		System.out.println("   User: <" + email + "> logged in");
 		
-		// initialize variables
-		Course model = new Course();
-		CourseController controller = new CourseController();
-		controller.setModel(model);
+		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
 
+		System.out.println("   Departement: <" + departmentName + ">");
+		
+		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
+
+		System.out.println("   Course: <" + courseName + ">");
+		
 		//FakeDatabase database = new FakeDatabase();
 		DerbyDatabase database = new DerbyDatabase();
 		
-		// get info from parameters
-		String courseName = req.getParameter("courseName");
-		String departmentName = req.getParameter("departmentName");
+		// initialize variables
+		Course model = database.getCourseByName(courseName);
+		CourseController controller = new CourseController();
+		controller.setModel(model);
 		
 		// add info to model
-		model.setName(courseName);
-		Department department = new Department(departmentName);
-		model.setDepartment(department);
 		model.setArrAdvice(database.getCourseAdviceList(model));
 		
 		// call controller methods
@@ -57,7 +58,8 @@ public class CourseServlet extends HttpServlet {
 		
 		// Pass model to jsp
 		req.setAttribute("course", model);
-		req.setAttribute("department", department);
+		req.setAttribute("department", model.getDepartment());
+		req.setAttribute("email", email);
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
 	
@@ -68,25 +70,29 @@ public class CourseServlet extends HttpServlet {
 		// session info
 		System.out.println("In Course Servlet doPost");
 		
+		//FakeDatabase database = new FakeDatabase();
+		DerbyDatabase database = new DerbyDatabase();
+				
+		// get info from parameters
+		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
+
+		System.out.println("   Departement: <" + departmentName + ">");
+		
+		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
+
+		System.out.println("   Course: <" + courseName + ">");
+		
+		Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
+		Integer flags = Integer.parseInt(req.getParameter("flags"));
+				
 		// initialize variables
-		Course model = new Course();
+		Course model = database.getCourseByName(courseName);
 		CourseController controller = new CourseController();
 		controller.setModel(model);
 		AdviceController adviceController = new AdviceController();
 
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
-		
-		// get info from parameters
-		String courseName = req.getParameter("courseName");
-		String departmentName = req.getParameter("departmentName");
-		Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
-		Integer flags = Integer.parseInt(req.getParameter("flags"));
 		
 		// add info to model
-		model.setName(courseName);
-		Department department = new Department(departmentName);
-		model.setDepartment(department);
 		model.setArrAdvice(database.getCourseAdviceList(model));
 		
 		// call controller methods

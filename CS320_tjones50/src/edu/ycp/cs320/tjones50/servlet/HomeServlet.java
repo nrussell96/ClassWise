@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.db.persist.FakeDatabase;
@@ -41,6 +42,7 @@ public class HomeServlet extends HttpServlet {
 		
 		// Pass model to jsp
 		req.setAttribute("home", model);
+		req.setAttribute("email", email);
 		
 		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 	}
@@ -60,11 +62,11 @@ public class HomeServlet extends HttpServlet {
 		// get info from parameters
 		String departmentName = req.getParameter("departmentName");
 		
+		// store departmentName obj in session
+		req.getSession().setAttribute("departmentName", departmentName);
 		
-		// Pass model to jsp
-		req.setAttribute("departmentName", departmentName);
-				
-		req.getRequestDispatcher("/_view/department.jsp").forward(req, resp);
+		// Forward to view to render the result HTML document
+		resp.sendRedirect(req.getContextPath() + "/department");
 		
 	}
 }

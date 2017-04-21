@@ -9,7 +9,7 @@
 		<style type="text/css">
     		<%@include file="style.css" %>
     	    .active {
-			background-color:#4CAF50;
+			background-color:#096333;
 			}	
 		</style>
 		
@@ -23,7 +23,9 @@
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
-			<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+			<c:if test="${!empty email}">
+				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+			</c:if>
 		</ul>
 		
 		<h1>
@@ -36,7 +38,7 @@
 		</h2>	
 		
 		<p2>
-			Your email is ${user.email}
+			Your email is: ${user.email}
 		</p2>
 		
 		<p2>
@@ -44,15 +46,15 @@
 		</p2>
 		
 		<p2>
-			Your class year is ${user.userClassYear}
+			Your class year is: ${user.userClassYear}
 		</p2>
 		
 		<p2>
-			Your major is ${user.major}
+			Your major is: ${user.major}
 		</p2>
 		
 		<p2>
-			Your GPA is ${user.GPA}
+			Your GPA is: ${user.GPA}
 		</p2>
 		
 		

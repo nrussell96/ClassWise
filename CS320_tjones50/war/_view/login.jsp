@@ -8,7 +8,7 @@
 		<style type="text/css">
     		<%@include file="style.css" %>
     	.active {
-		background-color:#4CAF50;
+		background-color:#096333;
 		}
 		</style>
 		
@@ -19,7 +19,9 @@
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
-			<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+			<c:if test="${!empty email}">
+				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+			</c:if>
 		</ul>
 
 		
@@ -27,15 +29,15 @@
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
 		
   			<label for="usermail">Email: </label>
-  	 	    <input type="email" name="email" placeholder="yourname@ycp.edu" value = "${user.email}" required><br>
+  	 	    <input type="email" name="email" placeholder="yourname@ycp.edu" value = "${email}" required><br>
   	        <label for="password">Password: </label>
-  	        <input type="password" name="pass" placeholder="password" value = "${user.password}" required><br>
+  	        <input type="password" name="pass" placeholder="password" value = "${password}" required><br>
   	        <input id = "ca_accountButton" type="submit" value = "Login">
   	     </form>
   	    
   	    <br>
   	    
-  	    <form action="${pageContext.servletContext.contextPath}/createaccount" method = "post">
+  	    <form action="${pageContext.servletContext.contextPath}/createaccount" method = "get">
   	    
   	        <div>
   	        	<input id = "ca_accountButton" type="submit" value = "New Account?">

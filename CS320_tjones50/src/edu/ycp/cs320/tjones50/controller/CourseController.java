@@ -2,13 +2,24 @@ package edu.ycp.cs320.tjones50.controller;
 
 import java.util.ArrayList;
 
+import edu.ycp.cs320.db.persist.DatabaseProvider;
+import edu.ycp.cs320.db.persist.DerbyDatabase;
+import edu.ycp.cs320.db.persist.IDatabase;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Rating;
+import edu.ycp.cs320.tjones50.model.User;
 
 public class CourseController {
 	
 	private Course model;
+	private IDatabase db = null;
+	
+	public CourseController() {
+		// creating DB instance here
+				DatabaseProvider.setInstance(new DerbyDatabase());
+				db = DatabaseProvider.getInstance();	
+	}
 	
 	public void setModel(Course model) {
 		this.model = model;
@@ -50,6 +61,11 @@ public class CourseController {
 		
 		aveGrade = aveGrade/arrAdvice.size();
 		model.setAveGrade(aveGrade);
+	}
+	//adds advice 
+	public void addAdviceAndRatingToCourse(User user, Course course, String semester, String professor, double grade, int year, String text, double difficulty, double instruction, double suppliesCost, double enjoyment) {
+		int adviceId = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
+		int ratingId = db.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
 	}
 	
 }

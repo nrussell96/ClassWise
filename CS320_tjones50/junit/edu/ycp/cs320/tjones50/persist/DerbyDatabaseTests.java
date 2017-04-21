@@ -213,13 +213,13 @@ private IDatabase db = null;
 		double grade = 4.0;
 		int year = 2015;
 		String text = "Do your best or you'll fail!";
-		Rating rating = new Rating(2.0, 3.0, 4.0, 5.0);
+		//Rating rating = new Rating(2.0, 3.0, 4.0, 5.0);
 		
 		// get advice_id from db method
 		// This is returning 8 for advice ID since it is getting the first advice that was added,
 		// and even though the more times you run the test, it keeps adding the same advice,
 		// it will keep returning adviceID of 8, since that was the first advice inserted
-		int advice_id = db.addAdviceToCourse(user, course, semester, professor, grade, year, text, rating);
+		int advice_id = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
 		
 		// NOTE: this is a simple test to check if no results were found in the DB
 		if (advice_id > 0) {
@@ -242,14 +242,15 @@ private IDatabase db = null;
 	public void testInsertRating() {
 		System.out.println("\n*** Testing insertRating***");
 		
-		Advice advice = db.getAdviceByAdviceId(8);
+		//Advice advice = db.getAdviceByAdviceId(8);
+		int adviceId = 8;		//If this isnt part of advice table then this test wont work
 		double difficulty = 5.0;
 		double instruction = 4.0;
 		double supplyCost = 3.0;
 		double enjoyment = 2.0;
 		
 		// get advice_id from db method
-		int rating_id = db.insertRating(advice, difficulty, instruction, supplyCost, enjoyment);
+		int rating_id = db.insertRating(adviceId, difficulty, instruction, supplyCost, enjoyment);
 		
 		// NOTE: this is a simple test to check if no results were found in the DB
 		if (rating_id > 0) {
