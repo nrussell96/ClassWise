@@ -110,15 +110,16 @@
 						Enjoyment was ${advice.adviceRating.enjoyment}
 						
 						<form action="${pageContext.servletContext.contextPath}/course" method="post">
-						<button type="submit">Flag Inappropriate Advice</button>
+						<button type="submit" class = "flags">Flag Inappropriate Advice</button>
 						<input name="courseName" type="hidden" value="${course.name}" />
 						<input name="departmentName" type="hidden" value="${department.name}" />
 						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
 						<input name="flags" type="hidden" value="${advice.flags}" />
 						
 						</form>
-						
+						<div id = "flag_content">
 						Flags: ${advice.flags}
+						</div>
 						</p1>
 						
 						
