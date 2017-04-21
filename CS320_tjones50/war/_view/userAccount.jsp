@@ -25,7 +25,7 @@
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<c:if test="${!empty email}">
 				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-				<li><a>Hello, ${user.email}</a></li>
+			<!--<li><a>Hello, ${user.email}</a></li>-->
 			</c:if>
 		</ul>
 		
