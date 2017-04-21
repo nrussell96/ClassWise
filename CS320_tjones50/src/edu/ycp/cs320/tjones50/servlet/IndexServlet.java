@@ -21,6 +21,8 @@ public class IndexServlet extends HttpServlet {
 		
 		System.out.println("   User: <" + email + "> logged in");
 		
+		req.setAttribute("email", email);
+		
 		req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
 	}
 }

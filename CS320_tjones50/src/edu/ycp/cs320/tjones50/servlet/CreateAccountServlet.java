@@ -18,6 +18,9 @@ public class CreateAccountServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String email = req.getParameter("email");
+		
+		req.setAttribute("email", email);
 		
 		req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 	}

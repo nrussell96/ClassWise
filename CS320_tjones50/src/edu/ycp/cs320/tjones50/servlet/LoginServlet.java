@@ -23,7 +23,9 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the login doGet");
+		String email = req.getParameter("email");
 		
+		req.setAttribute("email", email);
 		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 	}
 	

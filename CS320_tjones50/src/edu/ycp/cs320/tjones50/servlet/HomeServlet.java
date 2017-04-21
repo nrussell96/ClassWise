@@ -42,6 +42,7 @@ public class HomeServlet extends HttpServlet {
 		
 		// Pass model to jsp
 		req.setAttribute("home", model);
+		req.setAttribute("email", email);
 		
 		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 	}

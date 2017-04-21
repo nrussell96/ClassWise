@@ -59,6 +59,7 @@ public class CourseServlet extends HttpServlet {
 		// Pass model to jsp
 		req.setAttribute("course", model);
 		req.setAttribute("department", model.getDepartment());
+		req.setAttribute("email", email);
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
 	
