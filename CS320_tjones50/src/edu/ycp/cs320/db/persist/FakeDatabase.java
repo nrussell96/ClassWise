@@ -290,6 +290,30 @@ public class FakeDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Boolean deleteAdvice(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean deleteAccount(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer approveAdvice(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer disapproveAdvice(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
