@@ -203,7 +203,7 @@ private IDatabase db = null;
 	}
 	
 	@Test
-	public void testAddAdviceToCourse() {
+	public void testAddAdviceToCourseAndDeleteAdvice() {
 		System.out.println("\n*** Testing addAdviceToCourse***");
 		
 		User user = db.getUserFromUserId(1);
@@ -231,11 +231,19 @@ private IDatabase db = null;
 					"Grade: " + advice.getGradeReceived() +" " +"Year: " + advice.getClassYear() +" " +
 					"Approved: " + advice.getApproved() +" " +"Text: " + advice.getText() +" ");
 			
+			int deletedAdviceId = db.deleteAdvice(advice);
+			
+			assertEquals(deletedAdviceId,advice_id);
+			
+			Advice newAdvice = db.getAdviceByAdviceId(advice_id);
+			assertEquals(newAdvice.getAdviceId(), 0);
+			
 		}
 		else{
 			System.out.println("No advice with that id found in db!");
 			fail("No advice returned from Library DB");
 		}
+		advice_id = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
 	}
 	
 	@Test
@@ -243,7 +251,7 @@ private IDatabase db = null;
 		System.out.println("\n*** Testing insertRating***");
 		
 		//Advice advice = db.getAdviceByAdviceId(8);
-		int adviceId = 8;		//If this isnt part of advice table then this test wont work
+		int adviceId = 9;		//If this isnt part of advice table then this test wont work
 		double difficulty = 5.0;
 		double instruction = 4.0;
 		double supplyCost = 3.0;
@@ -991,4 +999,6 @@ private IDatabase db = null;
 			}
 		}
 	}
+	
+
 }

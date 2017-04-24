@@ -439,7 +439,7 @@ public class DerbyDatabase implements IDatabase {
 				// try to retrieve all departments in database
 				try {
 					stmt = conn.prepareStatement(
-							"select * from departments"
+							"select * from departments order by name"
 					);
 					
 					// establish the ArrayList of Department objects to receive the result
@@ -2231,13 +2231,46 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Boolean deleteAdvice(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer deleteAdvice(Advice advice) {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				PreparedStatement stmt2 = null;
+				ResultSet resultSet2 = null;
+
+				// delete advice into db
+				try {
+					stmt = conn.prepareStatement(
+							"delete from advices where advice_id = ?"
+					);
+					
+					stmt.setInt(1, advice.getAdviceId());
+					
+					stmt.executeUpdate();
+					
+					//delete rating associated with advice
+					stmt2 = conn.prepareStatement(
+							"delete from ratings where advice_id = ?"
+					);
+					
+					stmt2.setInt(1, advice.getAdviceId());
+					
+					stmt2.executeUpdate();
+
+					return advice.getAdviceId();
+				} finally {
+					DBUtil.closeQuietly(resultSet2);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+
+			
+		});
 	}
 
 	@Override
-	public Boolean deleteAccount(User user) {
+	public Integer deleteAccount(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}

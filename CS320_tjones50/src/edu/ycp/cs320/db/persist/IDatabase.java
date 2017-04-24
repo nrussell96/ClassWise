@@ -44,7 +44,7 @@ public interface IDatabase {
 	
 	abstract public User getUserByAdvice(Advice advice);	//derby done
 
-	abstract public Boolean deleteAdvice(Advice advice);
+	abstract public Integer deleteAdvice(Advice advice);
 	
 	// get sorted lists
 	
@@ -102,7 +102,7 @@ public interface IDatabase {
 	
 	abstract public User getUserByEmail(String email);	//derby done
 	
-	abstract public Boolean deleteAccount(User user);
+	abstract public Integer deleteAccount(User user);
 	
 	//Admin methods
 	
