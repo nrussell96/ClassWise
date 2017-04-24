@@ -2,6 +2,7 @@ package edu.ycp.cs320.db.persist;
 
 import java.util.ArrayList;
 
+import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Department;
@@ -109,6 +110,12 @@ public interface IDatabase {
 	abstract public Integer approveAdvice(Advice advice);
 	
 	abstract public Integer disapproveAdvice (Advice advice);
+	
+	abstract public Admin getAdminByEmail(String email);
+	
+	abstract public Advice getFlaggedAdvice();
+	
+	
 	
 	
 	

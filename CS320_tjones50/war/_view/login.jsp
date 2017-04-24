@@ -15,15 +15,18 @@
 	</head>
 	<body>
 		<ul>
+  			<!--<li><form action="${pageContext.servletContext.contextPath}/home" method = "get">
+  				<a><input class="active" type = "submit" value = classwise></a>
+  			</form></li>-->
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<c:if test="${!empty email}">
 				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+				<li><a>Hello, ${email}</a></li>
 			</c:if>
 		</ul>
-
 		
 		<div id = "container">
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
@@ -46,14 +49,6 @@
   	    
 		</div>
  		   
-<!--			<label><b>Email</b></label>
-			<input type="text" placeholder="Enter Email" name="email" value = "${user.email}" required>
-			<label><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="pass" value = "${user.password}" required>
-			<label><b>Reenter Password</b></label>
-			<input type="password" placeholder="Enter Password" name="reenter" value = "${user.reenter}" required>
-			
-			<button type="submit">Login</button> -->
 			<div style="color: #FF0000;">${errorMessage}</div>
 			
 		</form>

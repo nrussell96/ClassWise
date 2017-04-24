@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Department;
@@ -2283,6 +2284,18 @@ public class DerbyDatabase implements IDatabase {
 
 	@Override
 	public Integer disapproveAdvice(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Admin getAdminByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Advice getFlaggedAdvice() {
 		// TODO Auto-generated method stub
 		return null;
 	}
