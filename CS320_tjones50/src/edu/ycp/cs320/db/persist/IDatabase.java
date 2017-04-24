@@ -12,7 +12,7 @@ public interface IDatabase {
 	
 	// get lists/objects
 	
-	abstract public ArrayList<Department> getDeptList();	//derby done
+	abstract public ArrayList<Department> getDeptList();	//must sort
 	
 	abstract public Department getDept(Department dept);	//derby done
 	
@@ -44,7 +44,7 @@ public interface IDatabase {
 	
 	abstract public User getUserByAdvice(Advice advice);	//derby done
 
-
+	abstract public Boolean deleteAdvice(Advice advice);
 	
 	// get sorted lists
 	
@@ -101,6 +101,15 @@ public interface IDatabase {
 	abstract public Integer setFlags(Advice advice, int flagNumber);	//derby done
 	
 	abstract public User getUserByEmail(String email);	//derby done
+	
+	abstract public Boolean deleteAccount(User user);
+	
+	//Admin methods
+	
+	abstract public Integer approveAdvice(Advice advice);
+	
+	abstract public Integer disapproveAdvice (Advice advice);
+	
 	
 	
 	
