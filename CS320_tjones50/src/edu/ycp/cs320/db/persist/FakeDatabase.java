@@ -3,6 +3,7 @@ package edu.ycp.cs320.db.persist;
 import java.util.ArrayList;
 
 import edu.ycp.cs320.tjones50.controller.CourseController;
+import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Data;
@@ -311,6 +312,18 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public Integer disapproveAdvice(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Admin getAdminByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Advice getFlaggedAdvice() {
 		// TODO Auto-generated method stub
 		return null;
 	}

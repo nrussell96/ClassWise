@@ -73,7 +73,7 @@ public class CreateAccountServlet extends HttpServlet {
 			database.createUserAccount(major, GPA, year, email, password);
 							
 			// Forward to view to render the result HTML document
-			resp.sendRedirect(req.getContextPath() + "/home");
+			resp.sendRedirect(req.getContextPath() + "/login");
 		}
 	}
 }
