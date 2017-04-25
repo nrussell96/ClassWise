@@ -327,6 +327,18 @@ public class FakeDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Integer deactivateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer activateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
