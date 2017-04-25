@@ -30,14 +30,8 @@
 		</ul>
 		
 		<h1>
-			This is the department of ${department.name}!
+			${department.name}
 		</h1>	
-		
-		
-		
-		<br>
-		
-		
 			<c:forEach items="${department.courses}" var="course">
     			<tr>      
        				<td>

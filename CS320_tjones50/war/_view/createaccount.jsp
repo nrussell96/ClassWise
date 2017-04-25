@@ -66,6 +66,6 @@
   	        <input id = "ca_accountButton" type="submit" value = "Create Account">
   	       
   	    </form>	
-  	    
+</div>
   	    <div style="color: #FF0000;">${errorMessage}</div>
 	</body>

@@ -39,12 +39,10 @@
 		<c:forEach items="${home.departments}" var="department">
     			<tr>      
        				<td>
-       					<p3>
-						<form action="${pageContext.request.contextPath}/home" method = "post">
+						<form action="${pageContext.request.contextPath}/home" class = "departments" method = "post">
 							<button type="submit" class = "home">${department.name}</button>
 							<input name="departmentName" type="hidden" value="${department.name}" />
 						</form>
-						</p3>
 					</td> 
     			</tr>
     			<br>
