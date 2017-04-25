@@ -7,7 +7,7 @@ public class Advice{
 	private String userMajor;
 	private double userGPA;
 	private double gradeReceived;
-	private int flags = 0;
+	private int helpfulFlags = 0;
 	private String semester;
 	private int classYear;
 	private String text = null;
@@ -89,12 +89,12 @@ public class Advice{
 		return this.gradeReceived;
 	}
 	
-	public void setFlags(int flag){
-		this.flags = flag;
+	public void setHelpfulFlags(int flag){
+		this.helpfulFlags = flag;
 	}
 	
-	public int getFlags(){
-		return this.flags;
+	public int getHelpfulFlags(){
+		return this.helpfulFlags;
 	}
 	
 	public void setSemester(String semester){

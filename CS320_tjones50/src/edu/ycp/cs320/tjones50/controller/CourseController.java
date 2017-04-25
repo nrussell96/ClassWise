@@ -68,4 +68,11 @@ public class CourseController {
 		int ratingId = db.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
 	}
 	
+	public void FlagAdviceAsHelpful(Advice advice){
+		db.flagAdviceAsHelpful(advice);
+	}
+	
+	public void setHelpfulFlags(){
+		
+	}
 }

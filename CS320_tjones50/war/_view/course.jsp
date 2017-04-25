@@ -35,7 +35,7 @@
 			<input name="courseName" type="hidden" value="${course.name}" />
 			<input name="departmentName" type="hidden" value="${department.name}" />
 			<input name="adviceId" type="hidden" value="${advice.adviceId}" />
-			<input name="flags" type="hidden" value="${advice.flags}" />
+			<input name="helpfulFlags" type="hidden" value="${advice.helpfulFlags}" />
 		</form>
 		
 		<h1>
@@ -112,15 +112,15 @@
 						Enjoyment was ${advice.adviceRating.enjoyment}
 						
 						<form action="${pageContext.servletContext.contextPath}/course" method="post">
-						<button type="submit" class = "flags">Flag Inappropriate Advice</button>
+						<button type="submit" class = "helpfulFlags">Helpful</button>
 						<input name="courseName" type="hidden" value="${course.name}" />
 						<input name="departmentName" type="hidden" value="${department.name}" />
 						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
-						<input name="flags" type="hidden" value="${advice.flags}" />
+						<input name="helpfulFlags" type="hidden" value="${advice.helpfulFlags}" />
 						
 						</form>
 						<div id = "flag_content">
-						Flags: ${advice.flags}
+						${advice.helpfulFlags} found this advice helpful
 						</div>
 						</p1>
 						

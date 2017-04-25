@@ -251,7 +251,7 @@ private IDatabase db = null;
 			
 			System.out.println("AdviceID: " + advice.getAdviceId() +" " +"userID: " + advice.getUserId() +" " +
 					"courseID: " + advice.getCourseId() +" " +"Semester: " + advice.getSemester() +" " +
-					"Professor: " + advice.getProfessor() +" " +"flags: " + advice.getFlags() +" " +
+					"Professor: " + advice.getProfessor() +" " +"Helpfulflags: " + advice.getHelpfulFlags() +" " +
 					"Grade: " + advice.getGradeReceived() +" " +"Year: " + advice.getClassYear() +" " +
 					"Approved: " + advice.getApproved() +" " +"Text: " + advice.getText() +" ");
 			
@@ -454,25 +454,25 @@ private IDatabase db = null;
 	}
 	
 	@Test
-	public void testFlagAdviceAndSetFlags() {
-		System.out.println("\n*** Testing flagAdviceAndSetFlags***");
+	public void testFlagAdviceAsHelpfulAndSetHelpfulFlags() {
+		System.out.println("\n*** Testing flagAdviceAsHelpfulAndSetHelpfulFlags***");
 		
 		Advice advice = db.getAdviceByAdviceId(1);
-		db.setFlags(advice, 0);
+		db.setHelpfulFlags(advice, 0);
 		//should have no flags
 		advice = db.getAdviceByAdviceId(1);
-		assertTrue(advice.getFlags() == 0);
+		assertTrue(advice.getHelpfulFlags() == 0);
 		
-		db.flagAdvice(advice);
-		
-		advice = db.getAdviceByAdviceId(1);
-		assertTrue(advice.getFlags() == 1);
-		db.flagAdvice(advice);
+		db.flagAdviceAsHelpful(advice);
 		
 		advice = db.getAdviceByAdviceId(1);
-		assertTrue(advice.getFlags() == 2);
+		assertTrue(advice.getHelpfulFlags() == 1);
+		db.flagAdviceAsHelpful(advice);
 		
-		db.setFlags(advice, 0);
+		advice = db.getAdviceByAdviceId(1);
+		assertTrue(advice.getHelpfulFlags() == 2);
+		
+		db.setHelpfulFlags(advice, 0);
 	}
 	
 	@Test

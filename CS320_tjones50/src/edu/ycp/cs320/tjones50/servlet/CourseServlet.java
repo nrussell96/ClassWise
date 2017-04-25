@@ -41,6 +41,7 @@ public class CourseServlet extends HttpServlet {
 
 		System.out.println("   Course: <" + courseName + ">");
 		
+		
 		//FakeDatabase database = new FakeDatabase();
 		DerbyDatabase database = new DerbyDatabase();
 		
@@ -55,7 +56,7 @@ public class CourseServlet extends HttpServlet {
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
-		
+	
 		// Pass model to jsp
 		req.setAttribute("course", model);
 		req.setAttribute("department", model.getDepartment());
@@ -83,7 +84,7 @@ public class CourseServlet extends HttpServlet {
 		System.out.println("   Course: <" + courseName + ">");
 		
 		Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
-		Integer flags = Integer.parseInt(req.getParameter("flags"));
+		Integer flags = Integer.parseInt(req.getParameter("helpfulFlags"));
 				
 		// initialize variables
 		Course model = database.getCourseByName(courseName);
@@ -98,18 +99,24 @@ public class CourseServlet extends HttpServlet {
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
-		
-		// check flags
-		for(Advice adv: model.getArrAdvice()){
-			if(adviceId == adv.getAdviceId()){
-				adv.setFlags(flags);
-				adviceController.setModel(adv);
-				adviceController.flagAdvice();
-				if(adv.getFlags()==3){
-					adv.setApproved(false);
-				}
-			}
+		controller.FlagAdviceAsHelpful(database.getAdviceByAdviceId(adviceId));
+	
+		if (req.getParameter("helpfulFlags") != null) {
+			controller.FlagAdviceAsHelpful(database.getAdviceByAdviceId(adviceId));
 		}
+		// check flags
+//		for(Advice adv: model.getArrAdvice()){
+//			if(adviceId == adv.getAdviceId()){
+//				adv.setFlags(flags);
+//				adviceController.setModel(adv);
+//				adviceController.flagAdvice();
+//				if(adv.getFlags()==3){
+//					adv.setApproved(false);
+//				}
+//			}
+//		}
+		
+		
 		
 		// Pass model to jsp
 		req.setAttribute("course", model);

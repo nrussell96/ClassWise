@@ -97,9 +97,9 @@ public interface IDatabase {
 	
 	abstract public Boolean login (String email, String password);	//derby done
 	
-	abstract public Integer flagAdvice (Advice advice);	//derby done
+	abstract public Integer flagAdviceAsHelpful (Advice advice);	//derby done
 	
-	abstract public Integer setFlags(Advice advice, int flagNumber);	//derby done
+	abstract public Integer setHelpfulFlags(Advice advice, int flagNumber);	//derby done
 	
 	abstract public User getUserByEmail(String email);	//derby done
 	

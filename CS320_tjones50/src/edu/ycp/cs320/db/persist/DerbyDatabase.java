@@ -172,7 +172,7 @@ public class DerbyDatabase implements IDatabase {
 							"	course_id integer constraint course_id references courses, " +
 							"	semester varchar(150)," +
 							"	professor  varchar(150)," +
-							"	flags integer," + 
+							"	helpful_flags integer," + 
 							"	grade double precision," +
 							"	class_year integer," +
 							"   approved boolean, " + 
@@ -261,43 +261,43 @@ public class DerbyDatabase implements IDatabase {
 					System.out.println("User data inserted");
 					
 					stmt4 = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text) " +
 							"values (1, 858, 'Spring', 'Professor Hake', 0, 4, 2017, true, 'great class, lots of work')"
 					);
 					stmt4.executeUpdate();
 					
 					stmt5 = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text) " +
 							"values (1, 857, 'Fall', 'Professor Hovemeyer', 0, 4, 2016, true, 'helpful class, prepared me for CS320')"
 					);
 					stmt5.executeUpdate();
 					
 					stmt6 = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text) " +
 							"values (2, 889, 'Fall', 'Professor Moscola', 0, 3, 2016, true, 'easy class, I love circuits!')"
 					);
 					stmt6.executeUpdate();
 					
 					stmt16 = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text) " +
 							"values (2, 858, 'Fall', 'Professor Hake', 0, 3, 2017, true, 'Tough class, but very rewarding!')"
 					);
 					stmt16.executeUpdate();
 					
 					stmt7 = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text) " +
 							"values (2, 890, 'Spring', 'Professor Moscola', 0, 3.5, 2017, true, 'I learned a lot! ECE 220 helped!')"
 					);
 					stmt7.executeUpdate();
 					
 					stmt8 = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text) " +
 							"values (3, 1063, 'Summer', 'Professor Guy', 0, 3, 2016, true, 'this class opened my mind, I am renewed')"
 					);
 					stmt8.executeUpdate();
 					
 					stmt9 = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text) " +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text) " +
 							"values (3, 1075, 'Spring', 'Professor Woman', 0, 4.0, 2017, true, 'This class taught me how to be a good person')"
 					);
 					stmt9.executeUpdate();
@@ -787,7 +787,7 @@ public class DerbyDatabase implements IDatabase {
 				// insert advice into db
 				try {
 					stmt = conn.prepareStatement(
-							"insert into advices (user_id, course_id, semester, professor, flags, grade, class_year, approved, text)" +
+							"insert into advices (user_id, course_id, semester, professor, helpful_flags, grade, class_year, approved, text)" +
 							" values(?,?,?,?,0,?,?,true,?)"
 					);
 					
@@ -1478,7 +1478,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer flagAdvice(Advice advice) {
+	public Integer flagAdviceAsHelpful(Advice advice) {
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
@@ -1489,7 +1489,7 @@ public class DerbyDatabase implements IDatabase {
 				// get current flags
 				try {
 					stmt1 = conn.prepareStatement(
-							"select flags from advices where advice_id = ?"
+							"select helpful_flags from advices where advice_id = ?"
 					);
 					
 					stmt1.setInt(1, advice.getAdviceId());
@@ -1502,7 +1502,7 @@ public class DerbyDatabase implements IDatabase {
 					flags += 1;
 					
 					stmt2 = conn.prepareStatement(
-							"update advices set flags = ? where advice_id = ?"
+							"update advices set helpful_flags = ? where advice_id = ?"
 					);
 					
 					stmt2.setInt(1, flags);
@@ -1542,7 +1542,7 @@ public class DerbyDatabase implements IDatabase {
 		advice.setCourseId(resultSet.getInt(index++));
 		advice.setSemester(resultSet.getString(index++));
 		advice.setProfessor(resultSet.getString(index++));
-		advice.setFlags(resultSet.getInt(index++));
+		advice.setHelpfulFlags(resultSet.getInt(index++));
 		advice.setGradeReceived(resultSet.getInt(index++));
 		advice.setClassYear(resultSet.getInt(index++));
 		advice.setApproved(resultSet.getBoolean(index++));
@@ -2145,7 +2145,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer setFlags(Advice advice, int flagNumber) {
+	public Integer setHelpfulFlags(Advice advice, int flagNumber) {
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
@@ -2153,7 +2153,7 @@ public class DerbyDatabase implements IDatabase {
 				// set flags
 				try {
 					stmt1 = conn.prepareStatement(
-							"update advices set flags = ? where advices.advice_id = ?"
+							"update advices set helpful_flags = ? where advices.advice_id = ?"
 					);
 					
 					stmt1.setInt(1, flagNumber);

@@ -58,8 +58,8 @@ public class AdviceTest {
 	
 	@Test
 	public void TestSetFlags(){
-		model.setFlags(3);
-		assertEquals(3, model.getFlags());
+		model.setHelpfulFlags(3);
+		assertEquals(3, model.getHelpfulFlags());
 	}
 	
 	@Test

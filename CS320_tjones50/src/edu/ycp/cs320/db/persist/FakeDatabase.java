@@ -134,12 +134,6 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer flagAdvice(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Course getCourseByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
@@ -267,12 +261,6 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer setFlags(Advice advice, int flagNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public User getUserByAdvice(Advice advice) {
 		// TODO Auto-generated method stub
 		return null;
@@ -336,6 +324,18 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public Integer activateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer flagAdviceAsHelpful(Advice advice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer setHelpfulFlags(Advice advice, int flagNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}
