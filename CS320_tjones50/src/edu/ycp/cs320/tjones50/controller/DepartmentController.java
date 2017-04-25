@@ -9,7 +9,7 @@ public class DepartmentController {
 	private DerbyDatabase database = new DerbyDatabase();
 	
 	public DepartmentController(){
-		Department department = new Department();
+		
 	}
 	public void setDepartment(Department department) {
 		this.department = department;

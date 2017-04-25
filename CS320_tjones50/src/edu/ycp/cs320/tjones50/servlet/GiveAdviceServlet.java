@@ -8,16 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.db.persist.FakeDatabase;
-import edu.ycp.cs320.tjones50.controller.AdviceController;
 import edu.ycp.cs320.tjones50.controller.CourseController;
 import edu.ycp.cs320.tjones50.controller.DepartmentController;
 import edu.ycp.cs320.tjones50.controller.UserController;
-import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Department;
-import edu.ycp.cs320.tjones50.model.Rating;
 import edu.ycp.cs320.tjones50.model.User;
 
 public class GiveAdviceServlet extends HttpServlet {
@@ -64,11 +59,6 @@ public class GiveAdviceServlet extends HttpServlet {
 		controller.setDepartmentByName(departmentName);
 		Department department = controller.getDepartment();
 		
-		//Stores the given department and course from the course, so it can be displayed on the give advice page
-		course.setName(courseName);
-		department.setName(departmentName);
-		course.setDepartment(department);
-		
 		//sets the objects to strings so they can be used in jsp
 		req.setAttribute("course", course);
 		req.setAttribute("department", department);
@@ -105,10 +95,10 @@ public class GiveAdviceServlet extends HttpServlet {
 		// create the course object
 		CourseController courseController = new CourseController();
 		courseController.setCourseByName(courseName);
-		UserController userController = new UserController();
+		UserController userController = new UserController(email);
 
 		//Set user
-		User user = userController.getUserByEmail(email);
+		User user = userController.getUser();
 		
 		//add advice
 		courseController.addAdviceAndRatingToCourse(user, semester, professor, gradeReceived, classYear, text, difficulty, instruction, suppliesCost, enjoyment);

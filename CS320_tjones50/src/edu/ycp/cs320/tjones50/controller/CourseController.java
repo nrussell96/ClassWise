@@ -14,7 +14,7 @@ public class CourseController {
 	private DerbyDatabase database = new DerbyDatabase();
 	
 	public CourseController() {
-		Course course = new Course();
+
 	}
 	
 	public void setCourse(Course course) {
@@ -66,7 +66,7 @@ public class CourseController {
 	//adds advice 
 	public void addAdviceAndRatingToCourse(User user, String semester, String professor, double grade, int year, String text, double difficulty, double instruction, double suppliesCost, double enjoyment) {
 		int adviceId = database.addAdviceToCourse(user, course, semester, professor, grade, year, text);
-		int ratingId = database.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
+		database.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
 	}
 	
 	public ArrayList<Advice> getCourseAdviceList(){

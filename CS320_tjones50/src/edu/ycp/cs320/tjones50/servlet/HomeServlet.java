@@ -6,13 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.HomeController;
-import edu.ycp.cs320.tjones50.model.Data;
-import edu.ycp.cs320.tjones50.model.Department;
 import edu.ycp.cs320.tjones50.model.Home;
 
 public class HomeServlet extends HttpServlet {

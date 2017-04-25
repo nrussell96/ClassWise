@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ycp.cs320.tjones50.controller.AccountController;
 import edu.ycp.cs320.tjones50.controller.HomeController;
+import edu.ycp.cs320.tjones50.controller.UserController;
 import edu.ycp.cs320.tjones50.model.Home;
 import edu.ycp.cs320.tjones50.model.User;
 
@@ -32,22 +32,20 @@ public class LoginServlet extends HttpServlet {
 		
 		System.out.println("In the login doPost");
 		
-		User model = new User();
-		AccountController controller = new AccountController();
-		controller.setModel(model);
-	
-		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
 		
-		model.setEmail(email);
-		model.setPassword(password);
+		UserController controller = new UserController(email);
+		User user = controller.getUser();
+		
+		user.setEmail(email);
+		user.setPassword(password);
 		
 		boolean emailValid = controller.validate(email);
-		boolean accountExists = controller.checkAccountInfo(email, password);
+		boolean accountExists = controller.checkUserInfo(email, password);
 		
 		// Pass model to jsp
-		req.setAttribute("login", model);
+		req.setAttribute("login", user);
 		if(emailValid == false){
 			req.setAttribute("errorMessage", "Please enter a valid email pattern.");
 			req.setAttribute("email", email);
