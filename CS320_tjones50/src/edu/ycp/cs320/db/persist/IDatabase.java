@@ -13,7 +13,7 @@ public interface IDatabase {
 	
 	// get lists/objects
 	
-	abstract public ArrayList<Department> getDeptList();	//must sort
+	abstract public ArrayList<Department> getDeptList();	//derby done
 	
 	abstract public Department getDept(Department dept);	//derby done
 	
@@ -45,7 +45,7 @@ public interface IDatabase {
 	
 	abstract public User getUserByAdvice(Advice advice);	//derby done
 
-	abstract public Boolean deleteAdvice(Advice advice);
+	abstract public Integer deleteAdvice(Advice advice);	//derby done
 	
 	// get sorted lists
 	
@@ -103,17 +103,21 @@ public interface IDatabase {
 	
 	abstract public User getUserByEmail(String email);	//derby done
 	
-	abstract public Boolean deleteAccount(User user);
+	abstract public Integer deleteAccount(User user);	//Should we really do this?
 	
 	//Admin methods
 	
-	abstract public Integer approveAdvice(Advice advice);
+	abstract public Integer approveAdvice(Advice advice);	//derby done
 	
-	abstract public Integer disapproveAdvice (Advice advice);
+	abstract public Integer disapproveAdvice (Advice advice);	//derby done,
 	
-	abstract public Admin getAdminByEmail(String email);
+	abstract public Admin getAdminByEmail(String email);	//derby done
 	
-	abstract public Advice getFlaggedAdvice();
+	abstract public Advice getFlaggedAdvice();		//Are we going to be flagging advice?
+	
+	abstract public Integer deactivateUser(User user);	//derby done
+	
+	abstract public Integer activateUser(User user);	//derby done
 	
 	
 	

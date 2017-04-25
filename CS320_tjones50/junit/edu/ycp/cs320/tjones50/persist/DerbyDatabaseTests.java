@@ -13,6 +13,7 @@ import org.junit.Test;
 import edu.ycp.cs320.db.persist.DatabaseProvider;
 import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.db.persist.IDatabase;
+import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Department;
@@ -203,8 +204,8 @@ private IDatabase db = null;
 	}
 	
 	@Test
-	public void testAddAdviceToCourse() {
-		System.out.println("\n*** Testing addAdviceToCourse***");
+	public void testAddAdviceToCourseInsertRatingAndDeleteAdvice() {
+		System.out.println("\n*** Testing addAdviceToCourse, insertRating, and deleteAdvice***");
 		
 		User user = db.getUserFromUserId(1);
 		Course course = db.getCourseByName("CS 320 Software Engineering and Design");
@@ -221,6 +222,29 @@ private IDatabase db = null;
 		// it will keep returning adviceID of 8, since that was the first advice inserted
 		int advice_id = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
 		
+
+				double difficulty = 5.0;
+				double instruction = 4.0;
+				double supplyCost = 3.0;
+				double enjoyment = 2.0;
+				
+				// get advice_id from db method
+				int rating_id = db.insertRating(advice_id, difficulty, instruction, supplyCost, enjoyment);
+				
+				// NOTE: this is a simple test to check if no results were found in the DB
+				if (rating_id > 0) {
+					Rating rating = db.getRatingByRatingId(rating_id);
+					
+					System.out.println("AdviceID: " + rating.getAdviceId() +" " +"ratingID: " + rating.getRatingId() +" " +
+							"Difficulty: " + rating.getDifficulty() +" " +"Instruction: " + rating.getInstruction() +" " +
+							"Cost of Supplies: " + rating.getSuppliesCost() +" " +"Enjoyment: " + rating.getEnjoyment());
+					
+				}
+				else{
+					System.out.println("No rating with that id found in db!");
+					fail("No rating returned from Library DB");
+				}
+					
 		// NOTE: this is a simple test to check if no results were found in the DB
 		if (advice_id > 0) {
 			Advice advice = db.getAdviceByAdviceId(advice_id);
@@ -236,36 +260,43 @@ private IDatabase db = null;
 			System.out.println("No advice with that id found in db!");
 			fail("No advice returned from Library DB");
 		}
+		Advice advice = db.getAdviceByAdviceId(advice_id);
+		int deletedAdviceId = db.deleteAdvice(advice);
+				
+				assertEquals(advice_id,deletedAdviceId);
+				assertTrue(db.getAdviceByAdviceId(deletedAdviceId).getAdviceId()==0);
+				assertTrue(db.getRatingByAdvice(advice).getRatingId() == 0);
+		
 	}
 	
-	@Test
-	public void testInsertRating() {
-		System.out.println("\n*** Testing insertRating***");
-		
-		//Advice advice = db.getAdviceByAdviceId(8);
-		int adviceId = 8;		//If this isnt part of advice table then this test wont work
-		double difficulty = 5.0;
-		double instruction = 4.0;
-		double supplyCost = 3.0;
-		double enjoyment = 2.0;
-		
-		// get advice_id from db method
-		int rating_id = db.insertRating(adviceId, difficulty, instruction, supplyCost, enjoyment);
-		
-		// NOTE: this is a simple test to check if no results were found in the DB
-		if (rating_id > 0) {
-			Rating rating = db.getRatingByRatingId(rating_id);
-			
-			System.out.println("AdviceID: " + rating.getAdviceId() +" " +"ratingID: " + rating.getRatingId() +" " +
-					"Difficulty: " + rating.getDifficulty() +" " +"Instruction: " + rating.getInstruction() +" " +
-					"Cost of Supplies: " + rating.getSuppliesCost() +" " +"Enjoyment: " + rating.getEnjoyment());
-			
-		}
-		else{
-			System.out.println("No rating with that id found in db!");
-			fail("No rating returned from Library DB");
-		}
-	}
+//	@Test
+//	public void testInsertRating() {
+//		System.out.println("\n*** Testing insertRating***");
+//		
+//		//Advice advice = db.getAdviceByAdviceId(8);
+//		int adviceId = 8;		//If this isnt part of advice table then this test wont work
+//		double difficulty = 5.0;
+//		double instruction = 4.0;
+//		double supplyCost = 3.0;
+//		double enjoyment = 2.0;
+//		
+//		// get advice_id from db method
+//		int rating_id = db.insertRating(adviceId, difficulty, instruction, supplyCost, enjoyment);
+//		
+//		// NOTE: this is a simple test to check if no results were found in the DB
+//		if (rating_id > 0) {
+//			Rating rating = db.getRatingByRatingId(rating_id);
+//			
+//			System.out.println("AdviceID: " + rating.getAdviceId() +" " +"ratingID: " + rating.getRatingId() +" " +
+//					"Difficulty: " + rating.getDifficulty() +" " +"Instruction: " + rating.getInstruction() +" " +
+//					"Cost of Supplies: " + rating.getSuppliesCost() +" " +"Enjoyment: " + rating.getEnjoyment());
+//			
+//		}
+//		else{
+//			System.out.println("No rating with that id found in db!");
+//			fail("No rating returned from Library DB");
+//		}
+//	}
 	
 	@Test
 	public void testGetUserFromUserId() {
@@ -854,7 +885,7 @@ private IDatabase db = null;
 		System.out.println("\n*** Testing getAdviceListEnjoyment***");
 
 		String name = "CS 320 Software Engineering and Design";
-		double enjoyment = 2.0;
+		double enjoyment = 5.0;
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListEnjoyment(course, enjoyment);
@@ -990,5 +1021,88 @@ private IDatabase db = null;
 				System.out.println(adv.getUserId());
 			}
 		}
+	}
+	
+	@Test
+	public void testDeleteAdvice() {
+		System.out.println("\n*** Testing deleteAdvice***");
+		
+		User user = db.getUserFromUserId(1);
+		Course course = db.getCourseByName("CS 320 Software Engineering and Design");
+		String semester = "Spring";
+		String professor = "Professor Hovemeyer";
+		double grade = 4.0;
+		int year = 2015;
+		String text = "Do your best or you'll fail!";
+		Rating rating = new Rating(2.0, 3.0, 4.0, 5.0);
+		int advice_id = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
+		db.insertRating(advice_id, rating.getDifficulty(), rating.getInstruction(), rating.getSuppliesCost(), rating.getEnjoyment());
+
+		Advice advice = db.getAdviceByAdviceId(advice_id);
+		
+		//get advice object from advice id
+		
+		int deletedAdviceId = db.deleteAdvice(advice);
+		
+		assertEquals(advice_id,deletedAdviceId);
+		assertTrue(db.getAdviceByAdviceId(deletedAdviceId).getAdviceId()==0);
+		assertTrue(db.getRatingByAdvice(advice).getRatingId() == 0);
+		
+	
+	}
+	
+	@Test
+	public void testApproveAndDisapproveAdvice() {
+		System.out.println("\n*** Testing approveAdvice and disapproveAdvice***");
+		
+		Advice advice = db.getAdviceByAdviceId(1);
+		
+		db.approveAdvice(advice);
+		assertTrue(advice.getApproved());
+		
+		db.disapproveAdvice(advice);
+		advice = db.getAdviceByAdviceId(1);
+		assertFalse(db.getAdviceByAdviceId(1).getApproved());
+		
+		db.approveAdvice(advice);
+		advice = db.getAdviceByAdviceId(1);
+		assertTrue(db.getAdviceByAdviceId(1).getApproved());
+	}
+	
+	@Test
+	public void testGetAdminByEmail() {
+		System.out.println("\n*** Testing getAdminByEmail***");
+		
+		String email = "admin@ycp.edu";
+		
+		Admin admin = db.getAdminByEmail(email);
+		
+		assertTrue(admin.getAccountId()==1);
+		assertTrue(admin.getApproved());
+		assertTrue(admin.getEmail().equals(email));
+		assertTrue(admin.getEmailVerified() == true);
+		assertTrue(admin.getPassword().equals("password"));
+		
+	}
+	
+	@Test
+	public void testActivateAndDeactivateUser() {
+		System.out.println("\n*** Testing activateUser and deactivateUser***");
+		
+		User user = db.getUserByEmail("student1@ycp.edu");
+		
+		db.activateUser(user);
+		assertTrue(user.getApproved());
+		
+		db.deactivateUser(user);
+		user = db.getUserByEmail("student1@ycp.edu");
+		
+		assertFalse(user.getApproved());
+		
+		db.activateUser(user);
+		user = db.getUserByEmail("student1@ycp.edu");
+		
+		assertTrue(user.getApproved());
+		
 	}
 }

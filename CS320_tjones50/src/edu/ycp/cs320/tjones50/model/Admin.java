@@ -5,6 +5,7 @@ public class Admin extends Account {
 	private String email;
 	private String password;
 	private int accountId;
+	private boolean emailVerified = true;
 	
 	public Admin(){
 		
@@ -95,6 +96,14 @@ public class Admin extends Account {
 	public void forgotPassword() {
 		throw new UnsupportedOperationException();
 		
+	}
+	
+	public void setEmailVerified(boolean emailVerified){
+		this.emailVerified = emailVerified;
+	}
+	
+	public boolean getEmailVerified(){
+		return this.emailVerified;
 	}
 	
 

@@ -293,13 +293,13 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public Boolean deleteAdvice(Advice advice) {
+	public Integer deleteAdvice(Advice advice) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Boolean deleteAccount(User user) {
+	public Integer deleteAccount(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -324,6 +324,18 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public Advice getFlaggedAdvice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer deactivateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer activateUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}

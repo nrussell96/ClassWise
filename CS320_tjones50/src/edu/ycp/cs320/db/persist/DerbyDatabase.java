@@ -236,6 +236,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt15 = null;
 				PreparedStatement stmt16 = null;
 				PreparedStatement stmt17 = null;
+				PreparedStatement stmt18 = null;
 				
 				try {
 					
@@ -346,7 +347,13 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Ratings added");
 					
+					stmt18 = conn.prepareStatement(
+							"insert into admins (email, password, activated, email_verified) " +
+							"values ('admin@ycp.edu', 'password', true, true)"
+					);
+					stmt18.executeUpdate();
 					
+					System.out.println("admin added");
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -440,7 +447,7 @@ public class DerbyDatabase implements IDatabase {
 				// try to retrieve all departments in database
 				try {
 					stmt = conn.prepareStatement(
-							"select * from departments"
+							"select * from departments order by name"
 					);
 					
 					// establish the ArrayList of Department objects to receive the result
@@ -1562,6 +1569,14 @@ public class DerbyDatabase implements IDatabase {
 		user.setGPA(resultSet.getDouble(index++));
 		user.setUserClassYear(resultSet.getString(index++));
 	}
+	
+	private void loadAdmin(Admin admin, ResultSet resultSet, int index) throws SQLException {
+		admin.setAccountId(resultSet.getInt(index++));
+		admin.setEmail(resultSet.getString(index++));
+		admin.setPassword(resultSet.getString(index++));
+		admin.setApproved(resultSet.getBoolean(index++));
+		admin.setEmailVerified(resultSet.getBoolean(index++));
+	}
 
 
 	@Override
@@ -2232,38 +2247,191 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Boolean deleteAdvice(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer deleteAdvice(Advice advice) {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				PreparedStatement stmt2 = null;
+				ResultSet resultSet2 = null;
+
+				
+				try {
+					//delete rating associated with advice
+					stmt2 = conn.prepareStatement(
+							"delete from ratings where advice_id = ?"
+					);
+					
+					stmt2.setInt(1, advice.getAdviceId());
+					
+					stmt2.executeUpdate();
+
+					// delete advice into db
+					
+						stmt = conn.prepareStatement(
+								"delete from advices where advice_id = ?"
+						);
+						
+						stmt.setInt(1, advice.getAdviceId());
+						
+						stmt.executeUpdate();
+						
+					return advice.getAdviceId();
+				} finally {
+					DBUtil.closeQuietly(resultSet2);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+
+			
+		});
 	}
 
 	@Override
-	public Boolean deleteAccount(User user) {
+	public Integer deleteAccount(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Integer approveAdvice(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+
+				try {
+					// approve advice
+					stmt = conn.prepareStatement(
+							"update advices set approved = true where advice_id = ? "
+					);
+					
+					stmt.setInt(1, advice.getAdviceId());
+					
+					stmt.executeUpdate();
+
+					return advice.getAdviceId();
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}	
+		});
 	}
 
 	@Override
 	public Integer disapproveAdvice(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+
+				try {
+					// approve advice
+					stmt = conn.prepareStatement(
+							"update advices set approved = false where advice_id = ? "
+					);
+					
+					stmt.setInt(1, advice.getAdviceId());
+					
+					stmt.executeUpdate();
+
+					return advice.getAdviceId();
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}	
+		});
 	}
 
 	@Override
 	public Admin getAdminByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<Admin>() {
+			@Override
+			public Admin execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet1 = null;
+				try {
+					// approve advice
+					stmt = conn.prepareStatement(
+							"select * from admins where email = ?"
+					);
+					
+					stmt.setString(1, email);
+					
+					resultSet1 = stmt.executeQuery();
+					Admin admin = new Admin();
+					
+					while (resultSet1.next()) {
+						loadAdmin(admin, resultSet1, 1);
+					}
+					
+					
+					return admin;
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}	
+		});
 	}
 
 	@Override
 	public Advice getFlaggedAdvice() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer deactivateUser(User user) {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				
+				try {
+					// deactivate user
+					stmt = conn.prepareStatement(
+							"update users set activated = false where user_id = ?"
+					);
+					
+					stmt.setInt(1, user.getAccountId());
+					
+					stmt.executeUpdate();
+					
+					return user.getAccountId();
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}	
+		});
+	}
+	
+	@Override
+	public Integer activateUser(User user) {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				
+				try {
+					// approve advice
+					stmt = conn.prepareStatement(
+							"update users set activated = true where user_id = ?"
+					);
+					
+					stmt.setInt(1, user.getAccountId());
+					
+					stmt.executeUpdate();
+					
+					return user.getAccountId();
+					
+				} finally {
+					DBUtil.closeQuietly(stmt);
+				}
+			}	
+		});
 	}
 }
