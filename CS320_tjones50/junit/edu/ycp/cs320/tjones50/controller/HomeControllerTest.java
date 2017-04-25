@@ -9,17 +9,17 @@ import edu.ycp.cs320.tjones50.model.Home;
 
 public class HomeControllerTest {
 	private HomeController controller;
-	private Home model;
+	private Home home;
 	
 	@Before
 	public void setUp() {
-		model = new Home();
+		home = new Home();
 		controller = new HomeController();
-		controller.setModel(model);
+		controller.setHome(home);
 	}
 	
 	@Test
 	public void testModel() {
-		assertTrue(model == controller.getModel());
+		assertTrue(home == controller.getHome());
 	}
 }

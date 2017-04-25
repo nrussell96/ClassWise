@@ -13,6 +13,7 @@ import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.AdviceController;
 import edu.ycp.cs320.tjones50.controller.CourseController;
 import edu.ycp.cs320.tjones50.controller.DepartmentController;
+import edu.ycp.cs320.tjones50.controller.UserController;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Department;
@@ -44,16 +45,6 @@ public class GiveAdviceServlet extends HttpServlet {
 		
 		System.out.println("   User: <" + email + "> logged in");
 		
-		// create the course object
-		Course course = new Course();
-		CourseController courseController = new CourseController();
-		courseController.setModel(course);
-		
-		//create the department object
-		Department department = new Department();
-		DepartmentController deptController = new DepartmentController();
-		deptController.setModel(department);
-		
 		//get the courseName and departmentName from the previous servlet (course servlet)
 		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
 
@@ -62,6 +53,16 @@ public class GiveAdviceServlet extends HttpServlet {
 		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
 
 		System.out.println("   Course: <" + courseName + ">");
+		
+		// create the course object
+		CourseController courseController = new CourseController();
+		courseController.setCourseByName(courseName);
+		Course course = courseController.getCourse();
+				
+		//create the department object
+		DepartmentController controller = new DepartmentController();
+		controller.setDepartmentByName(departmentName);
+		Department department = controller.getDepartment();
 		
 		//Stores the given department and course from the course, so it can be displayed on the give advice page
 		course.setName(courseName);
@@ -100,29 +101,19 @@ public class GiveAdviceServlet extends HttpServlet {
 		String text = req.getParameter("text");
 				
 		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
-				
-		// create database
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
+		
+		// create the course object
+		CourseController courseController = new CourseController();
+		courseController.setCourseByName(courseName);
+		UserController userController = new UserController();
 
 		//Set user
-		User user  = database.getUserByEmail(email);
-				
-		// create course model and controller
-		Course model = database.getCourseByName(courseName);
+		User user = userController.getUserByEmail(email);
 		
-		//create rating object /////////////////////// Don't need, take rating out of addAdviceToCourse?
-		//Rating rating = new Rating(difficulty,instruction, suppliesCost, enjoyment);
+		//add advice
+		courseController.addAdviceAndRatingToCourse(user, semester, professor, gradeReceived, classYear, text, difficulty, instruction, suppliesCost, enjoyment);
 		
-		//add advice to database
-//		int adviceId = database.addAdviceToCourse(user, model, semester, professor, gradeReceived, classYear, text, rating);
-//		
-//		database.insertRating(database.getAdviceByAdviceId(adviceId), difficulty, instruction, suppliesCost, enjoyment);	
-		
-		CourseController courseController = new CourseController();
-		courseController.addAdviceAndRatingToCourse(user, model, semester, professor, gradeReceived, classYear, text, difficulty, instruction, suppliesCost, enjoyment);
 		// Forward to view to render the result HTML document
-		//req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 		resp.sendRedirect(req.getContextPath() + "/course");
 
 			

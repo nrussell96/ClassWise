@@ -6,12 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.tjones50.controller.AccountController;
 import edu.ycp.cs320.tjones50.controller.HomeController;
-import edu.ycp.cs320.tjones50.model.Account;
 import edu.ycp.cs320.tjones50.model.Home;
 import edu.ycp.cs320.tjones50.model.User;
 
@@ -66,17 +63,12 @@ public class LoginServlet extends HttpServlet {
 			// store email obj in session
 			req.getSession().setAttribute("email", email);
 			
-			//FakeDatabase database = new FakeDatabase();
-			DerbyDatabase database = new DerbyDatabase();
-			Home homeModel = new Home();
-			HomeController homeController = new HomeController();
-			homeController.setModel(homeModel);
-			
-			// add info to model
-			homeModel.setDepartments(database.getDeptList());
+			// initialize variables
+			HomeController HomeController = new HomeController();
+			Home home = HomeController.getHome();
 			
 			// Pass model to jsp
-			req.setAttribute("home", homeModel);
+			req.setAttribute("home", home);
 			
 			// Forward to view to render the result HTML document
 			resp.sendRedirect(req.getContextPath() + "/home");

@@ -6,18 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.AdviceController;
 import edu.ycp.cs320.tjones50.controller.CourseController;
-import edu.ycp.cs320.tjones50.controller.DepartmentController;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
-import edu.ycp.cs320.tjones50.model.Department;
-import edu.ycp.cs320.tjones50.model.Rating;
-import edu.ycp.cs320.tjones50.model.User;
 
 public class CourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,25 +33,19 @@ public class CourseServlet extends HttpServlet {
 		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
 
 		System.out.println("   Course: <" + courseName + ">");
-		
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
-		
+
 		// initialize variables
-		Course model = database.getCourseByName(courseName);
 		CourseController controller = new CourseController();
-		controller.setModel(model);
-		
-		// add info to model
-		model.setArrAdvice(database.getCourseAdviceList(model));
+		controller.setCourseByName(courseName);
+		Course course = controller.getCourse();
 		
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
 		
 		// Pass model to jsp
-		req.setAttribute("course", model);
-		req.setAttribute("department", model.getDepartment());
+		req.setAttribute("course", course);
+		req.setAttribute("department", course.getDepartment());
 		req.setAttribute("email", email);
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
@@ -69,9 +56,6 @@ public class CourseServlet extends HttpServlet {
 		
 		// session info
 		System.out.println("In Course Servlet doPost");
-		
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
 				
 		// get info from parameters
 		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
@@ -86,21 +70,18 @@ public class CourseServlet extends HttpServlet {
 		Integer flags = Integer.parseInt(req.getParameter("flags"));
 				
 		// initialize variables
-		Course model = database.getCourseByName(courseName);
 		CourseController controller = new CourseController();
-		controller.setModel(model);
+		controller.setCourseByName(courseName);
+		Course course = controller.getCourse();
 		AdviceController adviceController = new AdviceController();
 
-		
-		// add info to model
-		model.setArrAdvice(database.getCourseAdviceList(model));
 		
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
 		
 		// check flags
-		for(Advice adv: model.getArrAdvice()){
+		for(Advice adv: course.getArrAdvice()){
 			if(adviceId == adv.getAdviceId()){
 				adv.setFlags(flags);
 				adviceController.setModel(adv);
@@ -112,8 +93,8 @@ public class CourseServlet extends HttpServlet {
 		}
 		
 		// Pass model to jsp
-		req.setAttribute("course", model);
-		req.setAttribute("department", model.getDepartment());
+		req.setAttribute("course", course);
+		req.setAttribute("department", course.getDepartment());
 				
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}

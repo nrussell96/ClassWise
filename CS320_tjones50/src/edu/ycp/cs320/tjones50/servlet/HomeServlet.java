@@ -30,18 +30,11 @@ public class HomeServlet extends HttpServlet {
 		System.out.println("   User: <" + email + "> logged in");
 		
 		// initialize variables
-		
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
-		Home model = new Home();
 		HomeController controller = new HomeController();
-		controller.setModel(model);
-		
-		// add info to model
-		model.setDepartments(database.getDeptList());
+		Home home = controller.getHome();
 		
 		// Pass model to jsp
-		req.setAttribute("home", model);
+		req.setAttribute("home", home);
 		req.setAttribute("email", email);
 		
 		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
@@ -53,11 +46,6 @@ public class HomeServlet extends HttpServlet {
 		
 		// session info
 		System.out.println("In Home doPost");
-		
-		// initialize variables
-		Home model = new Home();
-		HomeController controller = new HomeController();
-		controller.setModel(model);
 		
 		// get info from parameters
 		String departmentName = req.getParameter("departmentName");
