@@ -15,9 +15,6 @@
 	</head>
 	<body>
 		<ul>
-  			<!--<li><form action="${pageContext.servletContext.contextPath}/home" method = "get">
-  				<a><input class="active" type = "submit" value = classwise></a>
-  			</form></li>-->
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
