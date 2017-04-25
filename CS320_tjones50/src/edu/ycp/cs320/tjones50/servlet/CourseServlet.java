@@ -35,8 +35,7 @@ public class CourseServlet extends HttpServlet {
 		System.out.println("   Course: <" + courseName + ">");
 
 		// initialize variables
-		CourseController controller = new CourseController();
-		controller.setCourseByName(courseName);
+		CourseController controller = new CourseController(courseName);
 		Course course = controller.getCourse();
 		
 		// call controller methods
