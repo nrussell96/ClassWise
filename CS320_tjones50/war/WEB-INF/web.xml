@@ -6,6 +6,10 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets --><servlet>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<servlet-class>edu.ycp.cs320.tjones50.servlet.LogoutServlet</servlet-class>
+</servlet>
+  <servlet>
   	<servlet-name>AdminServlet</servlet-name>
   	<servlet-class>edu.ycp.cs320.tjones50.servlet.AdminServlet</servlet-class>
 </servlet>
@@ -69,6 +73,10 @@
   </servlet>
 
   <!-- Servlet mappings --><servlet-mapping>
+  	<servlet-name>LogoutServlet</servlet-name>
+  	<url-pattern>/logout</url-pattern>
+</servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>AdminServlet</servlet-name>
   	<url-pattern>/admin</url-pattern>
 </servlet-mapping>

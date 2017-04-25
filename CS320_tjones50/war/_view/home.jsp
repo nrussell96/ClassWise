@@ -25,12 +25,18 @@
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<c:if test="${!empty email}">
 				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 				<li><a>Hello, ${email}</a></li>
+				<li><form action="${pageContext.request.contextPath}/logout" id = "none" method="post">
+    				<a><input type="submit" value="Logout" /></a>
+				</form></li>
 			</c:if>
 		</ul>
 		
 		<h1 class = "headerStyle">
 			Select Your Department:
+			
+			
 		</h1>
 		
 		<c:forEach items="${home.departments}" var="department">

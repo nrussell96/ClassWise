@@ -5,10 +5,7 @@ font-family: "Helvetica Neue", Helvetica, sans-serif;
 color: #444;   
 -webkit-font-smoothing: antialiased;    background: #f0f0f0;
 }
-form {
-    margin: 0 auto;
-    margin-top: 20px;
-}
+
 label {
     color: #555;
     display: inline-block;
@@ -53,13 +50,7 @@ input[type=password] {
     border-radius: 3px;
 }
 
-input[type=submit] {
-    float: right;
-    margin-right: 20px;
-    margin-top: 20px;
-    width: 80px;
-    height: 30px;
-}
+
 
 #l_accountButton{
 	float:left;
