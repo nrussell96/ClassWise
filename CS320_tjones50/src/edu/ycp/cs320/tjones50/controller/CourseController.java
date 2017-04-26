@@ -17,8 +17,14 @@ public class CourseController {
 
 	}
 	
+	public CourseController(String courseName) {
+		this.course = database.getCourseByName(courseName);
+		this.course.setArrAdvice(database.getCourseAdviceList(course));
+	}
+	
 	public void setCourse(Course course) {
 		this.course = course;
+		this.course.setArrAdvice(database.getCourseAdviceList(course));
 	}
 	
 	public void setCourseByName(String courseName) {
@@ -69,10 +75,6 @@ public class CourseController {
 		database.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
 	}
 	
-
-	public void FlagAdviceAsHelpful(Advice advice){
-		database.flagAdviceAsHelpful(advice);
-	}
 	
 	public void setHelpfulFlags(){
 		

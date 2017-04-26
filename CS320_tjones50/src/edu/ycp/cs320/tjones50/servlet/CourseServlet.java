@@ -35,8 +35,7 @@ public class CourseServlet extends HttpServlet {
 		System.out.println("   Course: <" + courseName + ">");
 
 		// initialize variables
-		CourseController controller = new CourseController();
-		controller.setCourseByName(courseName);
+		CourseController controller = new CourseController(courseName);
 		Course course = controller.getCourse();
 
 		
@@ -68,7 +67,7 @@ public class CourseServlet extends HttpServlet {
 		System.out.println("   Course: <" + courseName + ">");
 		
 		Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
-		Integer flags = Integer.parseInt(req.getParameter("helpfulFlags"));
+		Integer flags = Integer.parseInt(req.getParameter("flags"));
 				
 		// initialize variables
 		CourseController controller = new CourseController();
