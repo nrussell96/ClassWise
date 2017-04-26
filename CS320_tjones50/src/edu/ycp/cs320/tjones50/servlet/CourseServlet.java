@@ -65,31 +65,28 @@ public class CourseServlet extends HttpServlet {
 
 		System.out.println("   Course: <" + courseName + ">");
 		
-		Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
-		Integer flags = Integer.parseInt(req.getParameter("flags"));
+		String flag = req.getParameter("flag");
+		String sort = req.getParameter("sort");
 				
 		// initialize variables
 		CourseController controller = new CourseController();
 		controller.setCourseByName(courseName);
-		Course course = controller.getCourse();
-		AdviceController adviceController = new AdviceController();
-
 		
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
 		
-		// check flags
-		for(Advice adv: course.getArrAdvice()){
-			if(adviceId == adv.getAdviceId()){
-				adv.setFlags(flags);
-				adviceController.setModel(adv);
-				adviceController.flagAdvice();
-				if(adv.getFlags()==3){
-					adv.setApproved(false);
-				}
-			}
+		// set flags
+		if(flag.equals("true")){
+			Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
+			AdviceController adviceController = new AdviceController(adviceId);
+			adviceController.flagAdvice();
 		}
+		
+		// sort advice
+		controller.SortAdvice(sort);
+		Course course = controller.getCourse();
+		
 		
 		// Pass model to jsp
 		req.setAttribute("course", course);

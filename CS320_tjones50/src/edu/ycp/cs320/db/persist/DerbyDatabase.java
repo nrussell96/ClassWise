@@ -1035,7 +1035,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
-							"advices.course_id= ? order by advices.grade"
+							"advices.course_id= ? order by advices.grade desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1078,7 +1078,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
-							"advices.course_id= ? order by advices.semester"
+							"advices.course_id= ? order by advices.semester desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1121,7 +1121,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
-							"advices.course_id= ? order by advices.class_year"
+							"advices.course_id= ? order by advices.class_year desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1164,7 +1164,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
-							"advices.course_id= ? order by advices.professor"
+							"advices.course_id= ? order by advices.professor desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1207,7 +1207,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices, ratings where " +
-							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.difficulty"
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.difficulty desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1250,7 +1250,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices, ratings where " +
-							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.instruction"
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.instruction desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1293,7 +1293,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices, ratings where " +
-							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.supply_cost"
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.supply_cost desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1336,7 +1336,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices, ratings where " +
-							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.enjoyment"
+							"advices.course_id = ? and ratings.advice_id = advices.advice_id order by ratings.enjoyment desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1630,7 +1630,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices, users where " +
-							"advices.course_id = ? and advices.user_id = users.user_id order by users.gpa"
+							"advices.course_id = ? and advices.user_id = users.user_id order by users.gpa desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1673,7 +1673,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices, users where " +
-							"advices.course_id = ? and advices.user_id = users.user_id order by users.major"
+							"advices.course_id = ? and advices.user_id = users.user_id order by users.major desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
