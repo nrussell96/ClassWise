@@ -149,7 +149,7 @@
 						
 						</form>
 						<div id = "flag_content">
-						Flags: ${advice.flags}
+						${advice.flags} found this advice helpful
 						</div>
 						</p1>
 						

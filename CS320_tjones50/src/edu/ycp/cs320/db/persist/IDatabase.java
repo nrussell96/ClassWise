@@ -93,17 +93,21 @@ public interface IDatabase {
 	
 	// account methods
 	
-	abstract public Integer createUserAccount (String major, double GPA, String year, String email, String password);	//derby done
+	abstract public Boolean createUserAccount (String major, double GPA, String year, String email, String password);	//derby done, needs testing
 	
 	abstract public Boolean login (String email, String password);	//derby done
 	
-	abstract public Integer flagAdvice (Advice advice);	//derby done
+	//abstract public Integer flagAdviceAsHelpful (Advice advice);	//derby done
 	
-	abstract public Integer setFlags(Advice advice, int flagNumber);	//derby done
+	// abstract public Integer flagAdvice(Advice advice);
+	
+	abstract public Integer setFlags(Advice advice, int flagNumber);
+	
+	//abstract public Integer setHelpfulFlags(Advice advice, int flagNumber);	//derby done
 	
 	abstract public User getUserByEmail(String email);	//derby done
 	
-	abstract public Integer deleteAccount(User user);	//Should we really do this?
+	abstract public Boolean deleteAccount(User user);	//Should we really do this?
 	
 	//Admin methods
 	
@@ -118,6 +122,10 @@ public interface IDatabase {
 	abstract public Integer deactivateUser(User user);	//derby done
 	
 	abstract public Integer activateUser(User user);	//derby done
+	
+	abstract public Boolean adminLogin(String email, String password);	//derby done, needs testing
+	
+	abstract public ArrayList<Advice> getUnapprovedAdvice();	//derby done, needs testing
 	
 	
 	

@@ -37,11 +37,12 @@ public class CourseServlet extends HttpServlet {
 		// initialize variables
 		CourseController controller = new CourseController(courseName);
 		Course course = controller.getCourse();
+
 		
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
-		
+	
 		// Pass model to jsp
 		req.setAttribute("course", course);
 		req.setAttribute("department", course.getDepartment());
@@ -82,6 +83,7 @@ public class CourseServlet extends HttpServlet {
 			AdviceController adviceController = new AdviceController(adviceId);
 			adviceController.flagAdvice();
 		}
+
 		
 		// sort advice
 		controller.SortAdvice(sort);

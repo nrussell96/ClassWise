@@ -453,9 +453,31 @@ private IDatabase db = null;
 		assertFalse(db.login("studnt1@ycp.edu","passwrd"));
 	}
 	
+//	@Test
+//	public void testFlagAdviceAsHelpfulAndSetHelpfulFlags() {
+//		System.out.println("\n*** Testing flagAdviceAsHelpfulAndSetHelpfulFlags***");
+//		
+//		Advice advice = db.getAdviceByAdviceId(1);
+//		db.setHelpfulFlags(advice, 0);
+//		//should have no flags
+//		advice = db.getAdviceByAdviceId(1);
+//		assertTrue(advice.getHelpfulFlags() == 0);
+//		
+//		db.flagAdviceAsHelpful(advice);
+//		
+//		advice = db.getAdviceByAdviceId(1);
+//		assertTrue(advice.getHelpfulFlags() == 1);
+//		db.flagAdviceAsHelpful(advice);
+//		
+//		advice = db.getAdviceByAdviceId(1);
+//		assertTrue(advice.getHelpfulFlags() == 2);
+//		
+//		db.setHelpfulFlags(advice, 0);
+//	}
+	
 	@Test
-	public void testFlagAdviceAndSetFlags() {
-		System.out.println("\n*** Testing flagAdviceAndSetFlags***");
+	public void testSetFlags() {
+		System.out.println("\n*** Testing setFlags***");
 		
 		Advice advice = db.getAdviceByAdviceId(1);
 		db.setFlags(advice, 0);
@@ -463,11 +485,12 @@ private IDatabase db = null;
 		advice = db.getAdviceByAdviceId(1);
 		assertTrue(advice.getFlags() == 0);
 		
-		db.flagAdvice(advice);
+		db.setFlags(advice, advice.getFlags()+1);
 		
 		advice = db.getAdviceByAdviceId(1);
 		assertTrue(advice.getFlags() == 1);
-		db.flagAdvice(advice);
+		
+		db.setFlags(advice, advice.getFlags()+1);
 		
 		advice = db.getAdviceByAdviceId(1);
 		assertTrue(advice.getFlags() == 2);
@@ -1104,5 +1127,71 @@ private IDatabase db = null;
 		
 		assertTrue(user.getApproved());
 		
+	}
+	
+	@Test
+	public void testAdminLogin() {
+		System.out.println("\n*** Testing adminLogin***");
+		
+		String 	email 		= "admin@ycp.edu";
+		String 	password	= "password";
+		Boolean loggedIn	= false;
+		
+		//login with credentials
+		loggedIn = db.adminLogin(email, password);
+		
+		assertTrue(loggedIn);
+				
+	}
+	
+	@Test
+	public void testGetUnapprovedAdvice() {
+		System.out.println("\n*** Testing getUnapprovedAdvice***");
+		
+		Course course = db.getCourseByName("CS 320 Software Engineering and Design");
+		ArrayList<Advice> adviceList = db.getCourseAdviceList(course);
+		int numberOfUnapproved = db.getUnapprovedAdvice().size();
+		System.out.println("Size of adviceList: " + adviceList.size());
+		System.out.println("Number of advice disapproved already: " + numberOfUnapproved);
+		for(Advice adv: adviceList){
+			assertTrue(adv.getApproved());
+			db.disapproveAdvice(adv);
+		}
+		
+		ArrayList<Advice> advicesList = db.getUnapprovedAdvice();
+		for(Advice a: advicesList){
+			System.out.println("Advice ID " + a.getAdviceId());
+		}
+		assertEquals(numberOfUnapproved + adviceList.size(), db.getUnapprovedAdvice().size());
+		adviceList = db.getCourseAdviceList(course);
+		
+		for(Advice adv: adviceList){
+			assertFalse(adv.getApproved());
+			db.approveAdvice(adv);
+		}	
+	}
+	
+	@Test
+	public void testCreateUserAccountAndDeleteAccount() {
+		System.out.println("\n*** Testing createUserAccountAndDeleteAccount***");
+		
+		Boolean created  = 	false;
+		String  major	 =	"English";
+		double 	GPA		 =	3.5;
+		String  year	 =	"Junior";
+		String  email	 =	"student1@ycp.edu";
+		String  password =	"password";
+		
+		//attempt to add user (should fail since email already exists)
+		created = db.createUserAccount(major, GPA, year, email, password);
+		
+		assertFalse(created);
+		assertEquals(db.getUserByEmail(email).getMajor(), "Computer Science");
+		assertEquals(db.getUserByEmail(email).getAccountId(), 1);
+		
+		//should now work, since email is different
+		created = db.createUserAccount(major, GPA, year, "student4@ycp.edu" , password);
+		assertTrue(created);
+		assertTrue(db.deleteAccount(db.getUserByEmail("student4@ycp.edu")));
 	}
 }

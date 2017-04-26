@@ -76,10 +76,6 @@ public class CourseController {
 		database.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
 	}
 
-	public ArrayList<Advice> getCourseAdviceList() {
-		return database.getCourseAdviceList(course);
-	}
-
 	public void SortAdvice(String sort) {
 		if (sort.equals("Newest")) {
 			course.setArrAdvice(database.getCourseAdviceList(course));
@@ -116,5 +112,4 @@ public class CourseController {
 		}
 		
 	}
-
 }

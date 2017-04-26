@@ -1367,18 +1367,19 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer createUserAccount(String major, double GPA, String year, String email, String password) {
-		return executeTransaction(new Transaction<Integer>() {
+	public Boolean createUserAccount(String major, double GPA, String year, String email, String password) {
+		return executeTransaction(new Transaction<Boolean>() {
 			@Override
-			public Integer execute(Connection conn) throws SQLException {
+			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;
 				PreparedStatement stmt3 = null;
 				ResultSet resultSet1 = null;
 				ResultSet resultSet3 = null;
 				int userId = 0;
+				Boolean added = false;
 				
-				// insert advice into db
+				// check if user exists in database
 				try {
 					stmt1 = conn.prepareStatement(
 							"select user_id from users where email = ?"
@@ -1399,7 +1400,7 @@ public class DerbyDatabase implements IDatabase {
 								// prepare SQL insert statement to add User to Users table
 								stmt2 = conn.prepareStatement(
 										"insert into users (email,password,activated,email_verified,major,gpa,class_year) " +
-										"  values(?, ?, false, false, ?, ?, ?) "
+										"  values(?, ?, true, true, ?, ?, ?) "
 								);
 								stmt2.setString(1, email);
 								stmt2.setString(2, password);
@@ -1409,26 +1410,28 @@ public class DerbyDatabase implements IDatabase {
 								
 								// execute the update
 								stmt2.executeUpdate();
+								
+								added = true;
 						}
 					}
 					
-					//retrieve userId of new user
-					stmt3 = conn.prepareStatement(
-							"select user_id from users " +
-							"  where email = ? "
-					);
-					stmt3.setString(1, email);
+//					//retrieve userId of new user
+//					stmt3 = conn.prepareStatement(
+//							"select user_id from users " +
+//							"  where email = ? "
+//					);
+//					stmt3.setString(1, email);
+//					
+//					// execute the query							
+//					resultSet3 = stmt3.executeQuery();
+//					
+//					//store retrieved userId
+//					while(resultSet3.next()){
+//						userId = resultSet3.getInt(1);
+//					}
 					
-					// execute the query							
-					resultSet3 = stmt3.executeQuery();
 					
-					//store retrieved userId
-					while(resultSet3.next()){
-						userId = resultSet3.getInt(1);
-					}
-					
-					
-					return userId;
+					return added;
 				} finally {
 					DBUtil.closeQuietly(resultSet1);
 					DBUtil.closeQuietly(resultSet3);
@@ -1477,50 +1480,95 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
-	@Override
-	public Integer flagAdvice(Advice advice) {
-		return executeTransaction(new Transaction<Integer>() {
-			@Override
-			public Integer execute(Connection conn) throws SQLException {
-				PreparedStatement stmt1 = null;
-				PreparedStatement stmt2 = null;
-				ResultSet resultSet1 = null;
-				int flags = 0;
-				// get current flags
-				try {
-					stmt1 = conn.prepareStatement(
-							"select flags from advices where advice_id = ?"
-					);
-					
-					stmt1.setInt(1, advice.getAdviceId());
-
-					resultSet1 = stmt1.executeQuery();
-					
-					while(resultSet1.next()){
-						flags = resultSet1.getInt(1);
-					}
-					flags += 1;
-					
-					stmt2 = conn.prepareStatement(
-							"update advices set flags = ? where advice_id = ?"
-					);
-					
-					stmt2.setInt(1, flags);
-					stmt2.setInt(2, advice.getAdviceId());
-
-					stmt2.executeUpdate();
-					return flags;
-				} finally {
-					DBUtil.closeQuietly(resultSet1);
-					DBUtil.closeQuietly(stmt1);
-					DBUtil.closeQuietly(stmt2);
-				}
-			}
-
-			
-		});
+//	@Override
+//	public Integer flagAdviceAsHelpful(Advice advice) {
+//		return executeTransaction(new Transaction<Integer>() {
+//			@Override
+//			public Integer execute(Connection conn) throws SQLException {
+//				PreparedStatement stmt1 = null;
+//				PreparedStatement stmt2 = null;
+//				ResultSet resultSet1 = null;
+//				int flags = 0;
+//				// get current flags
+//				try {
+//					stmt1 = conn.prepareStatement(
+//							"select helpful_flags from advices where advice_id = ?"
+//					);
+//					
+//					stmt1.setInt(1, advice.getAdviceId());
+//
+//					resultSet1 = stmt1.executeQuery();
+//					
+//					while(resultSet1.next()){
+//						flags = resultSet1.getInt(1);
+//					}
+//					flags += 1;
+//					
+//					stmt2 = conn.prepareStatement(
+//							"update advices set helpful_flags = ? where advice_id = ?"
+//					);
+//					
+//					stmt2.setInt(1, flags);
+//					stmt2.setInt(2, advice.getAdviceId());
+//
+//					stmt2.executeUpdate();
+//					return flags;
+//				} finally {
+//					DBUtil.closeQuietly(resultSet1);
+//					DBUtil.closeQuietly(stmt1);
+//					DBUtil.closeQuietly(stmt2);
+//				}
+//			}
+//
+//			
+//		});
+//		
+//	}
+	
+//	@Override
+//	public Integer flagAdvice(Advice advice, int flags) {
+//		return executeTransaction(new Transaction<Integer>() {
+//			@Override
+//			public Integer execute(Connection conn) throws SQLException {
+//				PreparedStatement stmt1 = null;
+//				PreparedStatement stmt2 = null;
+//				ResultSet resultSet1 = null;
+//				int flags = 0;
+//				// get current flags
+//				try {
+//					stmt1 = conn.prepareStatement(
+//							"select flags from advices where advice_id = ?"
+//					);
+//					
+//					stmt1.setInt(1, advice.getAdviceId());
+//
+//					resultSet1 = stmt1.executeQuery();
+//					
+//					while(resultSet1.next()){
+//						flags = resultSet1.getInt(1);
+//					}
+//					flags += 1;
+//					
+//					stmt2 = conn.prepareStatement(
+//							"update advices set flags = ? where advice_id = ?"
+//					);
+//					
+//					stmt2.setInt(1, flags);
+//					stmt2.setInt(2, advice.getAdviceId());
+//
+//					stmt2.executeUpdate();
+//					return flags;
+//				} finally {
+//					DBUtil.closeQuietly(resultSet1);
+//					DBUtil.closeQuietly(stmt1);
+//					DBUtil.closeQuietly(stmt2);
+//				}
+//			}
+//
+//			
+//		});
 		
-	}
+//	}
 	
 	// retrieves Department information from query result set
 	private void loadDepartment(Department dept, ResultSet resultSet, int index) throws SQLException {
@@ -2144,6 +2192,33 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 
+//	@Override
+//	public Integer setHelpfulFlags(Advice advice, int flagNumber) {
+//		return executeTransaction(new Transaction<Integer>() {
+//			@Override
+//			public Integer execute(Connection conn) throws SQLException {
+//				PreparedStatement stmt1 = null;
+//				// set flags
+//				try {
+//					stmt1 = conn.prepareStatement(
+//							"update advices set helpful_flags = ? where advices.advice_id = ?"
+//					);
+//					
+//					stmt1.setInt(1, flagNumber);
+//					stmt1.setInt(2, advice.getAdviceId());
+//					
+//					stmt1.executeUpdate();
+//					
+//					return flagNumber;
+//				} finally {
+//					DBUtil.closeQuietly(stmt1);
+//				}
+//			}
+//
+//			
+//		});
+//	}
+	
 	@Override
 	public Integer setFlags(Advice advice, int flagNumber) {
 		return executeTransaction(new Transaction<Integer>() {
@@ -2288,9 +2363,47 @@ public class DerbyDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer deleteAccount(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		public Boolean deleteAccount(User user) {
+			return executeTransaction(new Transaction<Boolean>() {
+				@Override
+				public Boolean execute(Connection conn) throws SQLException {
+					PreparedStatement stmt1 = null;
+					PreparedStatement stmt2 = null;
+					ResultSet resultSet2 = null;
+					Boolean userDeleted = false;
+					
+					try {
+						//check if user is in database
+						stmt2 = conn.prepareStatement(
+								"select * from users where email = ?"
+						);
+						
+						stmt2.setString(1, user.getEmail());
+						
+						resultSet2 = stmt2.executeQuery();
+						
+						if(resultSet2.next()){
+							//delete rating associated with advice
+							stmt1 = conn.prepareStatement(
+									"delete from users where user_id = ?"
+							);
+							
+							stmt1.setInt(1, user.getAccountId());
+							
+							stmt1.executeUpdate();
+							
+							userDeleted = true;
+						}
+	
+							return userDeleted;
+					} finally {
+						DBUtil.closeQuietly(resultSet2);
+						DBUtil.closeQuietly(stmt1);
+					}
+				}
+
+				
+			});
 	}
 
 	@Override
@@ -2432,6 +2545,73 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(stmt);
 				}
 			}	
+		});
+	}
+
+	@Override
+	public Boolean adminLogin(String email, String password) {
+		return executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet1 = null;
+				Boolean loggedIn = false;
+				
+				// check if user exists
+				try {
+					stmt1 = conn.prepareStatement(
+							"select admin_id from admins where email = ? and password = ?"
+					);
+					
+					stmt1.setString(1, email);
+					stmt1.setString(2, password);
+					
+					resultSet1 = stmt1.executeQuery();
+					
+					if(resultSet1.next()){
+						loggedIn = true;
+					}
+					
+					return loggedIn;
+				} finally {
+					DBUtil.closeQuietly(resultSet1);
+					DBUtil.closeQuietly(stmt1);
+				}
+			}
+		});
+	}
+
+	@Override
+	public ArrayList<Advice> getUnapprovedAdvice() {
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet1 = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+				// check if user exists
+				try {
+					stmt1 = conn.prepareStatement(
+							"select * from advices, courses where advices.course_id = courses.course_id "
+							+ "and advices.approved = false"
+					
+					);
+					
+					resultSet1 = stmt1.executeQuery();
+					
+					Advice advice = new Advice();
+					
+					while(resultSet1.next()){
+						loadAdvice(advice, resultSet1, 1);
+						adviceList.add(advice);
+					}
+					System.out.println("Size is " + adviceList.size() + " in the method");
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet1);
+					DBUtil.closeQuietly(stmt1);
+				}
+			}
 		});
 	}
 }
