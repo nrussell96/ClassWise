@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.tjones50.controller.AccountController;
-import edu.ycp.cs320.tjones50.model.Account;
+import edu.ycp.cs320.tjones50.controller.UserController;
 import edu.ycp.cs320.tjones50.model.User;
 
 public class CreateAccountServlet extends HttpServlet {
@@ -28,13 +26,6 @@ public class CreateAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		User model = new User();
-		AccountController controller = new AccountController();
-		controller.setModel(model);
-		
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
-		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
 		String reenter = req.getParameter("reenter");
@@ -43,17 +34,20 @@ public class CreateAccountServlet extends HttpServlet {
 		double GPA = Double.parseDouble(GPAstring);
 		String year = req.getParameter("year");
 		
-		model.setEmail(email);
-		model.setPassword(password);
-		model.setMajor(major);
-		model.setGPA(GPA);
-		model.setUserClassYear(year);
+		UserController controller = new UserController(email);
+		User user = controller.getUser();
+		
+		user.setEmail(email);
+		user.setPassword(password);
+		user.setMajor(major);
+		user.setGPA(GPA);
+		user.setUserClassYear(year);
 		
 		boolean emailValid = controller.validate(email);
-		boolean accountExists = controller.checkAccountInfo(email, password);
+		boolean accountExists = controller.checkUserInfo(email, password);
 		
 		// Pass model to jsp
-		req.setAttribute("createaccount", model);
+		req.setAttribute("createaccount", user);
 		
 		if(emailValid == false){
 			req.setAttribute("errorMessage", "Please enter a valid email pattern.");
@@ -65,12 +59,12 @@ public class CreateAccountServlet extends HttpServlet {
 			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 		}
 		if(accountExists == true){ //if account exists
-			req.setAttribute("errorMessage", "Either email taken or passwords already exists.");
+			req.setAttribute("errorMessage", "Account already exists");
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 		}else{
 			
-			database.createUserAccount(major, GPA, year, email, password);
+			controller.createUser(major, GPA, year, email, password);
 							
 			// Forward to view to render the result HTML document
 			resp.sendRedirect(req.getContextPath() + "/login");

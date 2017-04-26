@@ -24,7 +24,7 @@ public class CourseControllerTest {
 	public void setUp() {
 		model = new Course();
 		controller = new CourseController();
-		controller.setModel(model);
+		controller.setCourse(model);
 		ArrayList<Advice> arrAdvice= new ArrayList<Advice>();
 		rating1 = new Rating(2,2,2,2);
 		rating2 = new Rating(4,4,4,4);
@@ -37,7 +37,7 @@ public class CourseControllerTest {
 	
 	@Test
 	public void testModel() {
-		assertTrue(model == controller.getModel());
+		assertTrue(model == controller.getCourse());
 	}
 	
 	@Test

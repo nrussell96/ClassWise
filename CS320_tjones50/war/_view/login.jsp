@@ -15,15 +15,13 @@
 	</head>
 	<body>
 		<ul>
-  			<!--<li><form action="${pageContext.servletContext.contextPath}/home" method = "get">
-  				<a><input class="active" type = "submit" value = classwise></a>
-  			</form></li>-->
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<c:if test="${!empty email}">
 				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 				<li><a>Hello, ${email}</a></li>
 			</c:if>
 		</ul>

@@ -2,9 +2,7 @@ package edu.ycp.cs320.tjones50.controller;
 
 import java.util.ArrayList;
 
-import edu.ycp.cs320.db.persist.DatabaseProvider;
 import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.db.persist.IDatabase;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 import edu.ycp.cs320.tjones50.model.Rating;
@@ -12,25 +10,27 @@ import edu.ycp.cs320.tjones50.model.User;
 
 public class CourseController {
 	
-	private Course model;
-	private IDatabase db = null;
+	private Course course;;
+	private DerbyDatabase database = new DerbyDatabase();
 	
 	public CourseController() {
-		// creating DB instance here
-				DatabaseProvider.setInstance(new DerbyDatabase());
-				db = DatabaseProvider.getInstance();	
+
 	}
 	
-	public void setModel(Course model) {
-		this.model = model;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 	
-	public Course getModel(){
-		return this.model;
+	public void setCourseByName(String courseName) {
+		this.course = database.getCourseByName(courseName);
+	}
+	
+	public Course getCourse(){
+		return this.course;
 	}
 	
 	public void computeAveRating(){
-		ArrayList<Advice> arrAdvice = model.getArrAdvice();
+		ArrayList<Advice> arrAdvice = course.getArrAdvice();
 		double difficultySum = 0;
 		double instructionSum = 0;
 		double suppliesCostSum = 0;
@@ -48,11 +48,11 @@ public class CourseController {
 		suppliesCostSum = suppliesCostSum/arrAdvice.size();
 		enjoymentSum = enjoymentSum/arrAdvice.size();
 		Rating aveRatings = new Rating(difficultySum, instructionSum, suppliesCostSum, enjoymentSum);
-		model.setAveRatings(aveRatings);
+		course.setAveRatings(aveRatings);
 	}
 	
 	public void computeAveGrade(){
-		ArrayList<Advice> arrAdvice = model.getArrAdvice();
+		ArrayList<Advice> arrAdvice = course.getArrAdvice();
 		double aveGrade = 0;
 		
 		for(int i = 0; i<arrAdvice.size();i++){
@@ -60,19 +60,25 @@ public class CourseController {
 		}
 		
 		aveGrade = aveGrade/arrAdvice.size();
-		model.setAveGrade(aveGrade);
-	}
-	//adds advice 
-	public void addAdviceAndRatingToCourse(User user, Course course, String semester, String professor, double grade, int year, String text, double difficulty, double instruction, double suppliesCost, double enjoyment) {
-		int adviceId = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
-		int ratingId = db.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
+		course.setAveGrade(aveGrade);
 	}
 	
+	//adds advice 
+	public void addAdviceAndRatingToCourse(User user, String semester, String professor, double grade, int year, String text, double difficulty, double instruction, double suppliesCost, double enjoyment) {
+		int adviceId = database.addAdviceToCourse(user, course, semester, professor, grade, year, text);
+		database.insertRating(adviceId, difficulty, instruction, suppliesCost, enjoyment);
+	}
+	
+
 	public void FlagAdviceAsHelpful(Advice advice){
-		db.flagAdviceAsHelpful(advice);
+		database.flagAdviceAsHelpful(advice);
 	}
 	
 	public void setHelpfulFlags(){
 		
+	}
+
+	public ArrayList<Advice> getCourseAdviceList(){
+		return database.getCourseAdviceList(course);
 	}
 }

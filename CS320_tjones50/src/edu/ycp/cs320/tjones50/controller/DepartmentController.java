@@ -1,17 +1,26 @@
 package edu.ycp.cs320.tjones50.controller;
 
+import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.tjones50.model.Department;
 
 public class DepartmentController {
 	
-	private Department model;
+	private Department department;
+	private DerbyDatabase database = new DerbyDatabase();
 	
-	public void setModel(Department model) {
-		this.model = model;
+	public DepartmentController(){
+		
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	
-	public Department getModel(){
-		return this.model;
+	public void setDepartmentByName(String departmentName) {
+		this.department = database.getDepartmentByName(departmentName);
+	}
+	
+	public Department getDepartment(){
+		return this.department;
 	}
 	
 }

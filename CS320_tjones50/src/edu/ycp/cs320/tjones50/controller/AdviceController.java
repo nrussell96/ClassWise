@@ -14,7 +14,7 @@ public class AdviceController{
 	}
 	
 	public void flagAdvice() {
-		model.setFlags(model.getHelpfulFlags() + 1);
+		model.setHelpfulFlags(model.getHelpfulFlags() + 1);
 		
 	}
 }

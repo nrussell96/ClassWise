@@ -15,11 +15,11 @@ public class DepartmentControllerTest {
 	public void setUp() {
 		model = new Department();
 		controller = new DepartmentController();
-		controller.setModel(model);
+		controller.setDepartment(model);
 	}
 	
 	@Test
 	public void testModel() {
-		assertTrue(model == controller.getModel());
+		assertTrue(model == controller.getDepartment());
 	}
 }

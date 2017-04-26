@@ -5,10 +5,16 @@ font-family: "Helvetica Neue", Helvetica, sans-serif;
 color: #444;   
 -webkit-font-smoothing: antialiased;    background: #f0f0f0;
 }
-form {
+form{
     margin: 0 auto;
     margin-top: 20px;
 }
+form.departments{
+    margin-top: 10px;
+    margin-left: 0%;
+    text-align: center;
+}
+
 label {
     color: #555;
     display: inline-block;
@@ -53,13 +59,7 @@ input[type=password] {
     border-radius: 3px;
 }
 
-input[type=submit] {
-    float: right;
-    margin-right: 20px;
-    margin-top: 20px;
-    width: 80px;
-    height: 30px;
-}
+
 
 #l_accountButton{
 	float:left;
@@ -115,7 +115,8 @@ input#a:hover:not(.active) {
 }
 
 h1 {
-	text-align:center;
+	font-variant: small-caps;
+	text-align:left;
     margin: 5px;
     padding: 15px;
     color: #096333;
@@ -168,12 +169,11 @@ button.department{
     background-color: #096333;
     border: none;
     color: white;
-    padding: 15px 32px;
-    margin: 0px 50px;
-    text-align: left;
+    padding: 25px;
+    margin: 0px;
+    text-align: right;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font-size: 28px;
 }
 
 button.home{
@@ -182,12 +182,11 @@ button.home{
     background-color: #096333;
     border: none;
     color: white;
-    padding: 15px 32px;
-    margin: 0px 50px;
-    text-align: center;
+    padding: 25px;
+    margin: 0px;
+    text-align: left;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font-size: 28px;
 }
 
 button.flags{

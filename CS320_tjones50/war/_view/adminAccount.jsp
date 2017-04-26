@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<title>Account</title>
+		<title>Admin Account</title>
 			
 		<style type="text/css">
     		<%@include file="style.css" %>
@@ -17,22 +17,10 @@
 	</head>
 
 	<body>
-	
-		<ul>
-  			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
-  			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
-  			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
- 			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
-			<c:if test="${!empty email}">
-				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
-				<li><a>Hello, ${email}</a></li>
-			</c:if>
-		</ul>
 		
 		<h1>
 		
-			Welcome to your Account!
+			Admin Account
 		</h1>
 		
 		<h2>
@@ -40,26 +28,12 @@
 		</h2>	
 		
 		<p2>
-			Your email is: ${user.email}
+			Your email is: ${admin.email}
 		</p2>
 		
 		<p2>
-			Your password is: ${user.password}
+			Your password is: ${admin.password}
 		</p2>
-		
-		<p2>
-			Your class year is: ${user.userClassYear}
-		</p2>
-		
-		<p2>
-			Your major is: ${user.major}
-		</p2>
-		
-		<p2>
-			Your GPA is: ${user.GPA}
-		</p2>
-		
-		
 		<br>
 		<br>
 		
@@ -70,7 +44,7 @@
 			<c:forEach items="${user.arrAdvice}" var="advice">
     			<tr>      
        				<td>
-       				<c:if test="${advice.approved}">
+       				<c:if test ="${advice.approved}">
 						
 						<p1>
 
