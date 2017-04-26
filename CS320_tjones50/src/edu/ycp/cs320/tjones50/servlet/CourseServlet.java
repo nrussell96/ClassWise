@@ -73,10 +73,6 @@ public class CourseServlet extends HttpServlet {
 		CourseController controller = new CourseController();
 		controller.setCourseByName(courseName);
 		
-		// call controller methods
-		controller.computeAveGrade();
-		controller.computeAveRating();
-		
 		// set flags
 		if(flag.equals("true")){
 			Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
@@ -87,7 +83,13 @@ public class CourseServlet extends HttpServlet {
 		
 		// sort advice
 		controller.SortAdvice(sort);
+		// call controller methods
+		controller.computeAveGrade();
+		controller.computeAveRating();
+		// get course
 		Course course = controller.getCourse();
+		
+		
 		
 		
 		// Pass model to jsp

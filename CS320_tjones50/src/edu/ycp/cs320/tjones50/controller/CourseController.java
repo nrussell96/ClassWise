@@ -78,37 +78,37 @@ public class CourseController {
 
 	public void SortAdvice(String sort) {
 		if (sort.equals("Newest")) {
-			course.setArrAdvice(database.getCourseAdviceList(course));
+			this.course.setArrAdvice(database.getCourseAdviceList(course));
 		} 
 		else if (sort.equals("Grade Received")) {
-			course.setArrAdvice(database.getAdviceListSortedByGrade(course));
+			this.course.setArrAdvice(database.getAdviceListSortedByGrade(course));
 		} 
 		else if (sort.equals("Student GPA")) {
-			course.setArrAdvice(database.getAdviceListSortedByGPA(course));
+			this.course.setArrAdvice(database.getAdviceListSortedByGPA(course));
 		} 
 		else if (sort.equals("Semester Taken")) {
-			course.setArrAdvice(database.getAdviceListSortedBySemester(course));
+			this.course.setArrAdvice(database.getAdviceListSortedBySemester(course));
 		} 
 		else if (sort.equals("Student Major")) {
-			course.setArrAdvice(database.getAdviceListSortedByMajor(course));
+			this.course.setArrAdvice(database.getAdviceListSortedByMajor(course));
 		} 
 		else if (sort.equals("Year Taken")) {
-			course.setArrAdvice(database.getAdviceListSortedByYear(course));
+			this.course.setArrAdvice(database.getAdviceListSortedByYear(course));
 		} 
 		else if (sort.equals("Professor")) {
-			course.setArrAdvice(database.getAdviceListSortedByProfessor(course));
+			this.course.setArrAdvice(database.getAdviceListSortedByProfessor(course));
 		} 
 		else if (sort.equals("Course Difficulty")) {
-			course.setArrAdvice(database.getAdviceListSortedByDifficulty(course));
+			this.course.setArrAdvice(database.getAdviceListSortedByDifficulty(course));
 		} 
 		else if (sort.equals("Course Instruction")) {
 			course.setArrAdvice( database.getAdviceListSortedByInstruction(course));
 		} 
 		else if (sort.equals("Course Enjoyment")) {
-			course.setArrAdvice( database.getAdviceListSortedByEnjoyment(course));
+			this.course.setArrAdvice( database.getAdviceListSortedByEnjoyment(course));
 		} 
 		else if (sort.equals("Price of Supplies")) {
-			course.setArrAdvice( database.getAdviceListSortedBySupplyCost(course));
+			this.course.setArrAdvice( database.getAdviceListSortedBySupplyCost(course));
 		}
 		
 	}
