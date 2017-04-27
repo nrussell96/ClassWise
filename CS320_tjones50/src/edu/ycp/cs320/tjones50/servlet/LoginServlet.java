@@ -23,9 +23,9 @@ public class LoginServlet extends HttpServlet {
 		
 		System.out.println("In the login doGet");
 		String email = req.getParameter("email");
-		String url = (String)req.getSession().getAttribute("referer");
+		//String url = (String)req.getSession().getAttribute("referer");
 		
-		req.setAttribute("referer", url);
+		//req.setAttribute("referer", url);
 		req.setAttribute("email", email);
 		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 	}
@@ -35,8 +35,8 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the login doPost");
-		String url = req.getHeader("referer");
-		System.out.println("THE URL: " + url); //Personal test: checking the header URL
+		//String url = req.getHeader("referer");
+		//System.out.println("THE URL: " + url); //Personal test: checking the header URL
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
@@ -81,7 +81,8 @@ public class LoginServlet extends HttpServlet {
 			req.setAttribute("home", home);
 			
 			// Forward to view to render the result HTML document
-			resp.sendRedirect(url);
+			//resp.sendRedirect(url);
+			resp.sendRedirect(req.getParameter("from"));
 			
 		}
 		else{

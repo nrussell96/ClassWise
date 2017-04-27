@@ -32,6 +32,7 @@
   	 	    <input type="email" name="email" placeholder="yourname@ycp.edu" value = "${email}" required><br>
   	        <label for="password">Password: </label>
   	        <input type="password" name="pass" placeholder="password" value = "${password}" required><br>
+  	        <input type="hidden" name="from" value="${param.from}">
   	        <input id = "ca_accountButton" type="submit" value = "Login">
   	     </form>
   	    
