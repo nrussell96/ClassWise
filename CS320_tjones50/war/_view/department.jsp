@@ -28,7 +28,7 @@
 				<li><a>Hello, ${email}</a></li>
 			</c:if>
 		</ul>
-		
+		<!--  <input type="hidden" name="from" value="${pageContext.request.contextPath}/department"> -->
 		<h1>
 			${department.name}
 		</h1>	

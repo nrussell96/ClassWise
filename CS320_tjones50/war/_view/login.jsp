@@ -25,7 +25,6 @@
 				<li><a>Hello, ${email}</a></li>
 			</c:if>
 		</ul>
-		
 		<div id = "container">
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
 		

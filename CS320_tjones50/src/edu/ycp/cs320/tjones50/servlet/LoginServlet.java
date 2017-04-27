@@ -42,6 +42,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
+		String referer = req.getHeader("Referer");
 		
 		model.setEmail(email);
 		model.setPassword(password);

@@ -60,7 +60,7 @@ public class AdminServlet extends HttpServlet {
 		// Pass model to jsp
 		req.setAttribute("admin", model);
 			
-		req.getRequestDispatcher("/_view/userAccount.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/Admin.jsp").forward(req, resp);
 //		}
 	}
 	@Override

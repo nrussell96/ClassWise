@@ -32,7 +32,7 @@ public class DepartmentServlet extends HttpServlet {
 		
 		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
 
-		System.out.println("   Departement: <" + departmentName + ">");
+		System.out.println("   Department: <" + departmentName + ">");
 		
 		// initialize variables
 
@@ -62,7 +62,7 @@ public class DepartmentServlet extends HttpServlet {
 		
 		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
 
-		System.out.println("   Departement: <" + departmentName + ">");
+		System.out.println("   Department: <" + departmentName + ">");
 		
 		// initialize variables
 		Department model = new Department();
@@ -74,7 +74,6 @@ public class DepartmentServlet extends HttpServlet {
 		
 		// store courseName obj in session
 		req.getSession().setAttribute("courseName", courseName);
-		
 		
 		// Forward to view to render the result HTML document
 		resp.sendRedirect(req.getContextPath() + "/course");

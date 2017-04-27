@@ -35,7 +35,7 @@ public class CourseServlet extends HttpServlet {
 		
 		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
 
-		System.out.println("   Departement: <" + departmentName + ">");
+		System.out.println("   Department: <" + departmentName + ">");
 		
 		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
 
