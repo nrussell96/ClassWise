@@ -91,6 +91,9 @@
 							<input name="classYear" type="hidden" value="${model.classYear}" />
 							<input name="professor" type="hidden" value="${model.professor}" />
 							<input name="text" type="hidden" value="${model.text}" />
+							
+							<!-- W3Schools Back Button: https://www.w3schools.com/jsref/met_his_back.asp -->
+							<button type="button" name="cancel" onclick="history.back()">Cancel</button> 
 				</form>
 		
 

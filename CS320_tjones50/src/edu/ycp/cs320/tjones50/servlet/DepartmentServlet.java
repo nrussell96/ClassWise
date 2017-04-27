@@ -34,6 +34,7 @@ public class DepartmentServlet extends HttpServlet {
 
 		System.out.println("   Department: <" + departmentName + ">");
 		
+		String referrer = (String)req.getSession().getAttribute("Referer");
 		// initialize variables
 		DepartmentController controller = new DepartmentController();
 		controller.setDepartmentByName(departmentName);
@@ -42,6 +43,7 @@ public class DepartmentServlet extends HttpServlet {
 		// Pass model to jsp
 		req.setAttribute("department", model);
 		req.setAttribute("email", email);
+		req.setAttribute("Referer", referrer);
 		
 		req.getRequestDispatcher("/_view/department.jsp").forward(req, resp);
 	}

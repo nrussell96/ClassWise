@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
-		String referer = req.getHeader("Referer");
 		
 		AdminController adminController = new AdminController(email);
 		Admin admin = adminController.getAdmin();
