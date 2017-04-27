@@ -17,6 +17,19 @@
 	</head>
 
 	<body>
+	
+		<ul>
+  			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
+  			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
+  			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
+  			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
+ 			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
+			<c:if test="${!empty email}">
+				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+				<li><a>Hello, ${email}</a></li>
+			</c:if>
+		</ul>
 		
 		<h1>
 		
@@ -44,7 +57,6 @@
 			<c:forEach items="${admin.arrAdvice}" var="advice">
     			<tr>      
        				<td>
-       				<c:if test ="${advice.approved}">
 						
 						<p1>
 
@@ -79,9 +91,24 @@
 						
 						Enjoyment was ${advice.adviceRating.enjoyment}
 						
+						<form action="${pageContext.servletContext.contextPath}/admin" method="post">
+						<button type="submit" class = "approve">Approve Advice</button>
+						<input name="action" type="hidden" value="approve" />
+						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+						</form>
+						
+						<br>
+						<br>
+						
+						<form>
+						<button type="submit" class = "deactiveate">Deactivate Account</button>
+						<input name="action" type="hidden" value="deactiveate" />
+						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+						</form>
+						
 						</p1>
 						
-					</c:if>
+						
        					
        				</td> 
     			</tr>

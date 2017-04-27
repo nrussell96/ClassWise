@@ -33,6 +33,10 @@ public class AdminServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/login");
 			return;
 		}
+		if(!email.equals("admin@ycp.edu")){ //if user 
+			// Forward to view to render the result HTML document
+			resp.sendRedirect(req.getContextPath() + "/userAccount");
+		}
 				
 		AdminController controller = new AdminController(email);
 		Admin admin = controller.getAdmin();
@@ -48,6 +52,24 @@ public class AdminServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the admin doPost");
+		
+		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		String action = req.getParameter("action");
+		int adviceId = Integer.parseInt(req.getParameter("adviceId"));
+		
+		AdminController controller = new AdminController(email);
+		Admin admin = controller.getAdmin();
+		
+		if(action.equals("approve")){
+			controller.approveAdvice(adviceId);
+		}
+		if(action.equals("deactiveate")){
+			controller.deactiveatUser(adviceId);
+		}
+		
+		// Pass model to jsp
+		req.setAttribute("admin", admin);
+		
 		// Forward to view to render the result HTML document
 		req.getRequestDispatcher("/_view/adminAccount.jsp").forward(req, resp);
 	}

@@ -61,20 +61,24 @@ public class AdminController{
 		database.deleteAdvice(advice);
 	}
 	
-	public void approveAdvice(Advice advice){
-		database.approveAdvice(advice);
+	public void approveAdvice(int adviceId){
+		database.approveAdvice(database.getAdviceByAdviceId(adviceId));
+		database.setFlags(database.getAdviceByAdviceId(adviceId), 0);
+		this.admin.setArrAdvice(database.getUnapprovedAdvice());
 	}
 	
-	public void disapproveAdvice(Advice advice){
-		database.disapproveAdvice(advice);
+	public void disapproveAdvice(int adviceId){
+		database.disapproveAdvice(database.getAdviceByAdviceId(adviceId));
+		database.setFlags(database.getAdviceByAdviceId(adviceId), 4);
+		this.admin.setArrAdvice(database.getUnapprovedAdvice());
 	}
 	
-	public void deactiveatUser(User user){
-		database.deactivateUser(user);
+	public void deactiveatUser(int adviceId){
+		database.deactivateUser(database.getUserByAdvice(database.getAdviceByAdviceId(adviceId)));
 	}
 	
-	public void activeatUser(User user){
-		database.activateUser(user);
+	public void activeatUser(int adviceId){
+		database.activateUser(database.getUserByAdvice(database.getAdviceByAdviceId(adviceId)));
 	}
 	
 	
