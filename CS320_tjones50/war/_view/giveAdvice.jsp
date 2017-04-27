@@ -95,7 +95,5 @@
 							<!-- W3Schools Back Button: https://www.w3schools.com/jsref/met_his_back.asp -->
 							<button type="button" name="cancel" onclick="history.back()">Cancel</button> 
 				</form>
-		
-
 	</body>
 </html>

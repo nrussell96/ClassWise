@@ -50,6 +50,6 @@
 			</c:forEach>
 		
 		
-		
+		<footer><ul><li></li></ul> </footer>
 	</body>
 </html>

@@ -34,7 +34,9 @@ public class DepartmentServlet extends HttpServlet {
 
 		System.out.println("   Department: <" + departmentName + ">");
 		
-		String referrer = (String)req.getSession().getAttribute("Referer");
+		//String url = req.getHeader("referer");
+		
+		
 		// initialize variables
 		DepartmentController controller = new DepartmentController();
 		controller.setDepartmentByName(departmentName);
@@ -43,7 +45,7 @@ public class DepartmentServlet extends HttpServlet {
 		// Pass model to jsp
 		req.setAttribute("department", model);
 		req.setAttribute("email", email);
-		req.setAttribute("Referer", referrer);
+		//req.setAttribute("referer", url);
 		
 		req.getRequestDispatcher("/_view/department.jsp").forward(req, resp);
 	}
@@ -63,8 +65,13 @@ public class DepartmentServlet extends HttpServlet {
 		// get info from parameters
 		String courseName = req.getParameter("courseName");
 		
+		//String url = req.getParameter("referer");
 		// store courseName obj in session
 		req.getSession().setAttribute("courseName", courseName);
+		//req.setAttribute("referer", req.getParameter("referer"));
+		
+		//req.getSession().setAttribute("referer", url);
+		
 		
 		// Forward to view to render the result HTML document
 		resp.sendRedirect(req.getContextPath() + "/course");

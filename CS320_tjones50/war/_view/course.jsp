@@ -31,21 +31,21 @@
 			</c:if>
 		</ul>
 		
-		<form action="${pageContext.request.contextPath}/giveAdvice">
+			<form action="${pageContext.request.contextPath}/giveAdvice">
 			<button type="submit" class = "giveAdvice">Give Advice</button>
 			<input name="courseName" type="hidden" value="${course.name}" />
 			<input name="departmentName" type="hidden" value="${department.name}" />
 			<input name="adviceId" type="hidden" value="${advice.adviceId}" />
 			<input name="flags" type="hidden" value="${advice.flags}" />
-		</form>
-		
+			</form>
 		<h1>
 		
 			Here is the Advice for ${course.department.name} - ${course.name}!
+			
 		</h1>	
+
 		
-		
-		
+	<div class = "ratings">
 		<p2>
 			Average grade: <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveGrade}"/> out of 4.0
 		</p2>
@@ -65,7 +65,7 @@
 		<p2>
 			Average enjoyment: <fmt:formatNumber type="number" maxFractionDigits="2" value="${course.aveRatings.enjoyment}"/> out of 10
 		</p2>
-		
+	</div>			
 		<br>
 		<br>
 	
@@ -166,6 +166,6 @@
 		<pre>
  			
 		</pre>
-		
+		<footer><ul><li></li></ul> </footer>
 	</body>
 </html>
