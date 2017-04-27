@@ -34,13 +34,13 @@ public class AdminServlet extends HttpServlet {
 			return;
 		}
 				
-		AdminController controller = new AdminController();
+		AdminController controller = new AdminController(email);
 		Admin admin = controller.getAdmin();
 		
 		// Pass model to jsp
 		req.setAttribute("admin", admin);
 			
-		req.getRequestDispatcher("/_view/userAccount.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/adminAccount.jsp").forward(req, resp);
 //		}
 	}
 	@Override
@@ -49,6 +49,6 @@ public class AdminServlet extends HttpServlet {
 		
 		System.out.println("In the admin doPost");
 		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/adminAccount.jsp").forward(req, resp);
 	}
 }

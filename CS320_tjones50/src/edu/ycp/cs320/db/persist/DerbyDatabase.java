@@ -669,7 +669,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
-							"advices.course_id= ?"
+							"advices.course_id= ? order by advices.advice_id desc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
@@ -1164,7 +1164,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
-							"advices.course_id= ? order by advices.professor desc"
+							"advices.course_id= ? order by advices.professor"
 					);
 					
 					stmt.setInt(1, course.getCourseId());

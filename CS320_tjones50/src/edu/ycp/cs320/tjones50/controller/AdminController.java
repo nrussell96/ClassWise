@@ -29,6 +29,7 @@ public class AdminController{
 		pattern = Pattern.compile(EMAIL_PATTERN);
 		database = new DerbyDatabase();
 		this.admin = database.getAdminByEmail(email);
+		this.admin.setArrAdvice(database.getUnapprovedAdvice());
 	}
 	
 	public void setAdmin(Admin admin) {
@@ -40,7 +41,7 @@ public class AdminController{
 	}
 	
 	public boolean checkAdminInfo(String email, String password){
-		return true;													//// need the database method
+		return database.adminLogin(email, password);											//// need the database method
 	}
 	
 	public boolean validate(final String hex) {

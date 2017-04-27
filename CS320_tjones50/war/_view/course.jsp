@@ -146,10 +146,11 @@
 						<input name="departmentName" type="hidden" value="${department.name}" />
 						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
 						<input name="flag" type="hidden" value="true" />
+						<input name="sort" type="hidden" value="Newest" />
 						
 						</form>
 						<div id = "flag_content">
-						${advice.flags} found this advice helpful
+						${advice.flags} flagged this advice
 						</div>
 						</p1>
 						

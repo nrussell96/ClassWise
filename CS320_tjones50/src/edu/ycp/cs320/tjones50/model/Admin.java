@@ -1,11 +1,14 @@
 package edu.ycp.cs320.tjones50.model;
 
+import java.util.ArrayList;
+
 public class Admin extends Account {
-	private boolean approved = false;
+	private boolean approved = true;
 	private String email;
 	private String password;
 	private int accountId;
 	private boolean emailVerified = true;
+	private ArrayList<Advice> adviceList;
 	
 	public Admin(){
 		
@@ -104,6 +107,14 @@ public class Admin extends Account {
 	
 	public boolean getEmailVerified(){
 		return this.emailVerified;
+	}
+	
+	public void setArrAdvice(ArrayList<Advice> adviceList){
+		this.adviceList = adviceList;
+	}
+	
+	public ArrayList<Advice> getArrAdvice(){
+		return this.adviceList;
 	}
 	
 

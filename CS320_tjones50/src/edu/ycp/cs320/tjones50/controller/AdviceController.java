@@ -28,7 +28,7 @@ public class AdviceController{
 		database.setFlags(advice, advice.getFlags()+1);
 		this.advice = database.getAdviceByAdviceId(advice.getAdviceId());
 		if(advice.getFlags() > 3){
-			//advice.disapproveAdvice(advice);
+			database.disapproveAdvice(advice);
 		}
 		this.advice = database.getAdviceByAdviceId(advice.getAdviceId());
 	}

@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.ycp.cs320.tjones50.controller.HomeController;
 import edu.ycp.cs320.tjones50.controller.UserController;
+import edu.ycp.cs320.tjones50.model.Home;
 import edu.ycp.cs320.tjones50.model.User;
 
 public class UserAccountServlet extends HttpServlet {
@@ -32,15 +34,21 @@ public class UserAccountServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/login");
 			return;
 		}
+		if(email.equals("admin@ycp.edu")){ //if admin 
+			// Forward to view to render the result HTML document
+			resp.sendRedirect(req.getContextPath() + "/admin");
+		}
+		else{
+			//initialize objects
+			UserController controller = new UserController();
+			User user = controller.getUser();
+			
+			// Pass model to jsp
+			user = controller.getUserByEmail(email);
+			req.setAttribute("user", user);
+			req.getRequestDispatcher("/_view/userAccount.jsp").forward(req, resp);
+		}
 		
-		//initialize objects
-		UserController controller = new UserController();
-		User user = controller.getUser();
-		
-		// Pass model to jsp
-		user = controller.getUserByEmail(email);
-		req.setAttribute("user", user);
-		req.getRequestDispatcher("/_view/userAccount.jsp").forward(req, resp);
 	}
 	
 	@Override

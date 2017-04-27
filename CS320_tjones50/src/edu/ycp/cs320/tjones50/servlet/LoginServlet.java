@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ycp.cs320.tjones50.controller.AdminController;
 import edu.ycp.cs320.tjones50.controller.HomeController;
 import edu.ycp.cs320.tjones50.controller.UserController;
+import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Home;
 import edu.ycp.cs320.tjones50.model.User;
 
@@ -35,14 +37,20 @@ public class LoginServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
 		
-		UserController controller = new UserController(email);
-		User user = controller.getUser();
+		AdminController adminController = new AdminController(email);
+		Admin admin = adminController.getAdmin();
+		admin.setEmail(email);
+		admin.setPassword(password);
 		
+		UserController userController = new UserController(email);
+		User user = userController.getUser();
 		user.setEmail(email);
 		user.setPassword(password);
 		
-		boolean emailValid = controller.validate(email);
-		boolean accountExists = controller.checkUserInfo(email, password);
+		boolean emailValid = userController.validate(email);
+		boolean userAccountExists = userController.checkUserInfo(email, password);
+		boolean adminAccountExists = adminController.checkAdminInfo(email, password);
+	
 		
 		// Pass model to jsp
 		req.setAttribute("login", user);
@@ -52,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 			req.setAttribute("pass", password);
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
 		}
-		if(accountExists == true){ //if account exists
+		if(userAccountExists == true || adminAccountExists == true){ //if account exists
 			// Pass model to jsp
 			
 			req.setAttribute("email", req.getParameter("email")); //session code modeled after in-class example by Professor Hake
@@ -71,7 +79,8 @@ public class LoginServlet extends HttpServlet {
 			// Forward to view to render the result HTML document
 			resp.sendRedirect(req.getContextPath() + "/home");
 			
-		}else{
+		}
+		else{
 			req.setAttribute("errorMessage", "Email and/or password invalid.");
 			req.setAttribute("email", email);
 			// Forward to view to render the result HTML document

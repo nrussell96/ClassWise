@@ -41,7 +41,7 @@
 		<h2>
 			Advice
 		</h2>
-			<c:forEach items="${user.arrAdvice}" var="advice">
+			<c:forEach items="${admin.arrAdvice}" var="advice">
     			<tr>      
        				<td>
        				<c:if test ="${advice.approved}">
