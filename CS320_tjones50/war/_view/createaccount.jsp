@@ -43,7 +43,7 @@
   	        <br>
   	        
   	        <label for="major">Major: </label>
-  	        <input type="text" name="major" placeholder="Major" value = "${user.Major}" required>
+  	        <input type="text" name="major" placeholder="Major" value = "${user.major}" required>
   	        
   	        <br>
   	        

@@ -29,7 +29,7 @@ public class CreateAccountServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
 		String reenter = req.getParameter("reenter");
-		String major = req.getParameter("Major");
+		String major = req.getParameter("major");
 		String GPAstring = req.getParameter("GPA");
 		double GPA = Double.parseDouble(GPAstring);
 		String year = req.getParameter("year");
