@@ -35,16 +35,9 @@ public class DepartmentServlet extends HttpServlet {
 		System.out.println("   Department: <" + departmentName + ">");
 		
 		// initialize variables
-
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
-		Department model = new Department();
 		DepartmentController controller = new DepartmentController();
-		controller.setModel(model);
-		
-		// add info to model
-		model.setName(departmentName);
-		model.setCourses(database.getDepartmentByName(departmentName).getCourses());
+		controller.setDepartmentByName(departmentName);
+		Department model = controller.getDepartment();
 		
 		// Pass model to jsp
 		req.setAttribute("department", model);
@@ -62,12 +55,8 @@ public class DepartmentServlet extends HttpServlet {
 		
 		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
 
+
 		System.out.println("   Department: <" + departmentName + ">");
-		
-		// initialize variables
-		Department model = new Department();
-		DepartmentController controller = new DepartmentController();
-		controller.setModel(model);
 		
 		// get info from parameters
 		String courseName = req.getParameter("courseName");

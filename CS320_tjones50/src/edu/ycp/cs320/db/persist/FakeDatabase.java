@@ -121,22 +121,11 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 
-	@Override
-	public Integer createUserAccount(String major, double GPA, String year, String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Boolean login(String email, String password) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public Integer flagAdvice(Advice advice) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -267,12 +256,6 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer setFlags(Advice advice, int flagNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public User getUserByAdvice(Advice advice) {
 		// TODO Auto-generated method stub
 		return null;
@@ -299,7 +282,7 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public Integer deleteAccount(User user) {
+	public Boolean deleteAccount(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -336,6 +319,42 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public Integer activateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	@Override
+//	public Integer flagAdviceAsHelpful(Advice advice) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Integer setHelpfulFlags(Advice advice, int flagNumber) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	@Override
+	public Boolean createUserAccount(String major, double GPA, String year, String email, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean adminLogin(String email, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getUnapprovedAdvice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer setFlags(Advice advice, int flagNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}

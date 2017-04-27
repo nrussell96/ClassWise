@@ -1,20 +1,35 @@
 package edu.ycp.cs320.tjones50.controller;
 
+import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.tjones50.model.Advice;
 
 public class AdviceController{
-	private Advice model;
+	private Advice advice;
+	private DerbyDatabase database = new DerbyDatabase();
 	
-	public void setModel(Advice model) {
-		this.model = model;
+	public AdviceController() {
+		
 	}
 	
+	public AdviceController(int adviceId) {
+		this.advice = database.getAdviceByAdviceId(adviceId);
+	}
+	
+	public void setModel(Advice advice) {
+		this.advice = advice;
+	}
+	
+	
 	public Advice getModel(){
-		return this.model;
+		return this.advice;
 	}
 	
 	public void flagAdvice() {
-		model.setFlags(model.getFlags() + 1);
-		
+		database.setFlags(advice, advice.getFlags()+1);
+		this.advice = database.getAdviceByAdviceId(advice.getAdviceId());
+		if(advice.getFlags() > 3){
+			database.disapproveAdvice(advice);
+		}
+		this.advice = database.getAdviceByAdviceId(advice.getAdviceId());
 	}
 }

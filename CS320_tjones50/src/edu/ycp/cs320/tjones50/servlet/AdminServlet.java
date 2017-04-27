@@ -1,7 +1,6 @@
 package edu.ycp.cs320.tjones50.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,17 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.tjones50.controller.AccountController;
-import edu.ycp.cs320.tjones50.controller.AdviceController;
-import edu.ycp.cs320.tjones50.controller.CourseController;
-import edu.ycp.cs320.tjones50.controller.DepartmentController;
-import edu.ycp.cs320.tjones50.model.Advice;
-import edu.ycp.cs320.tjones50.model.Course;
-import edu.ycp.cs320.tjones50.model.Department;
-import edu.ycp.cs320.tjones50.model.Rating;
+import edu.ycp.cs320.tjones50.controller.AdminController;
 import edu.ycp.cs320.tjones50.model.Admin;
-import edu.ycp.cs320.tjones50.model.User;
+
 
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,25 +33,19 @@ public class AdminServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/login");
 			return;
 		}
-		
-		// create database
-		DerbyDatabase database = new DerbyDatabase();
+		if(!email.equals("admin@ycp.edu")){ //if user 
+			// Forward to view to render the result HTML document
+			resp.sendRedirect(req.getContextPath() + "/userAccount");
+		}
 				
-		Admin model = database.getAdminByEmail(email);
-		AccountController controller = new AccountController();
-		controller.setModel(model);
-		
-		/* ArrayList<Advice> adviceList = database.getAccountAdviceList(model.getAccountId());
-		ArrayList<Advice> NEWadviceList = new ArrayList<Advice>();
-		for ( Advice advice: adviceList){
-			Rating rating = database.getRatingByAdvice(advice);
-			advice.setAdviceRating(rating);
-			NEWadviceList.add(advice); */
+		AdminController controller = new AdminController(email);
+		Admin admin = controller.getAdmin();
 		
 		// Pass model to jsp
-		req.setAttribute("admin", model);
+		req.setAttribute("admin", admin);
 			
-		req.getRequestDispatcher("/_view/Admin.jsp").forward(req, resp);
+
+		req.getRequestDispatcher("/_view/adminAccount.jsp").forward(req, resp);
 //		}
 	}
 	@Override
@@ -68,7 +53,25 @@ public class AdminServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the admin doPost");
+		
+		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		String action = req.getParameter("action");
+		int adviceId = Integer.parseInt(req.getParameter("adviceId"));
+		
+		AdminController controller = new AdminController(email);
+		Admin admin = controller.getAdmin();
+		
+		if(action.equals("approve")){
+			controller.approveAdvice(adviceId);
+		}
+		if(action.equals("deactiveate")){
+			controller.deactiveatUser(adviceId);
+		}
+		
+		// Pass model to jsp
+		req.setAttribute("admin", admin);
+		
 		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/adminAccount.jsp").forward(req, resp);
 	}
 }

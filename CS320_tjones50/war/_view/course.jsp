@@ -74,6 +74,34 @@
 		<h2>
 			Advice
 		</h2>
+		
+		<p3>
+			<form action="${pageContext.servletContext.contextPath}/course" method="post">
+			
+			<table>
+				<tr>
+					<td><button type="submit">Sort Advice: </button></td>
+					<td><input type="radio" name="sort" value="Newest" checked> Newest First</td>
+					<td><input type="radio" name="sort" value="Grade Received"> Grade Received</td>
+  					<td><input type="radio" name="sort" value="Student GPA"> Student GPA</td>
+  					<td><input type="radio" name="sort" value="Semester Taken">Semester Taken</td>
+  					<td><input type="radio" name="sort" value="Student Major">Student Major</td>
+  					<td><input type="radio" name="sort" value="Year Taken">Year Taken</td>
+  					<td><input type="radio" name="sort" value="Professor">Professor</td>
+  					<td><input type="radio" name="sort" value="Course Difficulty">Course Difficulty</td>
+  					<td><input type="radio" name="sort" value="Course Instruction">Course Instruction</td>
+  					<td><input type="radio" name="sort" value="Course Enjoyment">Course Enjoyment</td>
+  					<td><input type="radio" name="sort" value="Price of Supplies">Price of Supplies</td>
+				</tr>
+			</table>
+			
+			
+			<input name="courseName" type="hidden" value="${course.name}" />
+			<input name="departmentName" type="hidden" value="${department.name}" />
+			<input name="flag" type="hidden" value="false" />
+			</form>
+			</p3>
+		
 			<c:forEach items="${course.arrAdvice}" var="advice">
     			<tr>      
        				<td>
@@ -117,11 +145,12 @@
 						<input name="courseName" type="hidden" value="${course.name}" />
 						<input name="departmentName" type="hidden" value="${department.name}" />
 						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
-						<input name="flags" type="hidden" value="${advice.flags}" />
+						<input name="flag" type="hidden" value="true" />
+						<input name="sort" type="hidden" value="Newest" />
 						
 						</form>
 						<div id = "flag_content">
-						Flags: ${advice.flags}
+						${advice.flags} flagged this advice
 						</div>
 						</p1>
 						

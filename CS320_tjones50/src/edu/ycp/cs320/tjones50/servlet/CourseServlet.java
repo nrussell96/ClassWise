@@ -6,18 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.AdviceController;
 import edu.ycp.cs320.tjones50.controller.CourseController;
-import edu.ycp.cs320.tjones50.controller.DepartmentController;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
-import edu.ycp.cs320.tjones50.model.Department;
-import edu.ycp.cs320.tjones50.model.Rating;
-import edu.ycp.cs320.tjones50.model.User;
 
 public class CourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,25 +33,19 @@ public class CourseServlet extends HttpServlet {
 		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
 
 		System.out.println("   Course: <" + courseName + ">");
-		
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
-		
+
 		// initialize variables
-		Course model = database.getCourseByName(courseName);
-		CourseController controller = new CourseController();
-		controller.setModel(model);
-		
-		// add info to model
-		model.setArrAdvice(database.getCourseAdviceList(model));
+		CourseController controller = new CourseController(courseName);
+		Course course = controller.getCourse();
+
 		
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
-		
+	
 		// Pass model to jsp
-		req.setAttribute("course", model);
-		req.setAttribute("department", model.getDepartment());
+		req.setAttribute("course", course);
+		req.setAttribute("department", course.getDepartment());
 		req.setAttribute("email", email);
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
@@ -69,9 +56,6 @@ public class CourseServlet extends HttpServlet {
 		
 		// session info
 		System.out.println("In Course Servlet doPost");
-		
-		//FakeDatabase database = new FakeDatabase();
-		DerbyDatabase database = new DerbyDatabase();
 				
 		// get info from parameters
 		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
@@ -82,38 +66,35 @@ public class CourseServlet extends HttpServlet {
 
 		System.out.println("   Course: <" + courseName + ">");
 		
-		Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
-		Integer flags = Integer.parseInt(req.getParameter("flags"));
+		String flag = req.getParameter("flag");
+		String sort = req.getParameter("sort");
 				
 		// initialize variables
-		Course model = database.getCourseByName(courseName);
 		CourseController controller = new CourseController();
-		controller.setModel(model);
-		AdviceController adviceController = new AdviceController();
+		controller.setCourseByName(courseName);
+		
+		// set flags
+		if(flag.equals("true")){
+			Integer adviceId = Integer.parseInt(req.getParameter("adviceId"));
+			AdviceController adviceController = new AdviceController(adviceId);
+			adviceController.flagAdvice();
+		}
 
 		
-		// add info to model
-		model.setArrAdvice(database.getCourseAdviceList(model));
-		
+		// sort advice
+		controller.SortAdvice(sort);
 		// call controller methods
 		controller.computeAveGrade();
 		controller.computeAveRating();
+		// get course
+		Course course = controller.getCourse();
 		
-		// check flags
-		for(Advice adv: model.getArrAdvice()){
-			if(adviceId == adv.getAdviceId()){
-				adv.setFlags(flags);
-				adviceController.setModel(adv);
-				adviceController.flagAdvice();
-				if(adv.getFlags()==3){
-					adv.setApproved(false);
-				}
-			}
-		}
+		
+		
 		
 		// Pass model to jsp
-		req.setAttribute("course", model);
-		req.setAttribute("department", model.getDepartment());
+		req.setAttribute("course", course);
+		req.setAttribute("department", course.getDepartment());
 				
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
