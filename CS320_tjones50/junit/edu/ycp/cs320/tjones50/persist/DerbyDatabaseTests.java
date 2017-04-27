@@ -21,8 +21,7 @@ import edu.ycp.cs320.tjones50.model.Rating;
 import edu.ycp.cs320.tjones50.model.User;
 
 public class DerbyDatabaseTests {
-private IDatabase db = null;
-	
+	private IDatabase db = null;
 	ArrayList<Department> depts = null;
 	ArrayList<Course> courses = null;
 	Course course = null;
@@ -110,7 +109,7 @@ private IDatabase db = null;
 
 		String name = "Computer Science";
 		
-		//Get course from db
+		//Get dept from db
 		Department dept = db.getDepartmentByName(name);
 		
 		// NOTE: this is a simple test to check if no results were found in the DB
@@ -207,28 +206,24 @@ private IDatabase db = null;
 	public void testAddAdviceToCourseInsertRatingAndDeleteAdvice() {
 		System.out.println("\n*** Testing addAdviceToCourse, insertRating, and deleteAdvice***");
 		
-		User user = db.getUserFromUserId(1);
-		Course course = db.getCourseByName("CS 320 Software Engineering and Design");
-		String semester = "Spring";
-		String professor = "Professor Hovemeyer";
-		double grade = 4.0;
-		int year = 2015;
-		String text = "Do your best or you'll fail!";
-		//Rating rating = new Rating(2.0, 3.0, 4.0, 5.0);
+		User 	user 		= db.getUserFromUserId(1);
+		Course 	course 		= db.getCourseByName("CS 320 Software Engineering and Design");
+		String 	semester 	= "Spring";
+		String 	professor 	= "Professor Hovemeyer";
+		double 	grade 		= 4.0;
+		int 	year 		= 2015;
+		String 	text 		= "Do your best or you'll fail!";
 		
 		// get advice_id from db method
-		// This is returning 8 for advice ID since it is getting the first advice that was added,
-		// and even though the more times you run the test, it keeps adding the same advice,
-		// it will keep returning adviceID of 8, since that was the first advice inserted
 		int advice_id = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
 		
 
-				double difficulty = 5.0;
-				double instruction = 4.0;
-				double supplyCost = 3.0;
-				double enjoyment = 2.0;
+				double difficulty 	= 5.0;
+				double instruction 	= 4.0;
+				double supplyCost 	= 3.0;
+				double enjoyment 	= 2.0;
 				
-				// get advice_id from db method
+				// get rating_id from db method
 				int rating_id = db.insertRating(advice_id, difficulty, instruction, supplyCost, enjoyment);
 				
 				// NOTE: this is a simple test to check if no results were found in the DB
@@ -261,6 +256,8 @@ private IDatabase db = null;
 			fail("No advice returned from Library DB");
 		}
 		Advice advice = db.getAdviceByAdviceId(advice_id);
+		
+		//delete advice to check, and clear out database if tested data
 		int deletedAdviceId = db.deleteAdvice(advice);
 				
 				assertEquals(advice_id,deletedAdviceId);
@@ -269,34 +266,6 @@ private IDatabase db = null;
 		
 	}
 	
-//	@Test
-//	public void testInsertRating() {
-//		System.out.println("\n*** Testing insertRating***");
-//		
-//		//Advice advice = db.getAdviceByAdviceId(8);
-//		int adviceId = 8;		//If this isnt part of advice table then this test wont work
-//		double difficulty = 5.0;
-//		double instruction = 4.0;
-//		double supplyCost = 3.0;
-//		double enjoyment = 2.0;
-//		
-//		// get advice_id from db method
-//		int rating_id = db.insertRating(adviceId, difficulty, instruction, supplyCost, enjoyment);
-//		
-//		// NOTE: this is a simple test to check if no results were found in the DB
-//		if (rating_id > 0) {
-//			Rating rating = db.getRatingByRatingId(rating_id);
-//			
-//			System.out.println("AdviceID: " + rating.getAdviceId() +" " +"ratingID: " + rating.getRatingId() +" " +
-//					"Difficulty: " + rating.getDifficulty() +" " +"Instruction: " + rating.getInstruction() +" " +
-//					"Cost of Supplies: " + rating.getSuppliesCost() +" " +"Enjoyment: " + rating.getEnjoyment());
-//			
-//		}
-//		else{
-//			System.out.println("No rating with that id found in db!");
-//			fail("No rating returned from Library DB");
-//		}
-//	}
 	
 	@Test
 	public void testGetUserFromUserId() {
@@ -443,7 +412,7 @@ private IDatabase db = null;
 	public void testLogin() {
 		System.out.println("\n*** Testing Login***");
 
-		String email = "student1@ycp.edu";
+		String email 	= "student1@ycp.edu";
 		String password = "password";
 		
 		// get the course object from database and use that object to get the arraylist of advice from db
@@ -453,34 +422,13 @@ private IDatabase db = null;
 		assertFalse(db.login("studnt1@ycp.edu","passwrd"));
 	}
 	
-//	@Test
-//	public void testFlagAdviceAsHelpfulAndSetHelpfulFlags() {
-//		System.out.println("\n*** Testing flagAdviceAsHelpfulAndSetHelpfulFlags***");
-//		
-//		Advice advice = db.getAdviceByAdviceId(1);
-//		db.setHelpfulFlags(advice, 0);
-//		//should have no flags
-//		advice = db.getAdviceByAdviceId(1);
-//		assertTrue(advice.getHelpfulFlags() == 0);
-//		
-//		db.flagAdviceAsHelpful(advice);
-//		
-//		advice = db.getAdviceByAdviceId(1);
-//		assertTrue(advice.getHelpfulFlags() == 1);
-//		db.flagAdviceAsHelpful(advice);
-//		
-//		advice = db.getAdviceByAdviceId(1);
-//		assertTrue(advice.getHelpfulFlags() == 2);
-//		
-//		db.setHelpfulFlags(advice, 0);
-//	}
-	
 	@Test
 	public void testSetFlags() {
 		System.out.println("\n*** Testing setFlags***");
 		
 		Advice advice = db.getAdviceByAdviceId(1);
 		db.setFlags(advice, 0);
+		
 		//should have no flags
 		advice = db.getAdviceByAdviceId(1);
 		assertTrue(advice.getFlags() == 0);
@@ -664,8 +612,9 @@ private IDatabase db = null;
 	public void testGetAdviceListByGrade() {
 		System.out.println("\n*** Testing getAdviceListByGrade***");
 
-		String name = "CS 320 Software Engineering and Design";
-		double grade = 3.0;
+		String name 	= "CS 320 Software Engineering and Design";
+		double grade 	= 3.0;
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListByGrade(course, grade);
@@ -692,7 +641,8 @@ private IDatabase db = null;
 		System.out.println("\n*** Testing getAdviceListByGPA***");
 
 		String name = "CS 320 Software Engineering and Design";
-		double gpa = 3.7;
+		double gpa 	= 3.7;
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListByGPA(course, gpa);
@@ -718,8 +668,9 @@ private IDatabase db = null;
 	public void testGetAdviceListSemester() {
 		System.out.println("\n*** Testing getAdviceListSemester***");
 
-		String name = "CS 320 Software Engineering and Design";
+		String name 	= "CS 320 Software Engineering and Design";
 		String semester = "Spring";
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListSemester(course, semester);
@@ -745,8 +696,9 @@ private IDatabase db = null;
 	public void testGetAdviceListMajor() {
 		System.out.println("\n*** Testing getAdviceListMajor***");
 
-		String name = "CS 320 Software Engineering and Design";
-		String major = "Computer Science";
+		String name 	= "CS 320 Software Engineering and Design";
+		String major 	= "Computer Science";
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListMajor(course, major);
@@ -773,7 +725,8 @@ private IDatabase db = null;
 		System.out.println("\n*** Testing getAdviceListYear***");
 
 		String name = "CS 320 Software Engineering and Design";
-		int year = 2017;
+		int year 	= 2017;
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListYear(course, year);
@@ -799,8 +752,9 @@ private IDatabase db = null;
 	public void testGetAdviceListProfessor() {
 		System.out.println("\n*** Testing getAdviceListProfessor***");
 
-		String name = "CS 320 Software Engineering and Design";
-		String professor = "Professor Hake";
+		String name 		= "CS 320 Software Engineering and Design";
+		String professor 	= "Professor Hake";
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListProfessor(course, professor);
@@ -826,8 +780,9 @@ private IDatabase db = null;
 	public void testGetAdviceListDifficulty() {
 		System.out.println("\n*** Testing getAdviceListDifficulty***");
 
-		String name = "CS 320 Software Engineering and Design";
-		double difficulty = 5.0;
+		String name 		= "CS 320 Software Engineering and Design";
+		double difficulty 	= 5.0;
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListDifficulty(course, difficulty);
@@ -853,8 +808,9 @@ private IDatabase db = null;
 	public void testGetAdviceListInstruction() {
 		System.out.println("\n*** Testing getAdviceListInstruction**");
 
-		String name = "CS 320 Software Engineering and Design";
-		double instruction = 5.0;
+		String name 		= "CS 320 Software Engineering and Design";
+		double instruction 	= 5.0;
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListInstruction(course,instruction);
@@ -880,8 +836,9 @@ private IDatabase db = null;
 	public void testGetAdviceListSupplyCost() {
 		System.out.println("\n*** Testing getAdviceListSupplyCost***");
 
-		String name = "CS 320 Software Engineering and Design";
-		double supplyCost = 5.0;
+		String name 		= "CS 320 Software Engineering and Design";
+		double supplyCost 	= 5.0;
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListSupplyCost(course, supplyCost);
@@ -907,8 +864,9 @@ private IDatabase db = null;
 	public void testGetAdviceListEnjoyment() {
 		System.out.println("\n*** Testing getAdviceListEnjoyment***");
 
-		String name = "CS 320 Software Engineering and Design";
-		double enjoyment = 5.0;
+		String name 		= "CS 320 Software Engineering and Design";
+		double enjoyment 	= 5.0;
+		
 		// get the course object from database and use that object to get the arraylist of advice from db
 		Course course = db.getCourseByName(name);
 		ArrayList<Advice> adviceList = db.getAdviceListEnjoyment(course, enjoyment);
@@ -965,9 +923,8 @@ private IDatabase db = null;
 		int adviceId = 1;
 		
 		Advice advice = db.getAdviceByAdviceId(adviceId);
+		
 		// NOTE: this is a simple test to check if no results were found in the DB
-		
-		
 		if (advice == null) {
 			System.out.println("No advice with that ID found in db!");
 			fail("No advice returned from Library DB");
@@ -1002,7 +959,7 @@ private IDatabase db = null;
 
 		String email = "student1@ycp.edu";
 		
-		//Get course from db
+		//Get user from db
 		User user = db.getUserByEmail(email);
 		
 		// NOTE: this is a simple test to check if no results were found in the DB
@@ -1025,7 +982,7 @@ private IDatabase db = null;
 		// get the course object from database and use that object to get the arraylist of ratings from db
 		Course course = db.getCourseByName(name);
 		
-		//Get course from db
+		//Get advice of course from db
 		ArrayList<Advice> adviceList = db.getCourseAdviceList(course);
 		
 		// NOTE: this is a simple test to check if no results were found in the DB
@@ -1050,15 +1007,16 @@ private IDatabase db = null;
 	public void testDeleteAdvice() {
 		System.out.println("\n*** Testing deleteAdvice***");
 		
-		User user = db.getUserFromUserId(1);
-		Course course = db.getCourseByName("CS 320 Software Engineering and Design");
-		String semester = "Spring";
-		String professor = "Professor Hovemeyer";
-		double grade = 4.0;
-		int year = 2015;
-		String text = "Do your best or you'll fail!";
-		Rating rating = new Rating(2.0, 3.0, 4.0, 5.0);
-		int advice_id = db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
+		User 	user 		= db.getUserFromUserId(1);
+		Course 	course 		= db.getCourseByName("CS 320 Software Engineering and Design");
+		String 	semester 	= "Spring";
+		String 	professor 	= "Professor Hovemeyer";
+		double 	grade 		= 4.0;
+		int year 			= 2015;
+		String text 		= "Do your best or you'll fail!";
+		Rating rating 		= new Rating(2.0, 3.0, 4.0, 5.0);
+		int advice_id 		= db.addAdviceToCourse(user, course, semester, professor, grade, year, text);
+		
 		db.insertRating(advice_id, rating.getDifficulty(), rating.getInstruction(), rating.getSuppliesCost(), rating.getEnjoyment());
 
 		Advice advice = db.getAdviceByAdviceId(advice_id);
@@ -1100,6 +1058,7 @@ private IDatabase db = null;
 		
 		Admin admin = db.getAdminByEmail(email);
 		
+		//check to make sure all admin account info is correct
 		assertTrue(admin.getAccountId()==1);
 		assertTrue(admin.getApproved());
 		assertTrue(admin.getEmail().equals(email));
@@ -1151,8 +1110,8 @@ private IDatabase db = null;
 		Course course = db.getCourseByName("CS 320 Software Engineering and Design");
 		ArrayList<Advice> adviceList = db.getCourseAdviceList(course);
 		int numberOfUnapproved = db.getUnapprovedAdvice().size();
-		System.out.println("Size of adviceList: " + adviceList.size());
-		System.out.println("Number of advice disapproved already: " + numberOfUnapproved);
+
+		//check all advice is approved, then disapprove advice
 		for(Advice adv: adviceList){
 			assertTrue(adv.getApproved());
 			db.disapproveAdvice(adv);
@@ -1165,6 +1124,7 @@ private IDatabase db = null;
 		assertEquals(numberOfUnapproved + adviceList.size(), db.getUnapprovedAdvice().size());
 		adviceList = db.getCourseAdviceList(course);
 		
+		//Set advice back to being approved
 		for(Advice adv: adviceList){
 			assertFalse(adv.getApproved());
 			db.approveAdvice(adv);

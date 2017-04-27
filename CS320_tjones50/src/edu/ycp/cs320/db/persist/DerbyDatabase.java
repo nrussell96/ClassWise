@@ -95,7 +95,7 @@ public class DerbyDatabase implements IDatabase {
 		return conn;
 	}
 	
-	//  creates the Authors and Books tables
+	//  creates the database tables
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
@@ -484,7 +484,7 @@ public class DerbyDatabase implements IDatabase {
 				ResultSet resultSet = null;
 				ArrayList<Course> courses = null;
 
-				// try to retrieve course
+				// try to retrieve department
 				try {
 					stmt = conn.prepareStatement(
 							"select * from departments" + 
@@ -521,7 +521,7 @@ public class DerbyDatabase implements IDatabase {
 				ResultSet resultSet = null;
 				ArrayList<Course> courses = null;
 
-				// try to retrieve course
+				// try to retrieve department
 				try {
 					stmt = conn.prepareStatement(
 							"select * from departments" + 
@@ -743,7 +743,7 @@ public class DerbyDatabase implements IDatabase {
 				ResultSet resultSet = null;
 				ArrayList<Advice> adviceList = new ArrayList<Advice>();
 				
-				// try to retrieve Rating
+				// try to retrieve advice from account
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices, users where " +
@@ -783,7 +783,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 				PreparedStatement stmt2 = null;
 				ResultSet resultSet2 = null;
-				System.out.print("1");
+				
 				// insert advice into db
 				try {
 					stmt = conn.prepareStatement(
@@ -800,6 +800,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt.setString(7, text);
 					
 					stmt.executeUpdate();
+					
 					//Get advice object just inserted
 					stmt2 = conn.prepareStatement(
 							"select * from advices where user_id = ? and course_id = ? and semester = ?"
@@ -815,40 +816,19 @@ public class DerbyDatabase implements IDatabase {
 					stmt2.setString(7, text);
 					
 					resultSet2 = stmt2.executeQuery();
-					System.out.print("2");
+					
 					// establish the Advice Object to receive the result
 					Advice advice = new Advice();
+					
 					while (resultSet2.next()) {
 						loadAdvice(advice, resultSet2, 1);
-//						System.out.println("before");
-//						User user = getUserByAdvice(advice);
-//						System.out.println("10");
-						//System.out.println("User ID: " + user.getAccountId());
-						//Rating rating = getRatingByAdvice(advice);
-						//advice.setAdviceRating(rating);
-//						advice.setUserClassYear(user.getUserClassYear());
-//						System.out.println("11");
-//						advice.setUserGPA(user.getGPA());
-//						System.out.println("12");
-//						advice.setUserId(user.getAccountId());
-//						System.out.println("13");
-//						advice.setUserMajor(user.getMajor());
-//						System.out.println("14");
-
 					}
-					System.out.print("3");
-					//insert rating into db
-//					int ratingID = insertRating(advice, rating.getDifficulty(), rating.getInstruction(), rating.getSuppliesCost(), rating.getEnjoyment());
-//					if(ratingID>0){
-//						System.out.println("Inserted rating");
-//					}
-//					else
-//						System.out.println("did not insert rating");
-					System.out.println(advice.getAdviceId());
+
 					return advice.getAdviceId();
 				} finally {
 					DBUtil.closeQuietly(resultSet2);
 					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(stmt2);
 				}
 			}
 
@@ -866,7 +846,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt2 = null;
 				ResultSet resultSet2 = null;
 				
-				// insert advice into db
+				// insert rating into db
 				try {
 					stmt = conn.prepareStatement(
 							"insert into ratings (advice_id, difficulty, instruction, supply_cost, enjoyment)" +
@@ -888,21 +868,20 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt2.setInt(1, adviceId);
 					
-					
 					resultSet2 = stmt2.executeQuery();
+					
 					// establish the Rating object to receive the result
 					Rating rating = new Rating();
 					
 					while (resultSet2.next()) {
 						loadRating(rating, resultSet2, 1);
 					}
-					
-					
-					
+
 					return rating.getRatingId();
 				} finally {
 					DBUtil.closeQuietly(resultSet2);
 					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(stmt2);
 				}
 			}
 
@@ -917,7 +896,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
 
-				// try to retrieve Rating
+				// try to retrieve User
 				try {
 					stmt = conn.prepareStatement(
 							"select * from users where " +
@@ -926,7 +905,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt.setInt(1, userId);
 					
-					// establish the Rating Object to receive the result
+					// establish the User Object to receive the result
 					User user = new User();
 
 					// execute the query, get the results, and assemble them in the object
@@ -952,7 +931,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
 
-				// try to retrieve Rating
+				// try to retrieve Advice
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
@@ -961,7 +940,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt.setInt(1, adviceId);
 					
-					// establish the Rating Object to receive the result
+					// establish the Advice Object to receive the result
 					Advice advice = new Advice();
 					
 					// execute the query, get the results, and assemble them in the object
@@ -1415,22 +1394,6 @@ public class DerbyDatabase implements IDatabase {
 						}
 					}
 					
-//					//retrieve userId of new user
-//					stmt3 = conn.prepareStatement(
-//							"select user_id from users " +
-//							"  where email = ? "
-//					);
-//					stmt3.setString(1, email);
-//					
-//					// execute the query							
-//					resultSet3 = stmt3.executeQuery();
-//					
-//					//store retrieved userId
-//					while(resultSet3.next()){
-//						userId = resultSet3.getInt(1);
-//					}
-					
-					
 					return added;
 				} finally {
 					DBUtil.closeQuietly(resultSet1);
@@ -1479,96 +1442,6 @@ public class DerbyDatabase implements IDatabase {
 			
 		});
 	}
-
-//	@Override
-//	public Integer flagAdviceAsHelpful(Advice advice) {
-//		return executeTransaction(new Transaction<Integer>() {
-//			@Override
-//			public Integer execute(Connection conn) throws SQLException {
-//				PreparedStatement stmt1 = null;
-//				PreparedStatement stmt2 = null;
-//				ResultSet resultSet1 = null;
-//				int flags = 0;
-//				// get current flags
-//				try {
-//					stmt1 = conn.prepareStatement(
-//							"select helpful_flags from advices where advice_id = ?"
-//					);
-//					
-//					stmt1.setInt(1, advice.getAdviceId());
-//
-//					resultSet1 = stmt1.executeQuery();
-//					
-//					while(resultSet1.next()){
-//						flags = resultSet1.getInt(1);
-//					}
-//					flags += 1;
-//					
-//					stmt2 = conn.prepareStatement(
-//							"update advices set helpful_flags = ? where advice_id = ?"
-//					);
-//					
-//					stmt2.setInt(1, flags);
-//					stmt2.setInt(2, advice.getAdviceId());
-//
-//					stmt2.executeUpdate();
-//					return flags;
-//				} finally {
-//					DBUtil.closeQuietly(resultSet1);
-//					DBUtil.closeQuietly(stmt1);
-//					DBUtil.closeQuietly(stmt2);
-//				}
-//			}
-//
-//			
-//		});
-//		
-//	}
-	
-//	@Override
-//	public Integer flagAdvice(Advice advice, int flags) {
-//		return executeTransaction(new Transaction<Integer>() {
-//			@Override
-//			public Integer execute(Connection conn) throws SQLException {
-//				PreparedStatement stmt1 = null;
-//				PreparedStatement stmt2 = null;
-//				ResultSet resultSet1 = null;
-//				int flags = 0;
-//				// get current flags
-//				try {
-//					stmt1 = conn.prepareStatement(
-//							"select flags from advices where advice_id = ?"
-//					);
-//					
-//					stmt1.setInt(1, advice.getAdviceId());
-//
-//					resultSet1 = stmt1.executeQuery();
-//					
-//					while(resultSet1.next()){
-//						flags = resultSet1.getInt(1);
-//					}
-//					flags += 1;
-//					
-//					stmt2 = conn.prepareStatement(
-//							"update advices set flags = ? where advice_id = ?"
-//					);
-//					
-//					stmt2.setInt(1, flags);
-//					stmt2.setInt(2, advice.getAdviceId());
-//
-//					stmt2.executeUpdate();
-//					return flags;
-//				} finally {
-//					DBUtil.closeQuietly(resultSet1);
-//					DBUtil.closeQuietly(stmt1);
-//					DBUtil.closeQuietly(stmt2);
-//				}
-//			}
-//
-//			
-//		});
-		
-//	}
 	
 	// retrieves Department information from query result set
 	private void loadDepartment(Department dept, ResultSet resultSet, int index) throws SQLException {
@@ -1598,6 +1471,7 @@ public class DerbyDatabase implements IDatabase {
 		
 	}
 	
+	// retrieves Rating information from query result set
 	private void loadRating(Rating rating, ResultSet resultSet, int index) throws SQLException {
 		rating.setRatingId(resultSet.getInt(index++));
 		rating.setAdviceId(resultSet.getInt(index++));
@@ -1607,6 +1481,7 @@ public class DerbyDatabase implements IDatabase {
 		rating.setEnjoyment(resultSet.getDouble(index++));
 	}
 	
+	// retrieves User information from query result set
 	private void loadUser(User user, ResultSet resultSet, int index) throws SQLException {
 		user.setAccountId(resultSet.getInt(index++));
 		user.setEmail(resultSet.getString(index++));
@@ -1618,6 +1493,7 @@ public class DerbyDatabase implements IDatabase {
 		user.setUserClassYear(resultSet.getString(index++));
 	}
 	
+	// retrieves Admin information from query result set
 	private void loadAdmin(Admin admin, ResultSet resultSet, int index) throws SQLException {
 		admin.setAccountId(resultSet.getInt(index++));
 		admin.setEmail(resultSet.getString(index++));
@@ -1635,7 +1511,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
 
-				// try to retrieve all courses in specified department
+				// try to retrieve ratings in course
 				try {
 					stmt = conn.prepareStatement(
 							"select * from ratings, advices where "
@@ -1645,7 +1521,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt.setInt(1, course.getCourseId());
 					
-					// establish the ArrayList of Course objects to receive the result
+					// establish the ArrayList of Rating objects to receive the result
 					ArrayList<Rating> ratings = new ArrayList<Rating>();
 					
 					// execute the query, get the results, and assemble them in an ArrayList
@@ -2191,33 +2067,6 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-
-//	@Override
-//	public Integer setHelpfulFlags(Advice advice, int flagNumber) {
-//		return executeTransaction(new Transaction<Integer>() {
-//			@Override
-//			public Integer execute(Connection conn) throws SQLException {
-//				PreparedStatement stmt1 = null;
-//				// set flags
-//				try {
-//					stmt1 = conn.prepareStatement(
-//							"update advices set helpful_flags = ? where advices.advice_id = ?"
-//					);
-//					
-//					stmt1.setInt(1, flagNumber);
-//					stmt1.setInt(2, advice.getAdviceId());
-//					
-//					stmt1.executeUpdate();
-//					
-//					return flagNumber;
-//				} finally {
-//					DBUtil.closeQuietly(stmt1);
-//				}
-//			}
-//
-//			
-//		});
-//	}
 	
 	@Override
 	public Integer setFlags(Advice advice, int flagNumber) {
@@ -2262,7 +2111,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt.setString(1, email);
 					
-					// establish the Rating Object to receive the result
+					// establish the User Object to receive the result
 					User user = new User();
 					
 					// execute the query, get the results, and assemble them in the object
@@ -2288,27 +2137,24 @@ public class DerbyDatabase implements IDatabase {
 			public User execute(Connection conn) throws SQLException {
 				PreparedStatement stmt = null;
 				ResultSet resultSet = null;
-				System.out.println("In get UserByAdvice");
+
 				// try to retrieve user
 				try {
 					stmt = conn.prepareStatement(
 							"select * from users,advices where advices.user_id = users.user_id"
 							+ " and advices.advice_id = ?"
 					);
-					System.out.println("after getUserByAdvice stmt");
+
 					stmt.setInt(1, advice.getAdviceId());
-					System.out.println("after getUserByAdvice setInt");
+
 					// establish the User Object to receive the result
 					User user = new User();
-					System.out.println("after getUserByAdvice new User");
-					System.out.println(advice.getAdviceId() + " " + advice.getUserId());
+
 					// execute the query, get the results, and assemble them in the object
-					System.out.println("before getUserByAdvice execute");
 					resultSet = stmt.executeQuery();
-					System.out.println("executed Query in getUserByAdvice");
+
 					while (resultSet.next()) {
 						loadUser(user, resultSet, 1);
-						System.out.println("in getUserByAdvice while loop");
 					}
 					return user;
 				} finally {
@@ -2329,7 +2175,6 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 				PreparedStatement stmt2 = null;
 				ResultSet resultSet2 = null;
-
 				
 				try {
 					//delete rating associated with advice
@@ -2355,13 +2200,15 @@ public class DerbyDatabase implements IDatabase {
 				} finally {
 					DBUtil.closeQuietly(resultSet2);
 					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(stmt2);
 				}
 			}
 
 			
 		});
 	}
-
+	
+	//Only to be used for deleting empty accounts (no advice/ratings associated to it)
 	@Override
 		public Boolean deleteAccount(User user) {
 			return executeTransaction(new Transaction<Boolean>() {
@@ -2440,7 +2287,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 
 				try {
-					// approve advice
+					// disapprove advice
 					stmt = conn.prepareStatement(
 							"update advices set approved = false where advice_id = ? "
 					);
@@ -2466,7 +2313,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 				ResultSet resultSet1 = null;
 				try {
-					// approve advice
+					// get admin from email
 					stmt = conn.prepareStatement(
 							"select * from admins where email = ?"
 					);
@@ -2488,12 +2335,6 @@ public class DerbyDatabase implements IDatabase {
 				}
 			}	
 		});
-	}
-
-	@Override
-	public Advice getFlaggedAdvice() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -2530,7 +2371,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt = null;
 				
 				try {
-					// approve advice
+					// activate user
 					stmt = conn.prepareStatement(
 							"update users set activated = true where user_id = ?"
 					);
@@ -2557,7 +2398,7 @@ public class DerbyDatabase implements IDatabase {
 				ResultSet resultSet1 = null;
 				Boolean loggedIn = false;
 				
-				// check if user exists
+				// check if admin exists
 				try {
 					stmt1 = conn.prepareStatement(
 							"select admin_id from admins where email = ? and password = ?"
@@ -2589,7 +2430,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt1 = null;
 				ResultSet resultSet1 = null;
 				ArrayList<Advice> adviceList = new ArrayList<Advice>();
-				// check if user exists
+				// retrieve all disapproved advice
 				try {
 					stmt1 = conn.prepareStatement(
 							"select * from advices, courses where advices.course_id = courses.course_id "
@@ -2605,7 +2446,7 @@ public class DerbyDatabase implements IDatabase {
 						loadAdvice(advice, resultSet1, 1);
 						adviceList.add(advice);
 					}
-					System.out.println("Size is " + adviceList.size() + " in the method");
+
 					return adviceList;
 				} finally {
 					DBUtil.closeQuietly(resultSet1);
