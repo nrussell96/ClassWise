@@ -22,6 +22,7 @@ public class AdviceController{
 	
 	
 	public Advice getModel(){
+		this.advice.setUserActivated(database.getUserByAdvice(this.advice).getApproved());
 		return this.advice;
 	}
 	

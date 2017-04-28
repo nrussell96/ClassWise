@@ -64,8 +64,7 @@ public class AdminServlet extends HttpServlet {
 		if(action.equals("approve")){
 			controller.approveAdvice(adviceId);
 		}
-		else if(action.equals("deactiveate")){
-			controller.deactiveatUser(adviceId);
+		else if(action.equals("deactivate")){
 			controller.deactiveatUser(adviceId);
 		}
 		

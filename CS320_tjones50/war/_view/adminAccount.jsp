@@ -36,7 +36,6 @@
 		<p2>
 			Your password is: ${admin.password}
 		</p2>
-		<br><br>
 		<h2>
 			Advice
 		</h2>
@@ -59,23 +58,22 @@
 							Cost of supplies was ${advice.adviceRating.suppliesCost}
 							<br>
 							Enjoyment was ${advice.adviceRating.enjoyment}
+							<br>
+							User is ${advice.userActivated}
 							<form action="${pageContext.servletContext.contextPath}/admin" method="post">
 								<button type="submit" class = "approve">Approve Advice</button>
 								<input name="action" type="hidden" value="approve" />
 								<input name="adviceId" type="hidden" value="${advice.adviceId}" />
 							</form>
 							<br><br>
-							<form>
-								<button type="submit" class = "deactiveate">Deactivate Account</button>
-								<input name="action" type="hidden" value="deactiveate" />
+							<form action="${pageContext.servletContext.contextPath}/admin" method="post">
+								<button type="submit" class = "deactivate">Deactivate Account</button>
+								<input name="action" type="hidden" value="deactivate" />
 								<input name="adviceId" type="hidden" value="${advice.adviceId}" />
 							</form>
 						</p1>
        				</td> 
     			</tr>
-    			
-
-    			
 			</c:forEach>
 	</body>
 </html>
