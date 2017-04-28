@@ -96,7 +96,8 @@
 		<c:forEach items="${course.arrAdvice}" var="advice">
     		<tr>      
        			<td>
-       			<c:if test="${advice.approved}">			
+       			<c:if test="${advice.approved}">	
+       			<c:if test="${advice.userActivated}">			
 					<p1>
 						Course was taken ${advice.semester} of ${advice.classYear}
 						<br><br>
@@ -125,6 +126,7 @@
 							${advice.flags} flagged this advice
 						</div><!--flag_content -->
 					</p1>
+				</c:if>
 				</c:if>
        			</td> 
     		</tr>
