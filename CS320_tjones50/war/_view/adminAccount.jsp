@@ -16,13 +16,16 @@
 		<ul>
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
-  			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
- 			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
-			<c:if test="${!empty email}">
-				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
-				<li><a>Hello, ${email}</a></li>
-			</c:if>
+  			<c:choose>
+  				<c:when test = "${empty email}">
+  					<li><a href="http://localhost:8081/tjones50/login?from=${pageContext.request.contextPath}/course">Login</a></li>
+  				</c:when>
+  				<c:otherwise>
+  					<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+  					<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+  					<li><a>Hello, ${email}</a></li>
+  				</c:otherwise>
+  			</c:choose>
 		</ul>
 		<h1>
 			Admin Account

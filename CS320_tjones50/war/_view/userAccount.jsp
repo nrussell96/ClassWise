@@ -16,13 +16,16 @@
 		<ul>
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
-  			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
- 			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
-			<c:if test="${!empty email}">
-				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
-				<li><a>Hello, ${email}</a></li>
-			</c:if>
+  			<c:choose>
+  				<c:when test = "${empty email}">
+  					<li><a href="http://localhost:8081/tjones50/login?from=${pageContext.request.contextPath}/course">Login</a></li>
+  				</c:when>
+  				<c:otherwise>
+  					<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+  					<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
+  					<li><a>Hello, ${email}</a></li>
+  				</c:otherwise>
+  			</c:choose>
 		</ul>
 		<h1>
 			Welcome to your Account!
@@ -32,9 +35,6 @@
 		</h2>	
 		<p2>
 			Your email is: ${user.email}
-		</p2>
-		<p2>
-			Your password is: ${user.password}
 		</p2>
 		<p2>
 			Your class year is: ${user.userClassYear}
@@ -71,7 +71,7 @@
 							<br>
 							Enjoyment was ${advice.adviceRating.enjoyment}
 						</p1>
-					</c:if>	
+					</c:if>		
        			</td> 
     		</tr>
 		</c:forEach>
