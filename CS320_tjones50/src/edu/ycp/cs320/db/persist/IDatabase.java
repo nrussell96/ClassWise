@@ -117,7 +117,7 @@ public interface IDatabase {
 	
 	abstract public Admin getAdminByEmail(String email);	//derby done
 	
-	abstract public Advice getFlaggedAdvice();		//Are we going to be flagging advice?
+	//abstract public Advice getFlaggedAdvice();		//just use get disapproved advice
 	
 	abstract public Integer deactivateUser(User user);	//derby done
 	

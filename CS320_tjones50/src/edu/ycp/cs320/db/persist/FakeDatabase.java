@@ -305,11 +305,11 @@ public class FakeDatabase implements IDatabase {
 		return null;
 	}
 
-	@Override
-	public Advice getFlaggedAdvice() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Advice getFlaggedAdvice() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public Integer deactivateUser(User user) {

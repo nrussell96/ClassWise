@@ -40,11 +40,10 @@ public class UserAccountServlet extends HttpServlet {
 		}
 		else{
 			//initialize objects
-			UserController controller = new UserController();
+			UserController controller = new UserController(email);
 			User user = controller.getUser();
 			
 			// Pass model to jsp
-			user = controller.getUserByEmail(email);
 			req.setAttribute("user", user);
 			req.getRequestDispatcher("/_view/userAccount.jsp").forward(req, resp);
 		}

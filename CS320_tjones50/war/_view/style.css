@@ -138,7 +138,6 @@ input#a:hover:not(.active) {
 
 h1 {
 	display:inline;
-	float:left;
 	font-variant: small-caps;
 	text-align:left;
     margin: 5px;
@@ -148,11 +147,6 @@ h1 {
 h3 {
 	font-size:32px;
 	display:inline;
-	font-variant: small-caps;
-	text-align:left;
-    margin: 5px;
-    padding: 15px;
-    color: #096333;
 }
 .ratings{
 	float:left;

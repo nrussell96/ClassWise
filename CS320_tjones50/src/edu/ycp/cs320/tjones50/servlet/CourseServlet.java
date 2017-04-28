@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.tjones50.controller.AdviceController;
 import edu.ycp.cs320.tjones50.controller.CourseController;
-import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
 
 public class CourseServlet extends HttpServlet {

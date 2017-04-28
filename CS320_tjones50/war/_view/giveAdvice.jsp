@@ -19,6 +19,7 @@
 		</h3>	
 		<%-- This part right below is needed to save all of the typed in values and send them to the course servlet to get displayed --%>
 			<form action="${pageContext.servletContext.contextPath}/giveAdvice" method="post">
+<<<<<<< HEAD
 				<div class = "tableRatings">
 					<table>
 						<tr>
