@@ -5,16 +5,13 @@
 <html>
 	<head>
 		<title>Index view</title>
-		
 		<style type="text/css">
     		<%@include file="style.css" %>
-    	.active {
-		background-color:#096333;
-		}
+    			.active {
+				background-color:#096333;
+				}
 		</style>
-		
 	</head>
-
 	<body>
 		<ul>
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
@@ -27,74 +24,47 @@
 				<li><a>Hello, ${email}</a></li>
 			</c:if>
 		</ul>
-	
 		Select Your Application:
-		
-		<pre>
- 			
-		</pre>
-		
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/addNumbers">
-		<button type="submit">Add Numbers</button>
+			<button type="submit">Add Numbers</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/multNumbers">
-		<button type="submit">Multiply Numbers</button>
+			<button type="submit">Multiply Numbers</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/guessingGame">
-		<button type="submit">Guessing Game</button>
+			<button type="submit">Guessing Game</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/course">
-		<button type="submit">Course</button>
+			<button type="submit">Course</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/department">
-		<button type="submit">Department</button>
+			<button type="submit">Department</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/home">
-		<button type="submit">Home</button>
+			<button type="submit">Home</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/userAccount">
-		<button type="submit">Account</button>
+			<button type="submit">Account</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/login">
-		<button type="submit">Login</button>
+			<button type="submit">Login</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/createaccount">
-		<button type="submit">Create Account</button>
+			<button type="submit">Create Account</button>
 		</form>
-		
 		<br>
-		
 		<form action="${pageContext.request.contextPath}/giveAdvice">
-		<button type="submit">Give Advice</button>
+			<button type="submit">Give Advice</button>
 		</form>
-		
 		<br>
 		<footer><ul><li></li></ul> </footer>
 	</body>

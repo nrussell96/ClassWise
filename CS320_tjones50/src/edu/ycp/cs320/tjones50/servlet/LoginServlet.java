@@ -67,10 +67,15 @@ public class LoginServlet extends HttpServlet {
 		if(userAccountExists == true || adminAccountExists == true){ //if account exists
 			// Pass model to jsp
 			
-			req.setAttribute("email", req.getParameter("email")); //session code modeled after in-class example by Professor Hake
-			req.setAttribute("pass", req.getParameter("pass"));
+			/*session code modeled after in-class example by Professor Hake
+			 * Other reference includes tutorialspoint.com
+			 * LINK: http://www.tutorialspoint.com/jsp/jsp_session_tracking.htm
+			 * ^^^From the resources page
+			 */
+			req.setAttribute("email", req.getParameter("email")); 
+			req.setAttribute("pass", req.getParameter("pass"));		
 			
-			// store email obj in session
+			// store email in session
 			req.getSession().setAttribute("email", email);
 			
 			// initialize variables
@@ -82,6 +87,8 @@ public class LoginServlet extends HttpServlet {
 			
 			// Forward to view to render the result HTML document
 			//resp.sendRedirect(url);
+			
+			//obtain redirect path from the 'from' parameter on login.jsp
 			resp.sendRedirect(req.getParameter("from"));
 			
 		}

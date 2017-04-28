@@ -5,18 +5,13 @@
 <html>
 	<head>
 		<title>Home</title>
-		
 		<style type="text/css">
     		<%@include file="style.css" %>
-    	.active {
-		background-color:#096333;
-		}
+    			.active {
+				background-color:#096333;
+				}
 		</style>
-		
-		
-
 	</head>
-
 	<body>
 		<ul>
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
@@ -29,13 +24,9 @@
 				<li><a>Hello, ${email}</a></li>
 			</c:if>
 		</ul>
-		
 		<h1 class = "headerStyle">
-			Select Your Department:
-			
-			
+			Select Your Department:	
 		</h1>
-		
 		<c:forEach items="${home.departments}" var="department">
     			<tr>      
        				<td>
@@ -48,8 +39,6 @@
     			<br>
     			<br>
 			</c:forEach>
-		
-		
-		<footer><ul><li></li></ul> </footer>
+		<footer><ul><li></li></ul></footer>
 	</body>
 </html>

@@ -5,17 +5,13 @@
 	<% String referrer = request.getHeader("Referer"); %>
 	<head>
 		<title>Course</title>
-		
 		<style type="text/css">
     		<%@include file="style.css" %>
-    		.active {
-		background-color:#096333;
-		}
-    		
+    			.active {
+				background-color:#096333;
+				}	
 		</style>
-		
 	</head>
-
 	<body>
 		<ul>
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
@@ -32,28 +28,19 @@
 		<h1>
 			${department.name}
 		</h1>	
-			<c:forEach items="${department.courses}" var="course">
-    			<tr>      
-       				<td>
-       					<form action="${pageContext.request.contextPath}/department" method = "post">
-							<button type="submit" class = "department">${course.name} </button>
-							<input name="courseName" type="hidden" value="${course.name}" />
-							<input name="departmentName" type="hidden" value="${department.name}" />
-						</form>
-       				</td> 
-    			</tr>
-    			<br>
-    			<br>
-			</c:forEach>	
-		
+		<c:forEach items="${department.courses}" var="course">
+    		<tr>      
+       			<td>
+       				<form action="${pageContext.request.contextPath}/department" method = "post">
+						<button type="submit" class = "department">${course.name} </button>
+						<input name="courseName" type="hidden" value="${course.name}" />
+						<input name="departmentName" type="hidden" value="${department.name}" />
+					</form>
+       			</td> 
+    		</tr>
+    		<br><br>
+		</c:forEach>	
 		<br>
-
-		
-		<pre>
- 			
-		</pre>
-		
-		
 		<footer><ul><li></li></ul> </footer>
 	</body>
 </html>
