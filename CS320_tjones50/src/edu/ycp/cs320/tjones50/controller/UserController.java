@@ -36,7 +36,7 @@ public class UserController{
 			advice.setAdviceRating(rating);
 			NEWadviceList.add(advice);	
 		}
-		user.setArrAdvice(NEWadviceList);
+		this.user.setArrAdvice(NEWadviceList);
 	}
 	
 	public void setUser(User user) {

@@ -134,8 +134,6 @@ input#a:hover:not(.active) {
 }
 
 h1 {
-	display:inline;
-	float:left;
 	font-variant: small-caps;
 	text-align:left;
     margin: 5px;

@@ -43,9 +43,6 @@
 					<td> <input type="number" step = "1" name="enjoyment" min="0" max="10" placeholder="0" value = "${adviceModel.adviceRating.enjoyment}" required></td>
 				</tr>
 				
-				</table>
-				
-				<table>
 				<tr>
 					<td class="label">Grade Received (0-4):</td>
 					<td><input type="radio" name="gradeReceived" value="4.0" checked> 4.0</td>
