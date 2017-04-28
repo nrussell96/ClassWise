@@ -75,10 +75,12 @@ public class AdminController{
 	
 	public void deactiveatUser(int adviceId){
 		database.deactivateUser(database.getUserByAdvice(database.getAdviceByAdviceId(adviceId)));
+		this.admin.setArrAdvice(database.getUnapprovedAdvice());
 	}
 	
 	public void activeatUser(int adviceId){
 		database.activateUser(database.getUserByAdvice(database.getAdviceByAdviceId(adviceId)));
+		this.admin.setArrAdvice(database.getUnapprovedAdvice());
 	}
 	
 	

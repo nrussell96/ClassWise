@@ -17,6 +17,7 @@ public class Advice{
 	private int userId;
 	private int courseId;
 	private String professor;
+	private boolean userActivated;
 	
 	public Advice(){
 		
@@ -40,6 +41,14 @@ public class Advice{
 	
 	public String getErrorMessage(){
 		return this.errorMessage;
+	}
+	
+	public void setUserActivated(boolean userActivated){
+		this.userActivated = userActivated;
+	}
+	
+	public boolean getUserActivated(){
+		return this.userActivated;
 	}
 	
 	public void setApproved(boolean approved){

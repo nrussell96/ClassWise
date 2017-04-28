@@ -20,6 +20,12 @@ public class AdviceTest {
 	}
 	
 	@Test
+	public void TestAdviceUserActivated() {
+		model.setUserActivated(true);
+		assertEquals(true, model.getUserActivated());
+	}
+	
+	@Test
 	public void TestSetAdviceRating(){
 		Rating ratingVals = new Rating(4,3,4,5);
 		model.setAdviceRating(ratingVals);

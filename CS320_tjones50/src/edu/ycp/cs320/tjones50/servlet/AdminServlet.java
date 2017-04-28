@@ -59,14 +59,17 @@ public class AdminServlet extends HttpServlet {
 		int adviceId = Integer.parseInt(req.getParameter("adviceId"));
 		
 		AdminController controller = new AdminController(email);
-		Admin admin = controller.getAdmin();
+		
 		
 		if(action.equals("approve")){
 			controller.approveAdvice(adviceId);
 		}
-		if(action.equals("deactiveate")){
+		else if(action.equals("deactiveate")){
+			controller.deactiveatUser(adviceId);
 			controller.deactiveatUser(adviceId);
 		}
+		
+		Admin admin = controller.getAdmin();
 		
 		// Pass model to jsp
 		req.setAttribute("admin", admin);

@@ -76,6 +76,9 @@
 						</p1>
        				</td> 
     			</tr>
+    			
+
+    			
 			</c:forEach>
 	</body>
 </html>

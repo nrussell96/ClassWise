@@ -13,6 +13,7 @@ public class AdviceController{
 	
 	public AdviceController(int adviceId) {
 		this.advice = database.getAdviceByAdviceId(adviceId);
+		this.advice.setUserActivated(database.getUserByAdvice(this.advice).getApproved());
 	}
 	
 	public void setModel(Advice advice) {
@@ -31,5 +32,6 @@ public class AdviceController{
 			database.disapproveAdvice(advice);
 		}
 		this.advice = database.getAdviceByAdviceId(advice.getAdviceId());
+		this.advice.setUserActivated(database.getUserByAdvice(this.advice).getApproved());
 	}
 }
