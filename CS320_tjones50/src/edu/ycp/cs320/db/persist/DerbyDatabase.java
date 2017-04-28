@@ -2440,10 +2440,18 @@ public class DerbyDatabase implements IDatabase {
 					
 					resultSet1 = stmt1.executeQuery();
 					
-					Advice advice = new Advice();
+					
 					
 					while(resultSet1.next()){
+						Advice advice = new Advice();
 						loadAdvice(advice, resultSet1, 1);
+						User user = getUserByAdvice(advice);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
 						adviceList.add(advice);
 					}
 
