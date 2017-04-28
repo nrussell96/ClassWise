@@ -7,11 +7,10 @@
 	<title>Login</title>
 		<style type="text/css">
     		<%@include file="style.css" %>
-    	.active {
-		background-color:#096333;
-		}
-		</style>
-		
+    			.active {
+				background-color:#096333;
+			}
+		</style>	
 	</head>
 	<body>
 		<ul>
@@ -27,7 +26,6 @@
 		</ul>
 		<div id = "container">
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
-		
   			<label for="usermail">Email: </label>
   	 	    <input type="email" name="email" placeholder="yourname@ycp.edu" value = "${email}" required><br>
   	        <label for="password">Password: </label>
@@ -35,20 +33,11 @@
   	        <input type="hidden" name="from" value="${param.from}">
   	        <input id = "ca_accountButton" type="submit" value = "Login">
   	     </form>
-  	    
   	    <br>
-  	    
   	    <form action="${pageContext.servletContext.contextPath}/createaccount" method = "get">
-  	    
-  	        <div>
-  	        	<input id = "ca_accountButton" type="submit" value = "New Account?">
-  	        </div>
+  	        <input id = "ca_accountButton" type="submit" value = "New Account?">
   	    </form>
-  	    
 		</div>
- 		   
-			<div style="color: #FF0000;">${errorMessage}</div>
-			
-		</form>
+		<div style="color: #FF0000;">${errorMessage}</div>
 	</body>
 </html>

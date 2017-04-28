@@ -90,6 +90,9 @@ input[type=password] {
     border: 1px solid #ccc;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 }   
+.active {
+	background-color:#096333;
+}
 ul {
 	
     list-style-type: none;
@@ -136,6 +139,15 @@ input#a:hover:not(.active) {
 h1 {
 	display:inline;
 	float:left;
+	font-variant: small-caps;
+	text-align:left;
+    margin: 5px;
+    padding: 15px;
+    color: #096333;
+}
+h3 {
+	font-size:32px;
+	display:inline;
 	font-variant: small-caps;
 	text-align:left;
     margin: 5px;
@@ -240,6 +252,34 @@ button.giveAdvice{
 	text-align: center;
 	margin-top:15px;
 }
+button.giveAdviceFade{
+	float: right;
+	width: 15%;
+	text-align: center;
+	margin-top:15px;
+}
 #flag_content{
 	text-align:right;
 }
+.label{
+	float:left;
+}
+
+.giveAdviceMessage{
+	float:right;
+	margin-top:25px;
+}
+
+<!--giveAdvice CSS-->
+.tableRatings{
+	position:absolute;
+}
+.tableRatingsLower{
+	
+	margin-right:0;
+}
+.tableRatingsBottom{
+	
+	margin-top:-2%;
+}
+<!--End giveAdvice-->
