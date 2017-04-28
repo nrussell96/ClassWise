@@ -22,7 +22,6 @@
   			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<li><a href="http://localhost:8081/tjones50/login">Login</a></li>
-  			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
  			<li><a href="http://localhost:8081/tjones50/createaccount">Create an Account</a></li>
 			<c:if test="${!empty email}">
 				<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
@@ -55,6 +54,9 @@
 			Advice
 		</h2>
 			<c:forEach items="${admin.arrAdvice}" var="advice">
+			
+			
+			
     			<tr>      
        				<td>
 						
@@ -100,7 +102,7 @@
 						<br>
 						<br>
 						
-						<form>
+						<form action="${pageContext.servletContext.contextPath}/admin" method="post">
 						<button type="submit" class = "deactiveate">Deactivate Account</button>
 						<input name="action" type="hidden" value="deactiveate" />
 						<input name="adviceId" type="hidden" value="${advice.adviceId}" />
@@ -112,6 +114,9 @@
        					
        				</td> 
     			</tr>
+    			
+
+    			
 			</c:forEach>
 			
 		</div>

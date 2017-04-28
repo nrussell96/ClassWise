@@ -3,7 +3,7 @@ package edu.ycp.cs320.tjones50.model;
 import java.util.ArrayList;
 
 public class User extends Account {
-	private boolean approved = false;
+	private boolean approved = true;
 	private String email;
 	private String password;
 	private int accountId;
