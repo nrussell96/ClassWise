@@ -34,9 +34,6 @@
 			Your email is: ${user.email}
 		</p2>
 		<p2>
-			Your password is: ${user.password}
-		</p2>
-		<p2>
 			Your class year is: ${user.userClassYear}
 		</p2>
 		<p2>
@@ -71,8 +68,7 @@
 							<br>
 							Enjoyment was ${advice.adviceRating.enjoyment}
 						</p1>
-					</c:if>
-       					
+					</c:if>		
        			</td> 
     		</tr>
 		</c:forEach>

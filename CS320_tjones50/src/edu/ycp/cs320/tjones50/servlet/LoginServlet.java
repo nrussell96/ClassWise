@@ -54,6 +54,8 @@ public class LoginServlet extends HttpServlet {
 		boolean emailValid = userController.validate(email);
 		boolean userAccountExists = userController.checkUserInfo(email, password);
 		boolean adminAccountExists = adminController.checkAdminInfo(email, password);
+		String from = req.getParameter("from");
+		System.out.println("From: " + from); //visual representation of from value
 	
 		
 		// Pass model to jsp
@@ -87,7 +89,9 @@ public class LoginServlet extends HttpServlet {
 			
 			// Forward to view to render the result HTML document
 			//resp.sendRedirect(url);
-			
+			if(from == null || from == ""){
+				resp.sendRedirect(req.getContextPath() + "/home");
+			}
 			//obtain redirect path from the 'from' parameter on login.jsp
 			resp.sendRedirect(req.getParameter("from"));
 			
