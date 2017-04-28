@@ -53,16 +53,16 @@ public class CreateAccountServlet extends HttpServlet {
 			req.setAttribute("errorMessage", "Please enter a valid email pattern.");
 			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 		}
-		if(!password.equals(reenter) ){
+		else if(!password.equals(reenter) ){
 			req.setAttribute("errorMessage", "Passwords don't match.");
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 		}
-		if(accountExists == true){ //if account exists
+		else if(accountExists == true){ //if account exists
 			req.setAttribute("errorMessage", "Account already exists");
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
-		}else{
+		} else{
 			
 			controller.createUser(major, GPA, year, email, password);
 							
