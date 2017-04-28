@@ -25,7 +25,6 @@
 				<li><a>Hello, ${email}</a></li>
 			</c:if>
 		</ul>
-		
 		<div id = "container">
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
 		
@@ -33,6 +32,7 @@
   	 	    <input type="email" name="email" placeholder="yourname@ycp.edu" value = "${email}" required><br>
   	        <label for="password">Password: </label>
   	        <input type="password" name="pass" placeholder="password" value = "${password}" required><br>
+  	        <input type="hidden" name="from" value="${param.from}">
   	        <input id = "ca_accountButton" type="submit" value = "Login">
   	     </form>
   	    

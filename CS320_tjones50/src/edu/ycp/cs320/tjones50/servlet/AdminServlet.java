@@ -44,6 +44,7 @@ public class AdminServlet extends HttpServlet {
 		// Pass model to jsp
 		req.setAttribute("admin", admin);
 			
+
 		req.getRequestDispatcher("/_view/adminAccount.jsp").forward(req, resp);
 //		}
 	}

@@ -103,6 +103,10 @@ public class GiveAdviceServlet extends HttpServlet {
 		//add advice
 		courseController.addAdviceAndRatingToCourse(user, semester, professor, gradeReceived, classYear, text, difficulty, instruction, suppliesCost, enjoyment);
 		
+		
+		//String url = req.getHeader("referer");
+		//System.out.println("THE URL" + url);
+		
 		// Forward to view to render the result HTML document
 		resp.sendRedirect(req.getContextPath() + "/course");
 
