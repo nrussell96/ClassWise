@@ -25,6 +25,15 @@ public class LoginServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		//String url = (String)req.getSession().getAttribute("referer");
 		
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 */
+		resp.setHeader("Cache-Control","no-cache");
+		resp.setHeader("Cache-Control","no-store");
+		resp.setHeader("Pragma","no-cache");
+		resp.setDateHeader ("Expires", 0);
+		
 		//req.setAttribute("referer", url);
 		req.setAttribute("email", email);
 		req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
@@ -57,7 +66,6 @@ public class LoginServlet extends HttpServlet {
 		String from = req.getParameter("from");
 		System.out.println("From: " + from); //visual representation of from value
 	
-		
 		// Pass model to jsp
 		req.setAttribute("login", user);
 		if(emailValid == false){
