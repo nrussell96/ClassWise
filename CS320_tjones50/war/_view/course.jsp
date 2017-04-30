@@ -41,7 +41,7 @@
 			</c:when>
 			<c:otherwise>
 				<button type="submit" class = "giveAdviceFade">Give Advice</button>
-				<div class = "giveAdviceMessage" style="color: #FF0000;">Login to leave advice</div>
+				<div class = "giveAdviceMessage" style="color: #FF0000;">Login to leave and flag advice</div>
 			</c:otherwise>
 		</c:choose>
 		<h1>
@@ -114,17 +114,19 @@
 						Cost of supplies was ${advice.adviceRating.suppliesCost}
 						<br>
 						Enjoyment was ${advice.adviceRating.enjoyment}
-						<form action="${pageContext.servletContext.contextPath}/course" method="post">
-							<button type="submit" class = "flags">Flag Inappropriate Advice</button>
-							<input name="courseName" type="hidden" value="${course.name}" />
-							<input name="departmentName" type="hidden" value="${department.name}" />
-							<input name="adviceId" type="hidden" value="${advice.adviceId}" />
-							<input name="flag" type="hidden" value="true" />
-							<input name="sort" type="hidden" value="Newest" />
-						</form>
-						<div id = "flag_content">
-							${advice.flags} flagged this advice
-						</div><!--flag_content -->
+						<c:if test = "${!empty email}">
+							<form action="${pageContext.servletContext.contextPath}/course" method="post">
+								<button type="submit" class = "flags">Flag Inappropriate Advice</button>
+								<input name="courseName" type="hidden" value="${course.name}" />
+								<input name="departmentName" type="hidden" value="${department.name}" />
+								<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+								<input name="flag" type="hidden" value="true" />
+								<input name="sort" type="hidden" value="Newest" />
+							</form>
+							<div id = "flag_content">
+								${advice.flags} flagged this advice
+							</div><!--flag_content -->
+						</c:if>
 					</p1>
 				</c:if>
 				</c:if>

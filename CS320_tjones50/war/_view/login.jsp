@@ -18,7 +18,7 @@
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<c:choose>
   				<c:when test = "${empty email}">
-  					<li><a href="http://localhost:8081/tjones50/login?from=${pageContext.request.contextPath}/createAccount">Create Account</a></li>
+  					<li><a href="http://localhost:8081/tjones50/createaccount">Create Account</a></li>
   				</c:when>
   				<c:otherwise>
   					<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
@@ -27,6 +27,9 @@
   				</c:otherwise>
   			</c:choose>
 		</ul>
+		<div id ="loginHeader">
+			Login
+		</div>
 		<div id = "container">
 		<form action="${pageContext.servletContext.contextPath}/login" method = "post">
   			<label for="usermail">Email: </label>

@@ -27,6 +27,9 @@
   				</c:otherwise>
   			</c:choose>
 		</ul>
+		<div id ="createAccountHeader">
+			Create Account
+		</div>
 		<div id = "container">
 			<form action="${pageContext.servletContext.contextPath}/createaccount" method = "post">
 	  			<label for="usermail">Email: </label>

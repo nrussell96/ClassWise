@@ -32,13 +32,7 @@ public class GiveAdviceServlet extends HttpServlet {
 		
 		if(email == null || session == null){
 			System.out.println("User: <" + email + "> not logged in, or session timed out.");
-			
-			//String priorUrl = (String)req.getAttribute("from");
-			//req.setAttribute("from", priorUrl);
-			//String priorUrl = req.getHeader("referer");
-			//req.setAttribute("priorUrl", priorUrl);
-			//System.out.println("URL is:" + priorUrl);
-			// user is not logged in, or the session expired
+	
 			req.setAttribute("errorMessage", "Please login or create an account before giving advice.");
 			resp.sendRedirect(req.getContextPath() + "/course");
 			return;

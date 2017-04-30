@@ -56,6 +56,11 @@ public class UserAccountServlet extends HttpServlet {
 		
 		System.out.println("In the userAccount doPost");
 		// Forward to view to render the result HTML document
+		
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 */
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
 	
