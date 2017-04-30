@@ -16,6 +16,16 @@ public class LogoutServlet extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("In the logout doGet");
 		req.getSession().invalidate();
+		
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 */
+		resp.setHeader("Cache-Control","no-cache");
+		resp.setHeader("Cache-Control","no-store");
+		resp.setHeader("Pragma","no-cache");
+		resp.setDateHeader ("Expires", 0);
+		
 		resp.sendRedirect(req.getContextPath() + "/home");
 	}
 }

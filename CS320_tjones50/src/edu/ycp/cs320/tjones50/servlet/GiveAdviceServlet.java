@@ -59,6 +59,17 @@ public class GiveAdviceServlet extends HttpServlet {
 		controller.setDepartmentByName(departmentName);
 		Department department = controller.getDepartment();
 		
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 *
+		 *This shouldn't technically be necessary for this page, but
+		 *it's here for consistency's sake*/
+		resp.setHeader("Cache-Control","no-cache");
+		resp.setHeader("Cache-Control","no-store");
+		resp.setHeader("Pragma","no-cache");
+		resp.setDateHeader ("Expires", 0);
+		
 		//sets the objects to strings so they can be used in jsp
 		req.setAttribute("course", course);
 		req.setAttribute("department", department);
