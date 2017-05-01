@@ -77,6 +77,9 @@ public class CourseServlet extends HttpServlet {
 		String flag = req.getParameter("flag");
 		String sort = req.getParameter("sort");
 		
+		System.out.println("   Sort: <" + sort + ">");
+		System.out.println("   Flag: <" + flag + ">");
+		
 		// initialize variables
 		CourseController controller = new CourseController();
 		controller.setCourseByName(courseName);
@@ -96,6 +99,9 @@ public class CourseServlet extends HttpServlet {
 		controller.computeAveRating();
 		// get course
 		Course course = controller.getCourse();
+		for (int i = 0;i<course.getArrAdvice().size();i++){
+			System.out.println("   Advice[" + i + "]: <" + course.getArrAdvice().get(i).getUserActivated() + ">");
+		}
 		
 		
 		

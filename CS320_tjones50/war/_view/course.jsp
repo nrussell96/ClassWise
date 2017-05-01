@@ -84,8 +84,8 @@
   						<td><input type="radio" name="sort" value="Professor">Professor</td>
   						<td><input type="radio" name="sort" value="Course Difficulty">Course Difficulty</td>
   						<td><input type="radio" name="sort" value="Course Instruction">Course Instruction</td>
-  						<td><input type="radio" name="sort" value="Course Enjoyment">Course Enjoyment</td>
   						<td><input type="radio" name="sort" value="Price of Supplies">Price of Supplies</td>
+  						<td><input type="radio" name="sort" value="Course Enjoyment">Course Enjoyment</td>
 					</tr>
 				</table>
 				<input name="courseName" type="hidden" value="${course.name}" />

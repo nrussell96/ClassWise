@@ -23,21 +23,21 @@
 					<table>
 						<tr>
 							<td class="label">Difficulty (1-10):</td>
-							<td> <input type="number" step = "1" name="difficulty" min="0" max="10" placeholder="0" value =
+							<td> <input type="number" step = "1" name="difficulty" min="1" max="10" placeholder="1" value =
 							 "${adviceModel.adviceRating.difficulty}" required></td>
 						</tr>
 						<tr>
 							<td class="label">Quality of instruction (1-10):</td>
-							<td><input type="number" step = "1" name="instruction" min="0" max="10" placeholder="0" value =
+							<td><input type="number" step = "1" name="instruction" min="1" max="10" placeholder="1" value =
 							 "${adviceModel.adviceRating.instruction}" required></td>
 						</tr>
 						<tr>
 							<td class="label">Cost of Supplies (1-10):</td>
-							<td> <input type="number" step = "1" name="suppliesCost" min="0" max="10" placeholder="0" value = "${adviceModel.adviceRating.suppliesCost}" required></td>
+							<td> <input type="number" step = "1" name="suppliesCost" min="1" max="10" placeholder="1" value = "${adviceModel.adviceRating.suppliesCost}" required></td>
 						</tr>
 						<tr>
 							<td class="label">Enjoyment (1-10):</td>
-							<td> <input type="number" step = "1" name="enjoyment" min="0" max="10" placeholder="0" value = "${adviceModel.adviceRating.enjoyment}" required></td>
+							<td> <input type="number" step = "1" name="enjoyment" min="1" max="10" placeholder="1" value = "${adviceModel.adviceRating.enjoyment}" required></td>
 						</tr>	
 					</table>
 				</div>
