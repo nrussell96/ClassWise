@@ -1035,6 +1035,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1078,6 +1079,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1121,6 +1123,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1164,6 +1167,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1207,6 +1211,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1250,6 +1255,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1293,6 +1299,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1336,6 +1343,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1575,6 +1583,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
@@ -1618,6 +1627,7 @@ public class DerbyDatabase implements IDatabase {
 						advice.setUserGPA(user.getGPA());
 						advice.setUserId(user.getAccountId());
 						advice.setUserMajor(user.getMajor());
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;

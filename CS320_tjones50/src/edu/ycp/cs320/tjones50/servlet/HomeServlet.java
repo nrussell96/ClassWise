@@ -32,6 +32,15 @@ public class HomeServlet extends HttpServlet {
 		req.setAttribute("home", home);
 		req.setAttribute("email", email);
 		
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 */
+		resp.setHeader("Cache-Control","no-cache");
+		resp.setHeader("Cache-Control","no-store");
+		resp.setHeader("Pragma","no-cache");
+		resp.setDateHeader ("Expires", 0);
+		
 		req.getRequestDispatcher("/_view/home.jsp").forward(req, resp);
 	}
 	
@@ -44,10 +53,11 @@ public class HomeServlet extends HttpServlet {
 		
 		// get info from parameters
 		String departmentName = req.getParameter("departmentName");
+		//String email = (String)req.getSession().getAttribute("email");
 		
 		// store departmentName obj in session
 		req.getSession().setAttribute("departmentName", departmentName);
-		
+
 		// Forward to view to render the result HTML document
 		resp.sendRedirect(req.getContextPath() + "/department");
 		

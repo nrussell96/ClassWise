@@ -45,7 +45,15 @@ public class DepartmentServlet extends HttpServlet {
 		// Pass model to jsp
 		req.setAttribute("department", model);
 		req.setAttribute("email", email);
-		//req.setAttribute("referer", url);
+		
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 */
+		resp.setHeader("Cache-Control","no-cache");
+		resp.setHeader("Cache-Control","no-store");
+		resp.setHeader("Pragma","no-cache");
+		resp.setDateHeader ("Expires", 0);
 		
 		req.getRequestDispatcher("/_view/department.jsp").forward(req, resp);
 	}
@@ -68,10 +76,6 @@ public class DepartmentServlet extends HttpServlet {
 		//String url = req.getParameter("referer");
 		// store courseName obj in session
 		req.getSession().setAttribute("courseName", courseName);
-		//req.setAttribute("referer", req.getParameter("referer"));
-		
-		//req.getSession().setAttribute("referer", url);
-		
 		
 		// Forward to view to render the result HTML document
 		resp.sendRedirect(req.getContextPath() + "/course");

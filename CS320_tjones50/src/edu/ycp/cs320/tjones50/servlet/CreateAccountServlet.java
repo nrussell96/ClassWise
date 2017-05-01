@@ -20,6 +20,15 @@ public class CreateAccountServlet extends HttpServlet {
 		
 		req.setAttribute("email", email);
 		
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 */
+		resp.setHeader("Cache-Control","no-cache");
+		resp.setHeader("Cache-Control","no-store");
+		resp.setHeader("Pragma","no-cache");
+		resp.setDateHeader ("Expires", 0);
+		
 		req.getRequestDispatcher("/_view/createaccount.jsp").forward(req, resp);
 	}
 	@Override

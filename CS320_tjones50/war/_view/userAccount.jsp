@@ -52,26 +52,24 @@
 		<c:forEach items="${user.arrAdvice}" var="advice">
     		<tr>      
        			<td>
-       				<c:if test="${advice.approved}">
-						<p1>
-							Course was taken ${advice.semester} of ${advice.classYear}
-							<br><br>
-							Advice was left by a ${advice.userMajor} student who was a ${advice.userClassYear} and had a GPA of ${advice.userGPA }.
-							<br>
-							Student got a ${advice.gradeReceived} in the class taught by ${advice.professor }
-							<br><br>
-							"${advice.text }"
-							<br>
-							<br>
-							Difficulty was ${advice.adviceRating.difficulty}
-							<br>
-							Instruction quality was ${advice.adviceRating.instruction}
-							<br>
-							Cost of supplies was ${advice.adviceRating.suppliesCost}
-							<br>
-							Enjoyment was ${advice.adviceRating.enjoyment}
-						</p1>
-					</c:if>		
+					<p1>
+						Course was taken ${advice.semester} of ${advice.classYear}
+						<br><br>
+						Advice was left by a ${advice.userMajor} student who was a ${advice.userClassYear} and had a GPA of ${advice.userGPA }.
+						<br>
+						Student got a ${advice.gradeReceived} in the class taught by ${advice.professor }
+						<br><br>
+						"${advice.text }"
+						<br>
+						<br>
+						Difficulty was ${advice.adviceRating.difficulty}
+						<br>
+						Instruction quality was ${advice.adviceRating.instruction}
+						<br>
+						Cost of supplies was ${advice.adviceRating.suppliesCost}
+						<br>
+						Enjoyment was ${advice.adviceRating.enjoyment}
+					</p1>	
        			</td> 
     		</tr>
 		</c:forEach>

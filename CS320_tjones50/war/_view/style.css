@@ -135,7 +135,24 @@ input#a:hover:not(.active) {
     padding: 15px;
     color: #096333;
 }
-
+#loginHeader{
+	display:inline;
+	font-variant: small-caps;
+	text-align:left;
+    margin: 45%;
+    padding: 15px;
+    color: #096333;
+    font-size: 40px;
+}
+#createAccountHeader{
+	display:inline;
+	font-variant: small-caps;
+	text-align:left;
+    margin: 38%;
+    padding: 15px;
+    color: #096333;
+    font-size: 40px;
+}
 h1 {
 	display:inline;
 	font-variant: small-caps;

@@ -42,6 +42,15 @@ public class CourseServlet extends HttpServlet {
 		controller.computeAveGrade();
 		controller.computeAveRating();
 	
+		/*Clears cache to prevent user from going back
+		 * to a previously logged in state after logging out--
+		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
+		 */
+		resp.setHeader("Cache-Control","no-cache");
+		resp.setHeader("Cache-Control","no-store");
+		resp.setHeader("Pragma","no-cache");
+		resp.setDateHeader ("Expires", 0);
+		
 		// Pass model to jsp
 		req.setAttribute("course", course);
 		req.setAttribute("department", course.getDepartment());
@@ -67,7 +76,10 @@ public class CourseServlet extends HttpServlet {
 		
 		String flag = req.getParameter("flag");
 		String sort = req.getParameter("sort");
-				
+		
+		System.out.println("   Sort: <" + sort + ">");
+		System.out.println("   Flag: <" + flag + ">");
+		
 		// initialize variables
 		CourseController controller = new CourseController();
 		controller.setCourseByName(courseName);
@@ -87,6 +99,9 @@ public class CourseServlet extends HttpServlet {
 		controller.computeAveRating();
 		// get course
 		Course course = controller.getCourse();
+		for (int i = 0;i<course.getArrAdvice().size();i++){
+			System.out.println("   Advice[" + i + "]: <" + course.getArrAdvice().get(i).getUserActivated() + ">");
+		}
 		
 		
 		

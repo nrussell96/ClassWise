@@ -102,7 +102,7 @@ public class CourseController {
 			this.course.setArrAdvice(database.getAdviceListSortedByDifficulty(course));
 		} 
 		else if (sort.equals("Course Instruction")) {
-			course.setArrAdvice( database.getAdviceListSortedByInstruction(course));
+			this.course.setArrAdvice( database.getAdviceListSortedByInstruction(course));
 		} 
 		else if (sort.equals("Course Enjoyment")) {
 			this.course.setArrAdvice( database.getAdviceListSortedByEnjoyment(course));

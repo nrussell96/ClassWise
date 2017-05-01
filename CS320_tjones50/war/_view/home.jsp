@@ -18,7 +18,7 @@
   			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
   			<c:choose>
   				<c:when test = "${empty email}">
-  					<li><a href="http://localhost:8081/tjones50/login?from=${pageContext.request.contextPath}/course">Login</a></li>
+  					<li><a href="http://localhost:8081/tjones50/login?from=${pageContext.request.contextPath}/home">Login</a></li>
   				</c:when>
   				<c:otherwise>
   					<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
@@ -36,6 +36,7 @@
 						<form action="${pageContext.request.contextPath}/home" class = "departments" method = "post">
 							<button type="submit" class = "home">${department.name}</button>
 							<input name="departmentName" type="hidden" value="${department.name}" />
+							<input type="hidden" name="from" value="${pageContext.request.requestURI}/home">
 						</form>
 					</td> 
     			</tr>
