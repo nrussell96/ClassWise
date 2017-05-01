@@ -67,6 +67,9 @@ public class AdminServlet extends HttpServlet {
 		else if(action.equals("deactivate")){
 			controller.deactiveatUser(adviceId);
 		}
+		else if(action.equals("activate")){
+			controller.activeatUser(adviceId);
+		}
 		
 		Admin admin = controller.getAdmin();
 		

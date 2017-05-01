@@ -61,19 +61,37 @@
 							Cost of supplies was ${advice.adviceRating.suppliesCost}
 							<br>
 							Enjoyment was ${advice.adviceRating.enjoyment}
-							<br>
-							User is ${advice.userActivated}
-							<form action="${pageContext.servletContext.contextPath}/admin" method="post">
-								<button type="submit" class = "approve">Approve Advice</button>
-								<input name="action" type="hidden" value="approve" />
-								<input name="adviceId" type="hidden" value="${advice.adviceId}" />
-							</form>
 							<br><br>
-							<form action="${pageContext.servletContext.contextPath}/admin" method="post">
-								<button type="submit" class = "deactivate">Deactivate Account</button>
-								<input name="action" type="hidden" value="deactivate" />
-								<input name="adviceId" type="hidden" value="${advice.adviceId}" />
-							</form>
+							<table>
+								<tr>
+									<th>
+										<form action="${pageContext.servletContext.contextPath}/admin" method="post">
+											<button type="submit" class = "activateButtons">Approve Advice</button>
+											<input name="action" type="hidden" value="approve" />
+											<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+										</form>
+									</th>
+									<th>
+											User activated is ${advice.userActivated}
+									</th>
+								</tr>
+								<tr>
+									<th>
+										<form action="${pageContext.servletContext.contextPath}/admin" method="post">
+											<button type="submit" class = "activateButtons">Deactivate Account</button>
+											<input name="action" type="hidden" value="deactivate" />
+											<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+										</form>
+									</th>
+									<th>
+										<form action="${pageContext.servletContext.contextPath}/admin" method="post">
+											<button type="submit" class = "activateButtons">Activate Account</button>
+											<input name="action" type="hidden" value="activate" />
+											<input name="adviceId" type="hidden" value="${advice.adviceId}" />
+										</form>
+									</th>
+								<tr>
+							</table>
 						</p1>
        				</td> 
     			</tr>
