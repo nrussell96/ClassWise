@@ -762,8 +762,16 @@ public class DerbyDatabase implements IDatabase {
 						
 						// establish the Advice Object to receive the result
 						Advice advice = new Advice();
-						
 						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
+
+						advice.setUserActivated(user.getApproved());
 						adviceList.add(advice);
 					}
 					return adviceList;
