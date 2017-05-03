@@ -1,13 +1,13 @@
 package edu.ycp.cs320.tjones50.model;
 
-public class Advice{
+public class Advice {
 	private boolean approved = false;
 	private Rating adviceRating;
 	private String userClassYear;
 	private String userMajor;
 	private double userGPA;
 	private double gradeReceived;
-	//private int helpfulFlags = 0;
+	// private int helpfulFlags = 0;
 	private int flags = 0;
 	private String semester;
 	private int classYear;
@@ -18,12 +18,13 @@ public class Advice{
 	private int courseId;
 	private String professor;
 	private boolean userActivated;
-	
-	public Advice(){
-		
+
+	public Advice() {
+
 	}
-	
-	public Advice(Rating adviceRating, String userClassYear, String userMajor, double userGPA, double gradeRecieved, String semester, int classYear, String professor){
+
+	public Advice(Rating adviceRating, String userClassYear, String userMajor, double userGPA, double gradeRecieved,
+			String semester, int classYear, String professor) {
 		this.adviceRating = adviceRating;
 		this.userClassYear = userClassYear;
 		this.userMajor = userMajor;
@@ -33,125 +34,124 @@ public class Advice{
 		this.classYear = classYear;
 		this.professor = professor;
 	}
-	
-	
-	public void setErrorMessage(String errorMessage){
+
+	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
-	public String getErrorMessage(){
+
+	public String getErrorMessage() {
 		return this.errorMessage;
 	}
-	
-	public void setUserActivated(boolean userActivated){
+
+	public void setUserActivated(boolean userActivated) {
 		this.userActivated = userActivated;
 	}
-	
-	public boolean getUserActivated(){
+
+	public boolean getUserActivated() {
 		return this.userActivated;
 	}
-	
-	public void setApproved(boolean approved){
+
+	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
-	
-	public boolean getApproved(){
+
+	public boolean getApproved() {
 		return this.approved;
 	}
-	
-	public void setAdviceRating(Rating adviceRating){
+
+	public void setAdviceRating(Rating adviceRating) {
 		this.adviceRating = adviceRating;
 	}
-	
-	public Rating getAdviceRating(){
+
+	public Rating getAdviceRating() {
 		return this.adviceRating;
 	}
-	
-	public void setUserClassYear(String userClassYear){
+
+	public void setUserClassYear(String userClassYear) {
 		this.userClassYear = userClassYear;
 	}
-	
-	public String getUserClassYear(){
+
+	public String getUserClassYear() {
 		return this.userClassYear;
 	}
-	
-	public void setUserMajor(String userMajor){
+
+	public void setUserMajor(String userMajor) {
 		this.userMajor = userMajor;
 	}
-	
-	public String getUserMajor(){
+
+	public String getUserMajor() {
 		return this.userMajor;
 	}
-	
-	public void setUserGPA(double userGPA){
+
+	public void setUserGPA(double userGPA) {
 		this.userGPA = userGPA;
 	}
-	
-	public double getUserGPA(){
+
+	public double getUserGPA() {
 		return this.userGPA;
 	}
-	
-	public void setGradeReceived(double gradeReceived){
+
+	public void setGradeReceived(double gradeReceived) {
 		this.gradeReceived = gradeReceived;
 	}
-	
-	public double getGradeReceived(){
+
+	public double getGradeReceived() {
 		return this.gradeReceived;
 	}
-	
-	public void setFlags(int flag){
+
+	public void setFlags(int flag) {
 		this.flags = flag;
 	}
-	
-	public int getFlags(){
+
+	public int getFlags() {
 		return this.flags;
 	}
-	
-	public void setSemester(String semester){
+
+	public void setSemester(String semester) {
 		this.semester = semester;
 	}
-	
-	public String getSemester(){
+
+	public String getSemester() {
 		return this.semester;
 	}
-	
-	public void setProfessor(String professor){
+
+	public void setProfessor(String professor) {
 		this.professor = professor;
 	}
-	
-	public String getProfessor(){
+
+	public String getProfessor() {
 		return this.professor;
 	}
-	
-	public void setClassYear(int classYear){
+
+	public void setClassYear(int classYear) {
 		this.classYear = classYear;
 	}
-	
-	public int getClassYear(){
+
+	public int getClassYear() {
 		return this.classYear;
 	}
-	
-	public void setText(String text){
+
+	public void setText(String text) {
 		this.text = text;
 	}
-	
-	public String getText(){
+
+	public String getText() {
 		return this.text;
 	}
-	
-	public void setAdviceId(int adviceId){
+
+	public void setAdviceId(int adviceId) {
 		this.adviceId = adviceId;
 	}
-	
-	public int getAdviceId(){
+
+	public int getAdviceId() {
 		return this.adviceId;
 	}
-	
-	public void setUserId(int userId){
+
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
-	public int getUserId(){
+
+	public int getUserId() {
 		return this.userId;
 	}
 
@@ -162,6 +162,5 @@ public class Advice{
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	
-	
+
 }

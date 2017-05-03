@@ -7,25 +7,25 @@ import edu.ycp.cs320.tjones50.model.Department;
 import edu.ycp.cs320.tjones50.model.Home;
 
 public class HomeController {
-	
+
 	private Home home;
 	private DerbyDatabase database = new DerbyDatabase();
-	
+
 	public HomeController() {
 		this.home = new Home();
 		home.setDepartments(database.getDeptList());
 	}
-	
+
 	public void setHome(Home model) {
 		home = model;
 	}
-	
-	public Home getHome(){
+
+	public Home getHome() {
 		return this.home;
 	}
-	
-	public ArrayList<Department> getDepartmentList(){
+
+	public ArrayList<Department> getDepartmentList() {
 		return home.getDepartments();
 	}
-	
+
 }

@@ -6,50 +6,50 @@ public class Department {
 	private String name;
 	private int departmentId;
 	private ArrayList<Course> courses = new ArrayList<Course>();
-	
+
 	public Department() {
 	}
-	
-	public Department(String name){
+
+	public Department(String name) {
 		this.name = name;
 	}
-	
-	public void setName(String name){
+
+	public void setName(String name) {
 		this.name = name;
 	}
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
-	
-	public void setDepartmentId(int departmentId){
+
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
-	public int getDepartmentId(){
+
+	public int getDepartmentId() {
 		return this.departmentId;
 	}
-	
-	public void setCourses(ArrayList<Course> courses){
+
+	public void setCourses(ArrayList<Course> courses) {
 		this.courses = courses;
 	}
-	public ArrayList<Course> getCourses(){
+
+	public ArrayList<Course> getCourses() {
 		return this.courses;
 	}
-	
-	public void addCourse(Course course){
+
+	public void addCourse(Course course) {
 		course.setDepartment(this);
 		this.courses.add(course);
 	}
-	
-	public Course getCourse(Course course){
+
+	public Course getCourse(Course course) {
 		return this.courses.get(this.courses.indexOf(course));
-		
+
 	}
-	
-	public boolean removeCourse(Course course){
+
+	public boolean removeCourse(Course course) {
 		return this.courses.remove(course);
 	}
-	
-	
-	
 
 }

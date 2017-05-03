@@ -11,77 +11,85 @@ public class Course {
 	private String errorMessage;
 	private int courseId;
 	private int departmentId;
-	
+
 	public Course() {
-		
+
 	}
-	
-	public void setName(String name){
+
+	public void setName(String name) {
 		this.name = name;
 	}
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
-	
-	public void setCourseId(int courseId){
+
+	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public int getCourseId(){
+
+	public int getCourseId() {
 		return this.courseId;
 	}
-	
-	public void setDepartmentId(int departmentId){
+
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
-	public int getDepartmentId(){
+
+	public int getDepartmentId() {
 		return this.departmentId;
 	}
-	
-	public void setDepartment(Department department){
+
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	public Department getDepartment(){
+
+	public Department getDepartment() {
 		return this.department;
 	}
-	
-	public void setErrorMessage(String errorMessage){
+
+	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	public String getErrorMessage(){
+
+	public String getErrorMessage() {
 		return this.errorMessage;
 	}
-	
-	public void setAveRatings(Rating aveRatings){
+
+	public void setAveRatings(Rating aveRatings) {
 		this.aveRatings = aveRatings;
 	}
-	public Rating getAveRatings(){
+
+	public Rating getAveRatings() {
 		return this.aveRatings;
 	}
-	
-	public void setAveGrade(Double aveGrade){
+
+	public void setAveGrade(Double aveGrade) {
 		this.aveGrade = aveGrade;
 	}
-	public Double getAveGrade(){
+
+	public Double getAveGrade() {
 		return this.aveGrade;
 	}
-	public void setArrAdvice(ArrayList<Advice> arrAdvice){
+
+	public void setArrAdvice(ArrayList<Advice> arrAdvice) {
 		this.arrAdvice = arrAdvice;
 	}
-	public ArrayList<Advice> getArrAdvice(){
+
+	public ArrayList<Advice> getArrAdvice() {
 		return this.arrAdvice;
 	}
-	
-	public void addAdvice(Advice advice){
+
+	public void addAdvice(Advice advice) {
 		this.arrAdvice.add(advice);
 	}
-	
-	public Advice getAdvice(Advice advice){
+
+	public Advice getAdvice(Advice advice) {
 		return this.arrAdvice.get(this.arrAdvice.indexOf(advice));
 	}
-	
-	public boolean removeAdvice(Advice advice){
+
+	public boolean removeAdvice(Advice advice) {
 		return this.arrAdvice.remove(advice);
 	}
-	
 
 }

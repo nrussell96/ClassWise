@@ -14,20 +14,18 @@ public class AddNumbersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/_view/addNumbers.jsp").forward(req, resp);
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		// Decode form parameters and dispatch to controller
 		Numbers model = new Numbers();
 		NumbersController controller = new NumbersController();
 		controller.setModel(model);
-		
+
 		try {
 			Double first = getDoubleFromParameter(req.getParameter("first"));
 			Double second = getDoubleFromParameter(req.getParameter("second"));
@@ -36,16 +34,16 @@ public class AddNumbersServlet extends HttpServlet {
 			if (first == null || second == null || third == null) {
 				model.setErrorMessage("Please specify three numbers");
 			} else {
-				
+
 				controller.add(first, second, third);
 			}
 		} catch (NumberFormatException e) {
 			model.setErrorMessage("Invalid double");
 		}
-		
+
 		// Pass model to jsp
 		req.setAttribute("game", model);
-		
+
 		// Forward to view to render the result HTML document
 		req.getRequestDispatcher("/_view/addNumbers.jsp").forward(req, resp);
 	}
