@@ -2485,4 +2485,55 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
+
+	@Override
+	public Integer updateUserInformation(User user, String password, String major, double GPA, String classYear) {
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+				PreparedStatement stmt1 = null;
+				PreparedStatement stmt2 = null;
+				ResultSet resultSet2 = null;
+				Integer userId = null;
+				
+				// update account information
+				try {
+					stmt1 = conn.prepareStatement(
+							"update users set password = ?, major = ?, gpa = ?, class_year = ?"
+							+ " where user_id = ?"
+					);
+					
+					stmt1.setString(1, password);
+					stmt1.setString(2, major);
+					stmt1.setDouble(3, GPA);
+					stmt1.setString(4, classYear);
+					stmt1.setInt(5,user.getAccountId());
+					
+					stmt1.executeUpdate();
+					
+					stmt2 = conn.prepareStatement(
+							"select * from users"
+							+ " where user_id = ?"
+					);
+
+					stmt2.setInt(1,user.getAccountId());
+					
+					resultSet2 = stmt2.executeQuery();
+					
+					while(resultSet2.next()){
+						User user = new User();
+						loadUser(user, resultSet2, 1);
+					}
+					
+					return user.getAccountId();
+					
+					
+				} finally {
+					DBUtil.closeQuietly(resultSet2);
+					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
+				}
+			}
+		});
+	}
 }

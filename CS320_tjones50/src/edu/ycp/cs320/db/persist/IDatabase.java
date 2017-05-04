@@ -109,6 +109,8 @@ public interface IDatabase {
 	
 	abstract public Boolean deleteAccount(User user);	//Should we really do this?
 	
+	abstract public Integer updateUserInformation(User user, String password, String major, double GPA, String classYear);	
+	
 	//Admin methods
 	
 	abstract public Integer approveAdvice(Advice advice);	//derby done

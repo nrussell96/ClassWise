@@ -27,6 +27,13 @@
   				</c:otherwise>
   			</c:choose>
 		</ul>
+		<form action="${pageContext.request.contextPath}/updateaccount">
+					<button type="submit" class = "giveAdvice">Update Account Information</button>
+						<input name="password" type="hidden" value="${user.email}" />
+						<input name="major" type="hidden" value="${user.major}" />
+						<input name="GPA" type="hidden" value="${user.GPA}" />
+						<input name="classYear" type="hidden" value="${user.userClassYear}" />
+		</form>
 		<h1>
 			Welcome to your Account!
 		</h1>
@@ -45,7 +52,10 @@
 		<p2>
 			Your GPA is: ${user.GPA}
 		</p2>
-		<br><br>
+		
+		
+		
+		<br>
 		<h2>
 			Advice
 		</h2>

@@ -1154,4 +1154,31 @@ public class DerbyDatabaseTests {
 		assertTrue(created);
 		assertTrue(db.deleteAccount(db.getUserByEmail("student4@ycp.edu")));
 	}
+	
+	@Test
+	public void testUpdateUserInformation() {
+		System.out.println("\n*** Testing updateUserInformation***");
+		
+		User user = db.getUserFromUserId(1);	//student1@ycp.edu
+
+		db.updateUserInformation(user, "password1", "Computer Science1", 1.0, "Freshman");
+		user = db.getUserFromUserId(1);	//refresh user info
+		
+		//check if info was changed
+		assertTrue(user.getPassword().equals("password1"));
+		assertTrue(user.getGPA() == 1.0);
+		assertTrue(user.getMajor().equals("Computer Science1"));
+		assertTrue(user.getUserClassYear().equals("Freshman"));
+		
+		//change info back to original
+		db.updateUserInformation(user, "password", "Computer Science", 3.7, "Junior");
+		user = db.getUserFromUserId(1);	//refresh user info
+		
+		//check if info was changed
+		assertTrue(user.getPassword().equals("password"));
+		assertTrue(user.getGPA() == 3.7);
+		assertTrue(user.getMajor().equals("Computer Science"));
+		assertTrue(user.getUserClassYear().equals("Junior"));
+			
+	}
 }
