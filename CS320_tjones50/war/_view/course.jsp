@@ -72,7 +72,7 @@
 		</h2>
 		<p3>
 			<form action="${pageContext.servletContext.contextPath}/course" method="post">
-				<table>
+				<!--<table>
 					<tr>
 						<td><button type="submit">Sort Advice: </button></td>
 						<td><input type="radio" name="sort" value="Newest" checked> Newest First</td>
@@ -87,7 +87,23 @@
   						<td><input type="radio" name="sort" value="Price of Supplies">Price of Supplies</td>
   						<td><input type="radio" name="sort" value="Course Enjoyment">Course Enjoyment</td>
 					</tr>
-				</table>
+				</table>-->
+				<div class ="select-box">
+					<select name = "sort">
+							<option value="Newest" checked> Newest First</option>
+							<option value="Grade Received"> Grade Received</option>
+	  						<option value="Student GPA"> Student GPA</option>
+	  						<option value="Semester Taken">Semester Taken</option>
+	  						<option value="Student Major">Student Major</option>
+	  						<option value="Year Taken">Year Taken</option>
+	  						<option value="Professor">Professor</option>
+	  						<option value="Course Difficulty">Course Difficulty</option>
+	  						<option value="Course Instruction">Course Instruction</option>
+	  						<option value="Price of Supplies">Price of Supplies</option>
+	  						<option value="Course Enjoyment">Course Enjoyment</option>
+					</select>
+				</div>
+				<button name = "sortAdvice" type = "submit">Sort Advice</button>
 				<input name="courseName" type="hidden" value="${course.name}" />
 				<input name="departmentName" type="hidden" value="${department.name}" />
 				<input name="flag" type="hidden" value="false" />

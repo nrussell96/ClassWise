@@ -80,6 +80,7 @@ public class GiveAdviceServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
 		System.out.println("In Give Advice doPost");
 		//The code below may be used for making an error message on the give advice page
 		

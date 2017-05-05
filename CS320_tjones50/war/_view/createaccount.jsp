@@ -59,6 +59,7 @@
 	  				<input type="radio" name="year" value="Senior" required> Senior
 	  				<br>
 	  	        </table>
+	  	        <input type="hidden" name="from" value="">
 	  	        <input id = "ca_accountButton" type="submit" value = "Create Account">  
 	  	    </form><!-- "container" -->
 		</div>

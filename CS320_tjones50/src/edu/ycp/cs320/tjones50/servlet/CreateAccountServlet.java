@@ -16,6 +16,8 @@ public class CreateAccountServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		System.out.println("In the CreateAccount doGet");
 		String email = req.getParameter("email");
 		
 		req.setAttribute("email", email);
@@ -34,6 +36,8 @@ public class CreateAccountServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		System.out.println("In the CreateAccount doPost");
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
