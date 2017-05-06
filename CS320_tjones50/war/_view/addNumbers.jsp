@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<!--*Example pulled from Lab2A Web Apps on the course web page
+ * from Dr. Hake to assist in the structure of our jsps.
+ -->
 <html>
 	<head>
 		<title>Add Numbers</title>

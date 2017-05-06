@@ -7,7 +7,6 @@ public class Advice {
 	private String userMajor;
 	private double userGPA;
 	private double gradeReceived;
-	// private int helpfulFlags = 0;
 	private int flags = 0;
 	private String semester;
 	private int classYear;
@@ -18,6 +17,7 @@ public class Advice {
 	private int courseId;
 	private String professor;
 	private boolean userActivated;
+	// private int helpfulFlags = 0;
 
 	public Advice() {
 

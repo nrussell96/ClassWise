@@ -1,5 +1,7 @@
 package edu.ycp.cs320.db.persist;
-
+/*Example pulled from CS320_Library_Example_2017 on the course web page
+ * from Dr. Hake and modified for our program.
+ */
 import java.util.ArrayList;
 
 import edu.ycp.cs320.tjones50.model.Admin;
