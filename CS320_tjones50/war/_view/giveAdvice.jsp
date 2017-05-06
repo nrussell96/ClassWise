@@ -4,15 +4,15 @@
 
 <html>
 <head>
-<title>Course</title>
-
-<style type="text/css">
-<%@
-include file ="style.css " %> .active {
-	background-color: #096333;
-}
-</style>
-</head>
+<head>
+		<title>Give Advice</title>				
+			<style type="text/css">
+    			<%@include file="style.css" %>
+    	    		.active {
+					background-color:#096333;
+					}	    		
+			</style> 
+	</head>
 <body>
 	<h3>Enter your advice for ${course.department.name} -
 		${course.name}</h3>

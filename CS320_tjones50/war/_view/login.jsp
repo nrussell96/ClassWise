@@ -4,14 +4,14 @@
 
 <html>
 <head>
-<title>Login</title>
-<style type="text/css">
-<%@
-include file ="style.css " %> .active {
-	background-color: #096333;
-}
-</style>
-</head>
+		<title>Login</title>				
+			<style type="text/css">
+    			<%@include file="style.css" %>
+    	    		.active {
+					background-color:#096333;
+					}	    		
+			</style> 
+	</head>
 <body>
 	<ul>
 		<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>

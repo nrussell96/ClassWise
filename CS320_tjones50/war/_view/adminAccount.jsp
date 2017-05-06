@@ -4,13 +4,14 @@
 
 <html>
 <head>
-<title>Admin Account</title>
-<style type="text/css">
-<%@
-include file ="style.css " %> .active {
-	background-color: #096333;
-}
-</style>
+		<title>Admin Account</title>				
+			<style type="text/css">
+    			<%@include file="style.css" %>
+    	    		.active {
+					background-color:#096333;
+					}	    		
+			</style> 
+	</head>
 </head>
 <body>
 	<ul>

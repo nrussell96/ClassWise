@@ -6,14 +6,14 @@
 	String referrer = request.getHeader("Referer");
 %>
 <head>
-<title>Course</title>
-<style type="text/css">
-<%@
-include file ="style.css " %> .active {
-	background-color: #096333;
-}
-</style>
-</head>
+		<title>Department</title>				
+			<style type="text/css">
+    			<%@include file="style.css" %>
+    	    		.active {
+					background-color:#096333;
+					}	    		
+			</style> 
+	</head>
 <body>
 	<ul>
 		<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
