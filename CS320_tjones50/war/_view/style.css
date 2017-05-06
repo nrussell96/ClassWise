@@ -10,16 +10,9 @@ form{
     margin-top: 20px;
 }
 form.departments{
+    margin-top: 10px;
     margin-left: 0%;
     text-align: center;
-}
-
-.menuContainer{
-	background-color: #333;
-	border-radius: 25px;
-	width: fit;
-	padding: 5px;
-	margin: 10px;
 }
 
 label {
@@ -235,11 +228,12 @@ button.department{
 	text-align: justify;
 	width: 100%;
     background-color: #096333;
-    border-radius: 25px;
+    border-radius:25px;
     border: none;
     color: white;
     padding: 20px;
-    margin: 0px;
+    margin: -5px;
+    margin-left: 0px;
     text-align: left;
     text-decoration: none;
     font-size: 28px;
@@ -249,10 +243,9 @@ button.home{
 	text-align: justify;
 	width: 100%;
     background-color: #096333;
-    border-radius: 25px;
     border: none;
     color: white;
-    padding: 20px;
+    padding: 25px;
     margin: 0px;
     text-align: left;
     text-decoration: none;
@@ -327,9 +320,10 @@ button.sortAdvice{
 	margin-top:-2%;
 }
 <!--End giveAdvice-->
-
+.activateButtons{
+	float: right;
+}
 <!--Select-box CSS-->
-<!--details on how to format obtained from https://codepen.io/ericrasch/pen/zjDBx-->
 .select-box{
    height: 29px;
    overflow: hidden;
@@ -349,7 +343,7 @@ button.sortAdvice{
    margin-right: -35%
    
 }
-<!--End Select-box-->
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -367,5 +361,14 @@ button.sortAdvice{
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.menuContainer{
+	background-color: #c0c0c0;
+	border-radius: 25px;
+	width: fit;
+	padding: 5px;
+	margin-top:10px;
+	margin-left:-5px;
 }
 	

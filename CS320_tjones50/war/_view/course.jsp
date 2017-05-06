@@ -73,6 +73,22 @@
 	<p3>
 	<form action="${pageContext.servletContext.contextPath}/course"
 		method="post">
+		<!--<table>
+					<tr>
+						<td><button type="submit">Sort Advice: </button></td>
+						<td><input type="radio" name="sort" value="Newest" checked> Newest First</td>
+						<td><input type="radio" name="sort" value="Grade Received"> Grade Received</td>
+  						<td><input type="radio" name="sort" value="Student GPA"> Student GPA</td>
+  						<td><input type="radio" name="sort" value="Semester Taken">Semester Taken</td>
+  						<td><input type="radio" name="sort" value="Student Major">Student Major</td>
+  						<td><input type="radio" name="sort" value="Year Taken">Year Taken</td>
+  						<td><input type="radio" name="sort" value="Professor">Professor</td>
+  						<td><input type="radio" name="sort" value="Course Difficulty">Course Difficulty</td>
+  						<td><input type="radio" name="sort" value="Course Instruction">Course Instruction</td>
+  						<td><input type="radio" name="sort" value="Price of Supplies">Price of Supplies</td>
+  						<td><input type="radio" name="sort" value="Course Enjoyment">Course Enjoyment</td>
+					</tr>
+				</table>-->
 		<div class="select-box">
 			<select name="sort">
 				<option value="Newest" checked>Newest First</option>
