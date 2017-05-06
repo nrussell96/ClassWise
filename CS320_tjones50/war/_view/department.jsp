@@ -25,22 +25,20 @@
 		</ul>
 		<h1>
 			${department.name}
-		</h1>
-		<div class = "menuContainer">	
-			<c:forEach items="${department.courses}" var="course">
-	    		<tr>      
-	       			<td>
-	       				<form action="${pageContext.request.contextPath}/department" method = "post">
-							<button type="submit" class = "department">${course.name} </button>
-							<input name="courseName" type="hidden" value="${course.name}" />
-							<input name="departmentName" type="hidden" value="${department.name}" />
-							<input type="hidden" name="from" value="${pageContext.request.requestURI}/department">
-						</form>
-	       			</td> 
-	    		</tr>
-	    		<br><br>
-			</c:forEach>
-		</div>	
+		</h1>	
+		<c:forEach items="${department.courses}" var="course">
+    		<tr>      
+       			<td>
+       				<form action="${pageContext.request.contextPath}/department" method = "post">
+						<button type="submit" class = "department">${course.name} </button>
+						<input name="courseName" type="hidden" value="${course.name}" />
+						<input name="departmentName" type="hidden" value="${department.name}" />
+						<input type="hidden" name="from" value="${pageContext.request.requestURI}/department">
+					</form>
+       			</td> 
+    		</tr>
+    		<br><br>
+		</c:forEach>	
 		<br>
 		<footer><ul><li></li></ul> </footer>
 	</body>

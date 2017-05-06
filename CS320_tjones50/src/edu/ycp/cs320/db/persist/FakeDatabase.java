@@ -2,7 +2,6 @@ package edu.ycp.cs320.db.persist;
 
 import java.util.ArrayList;
 
-import edu.ycp.cs320.tjones50.controller.CourseController;
 import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
@@ -355,6 +354,12 @@ public class FakeDatabase implements IDatabase {
 
 	@Override
 	public Integer setFlags(Advice advice, int flagNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Advice> getCourseAdviceListSortedByOldest(Course course) {
 		// TODO Auto-generated method stub
 		return null;
 	}

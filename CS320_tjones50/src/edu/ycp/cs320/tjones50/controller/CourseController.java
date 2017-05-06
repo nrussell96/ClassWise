@@ -79,6 +79,8 @@ public class CourseController {
 	public void SortAdvice(String sort) {
 		if (sort.equals("Newest")) {
 			this.course.setArrAdvice(database.getCourseAdviceList(course));
+		} else if (sort.equals("Oldest")) {
+			this.course.setArrAdvice(database.getCourseAdviceListSortedByOldest(course));
 		} else if (sort.equals("Grade Received")) {
 			this.course.setArrAdvice(database.getAdviceListSortedByGrade(course));
 		} else if (sort.equals("Student GPA")) {

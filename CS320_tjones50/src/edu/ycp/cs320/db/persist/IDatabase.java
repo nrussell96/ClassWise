@@ -27,6 +27,8 @@ public interface IDatabase {
 	
 	abstract public ArrayList<Advice> getCourseAdviceList(Course course);	//derby done
 	
+	abstract public ArrayList<Advice> getCourseAdviceListSortedByOldest(Course course);	//derby done
+	
 	abstract public ArrayList<Advice> getAccountAdviceList(int accountId);	//derby done
 
 	abstract public Rating getRatingByAdvice(Advice advice);	//derby done
