@@ -701,6 +701,51 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
+	@Override
+	public ArrayList<Advice> getCourseAdviceListSortedByOldest(Course course) {
+		return executeTransaction(new Transaction<ArrayList<Advice>>() {
+			@Override
+			public ArrayList<Advice> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				ArrayList<Advice> adviceList = new ArrayList<Advice>();
+
+				// try to retrieve advice list, without ratings
+				try {
+					stmt = conn.prepareStatement(
+							"select * from advices where " +
+							"advices.course_id= ? order by advices.advice_id asc"
+					);
+					
+					stmt.setInt(1, course.getCourseId());
+					
+					// execute the query, get the results, and assemble them in an ArrayList
+					resultSet = stmt.executeQuery();
+					while (resultSet.next()) {
+						
+						// establish the Advice Object to receive the result
+						Advice advice = new Advice();
+						loadAdvice(advice, resultSet, 1);
+						User user = getUserByAdvice(advice);
+						Rating rating = getRatingByAdvice(advice);
+						advice.setAdviceRating(rating);
+						advice.setUserClassYear(user.getUserClassYear());
+						advice.setUserGPA(user.getGPA());
+						advice.setUserId(user.getAccountId());
+						advice.setUserMajor(user.getMajor());
+
+						advice.setUserActivated(user.getApproved());
+						adviceList.add(advice);
+					}
+					return adviceList;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
+	
 	public Rating getRatingByAdvice(Advice advice) {
 		return executeTransaction(new Transaction<Rating>() {
 			@Override
@@ -1068,7 +1113,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt = conn.prepareStatement(
 							"select * from advices where " +
-							"advices.course_id= ? order by advices.semester desc"
+							"advices.course_id= ? order by advices.semester asc"
 					);
 					
 					stmt.setInt(1, course.getCourseId());
