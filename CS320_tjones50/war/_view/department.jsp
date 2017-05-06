@@ -2,14 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
-	<% String referrer = request.getHeader("Referer"); %>
 	<head>
 		<title>Course</title>
 		<style type="text/css">
-    		<%@include file="style.css" %>
-    			.active {
-				background-color:#096333;
-				}	
+    		<%@include file="style.css" %>	
 		</style>
 	</head>
 	<body>
@@ -29,20 +25,22 @@
 		</ul>
 		<h1>
 			${department.name}
-		</h1>	
-		<c:forEach items="${department.courses}" var="course">
-    		<tr>      
-       			<td>
-       				<form action="${pageContext.request.contextPath}/department" method = "post">
-						<button type="submit" class = "department">${course.name} </button>
-						<input name="courseName" type="hidden" value="${course.name}" />
-						<input name="departmentName" type="hidden" value="${department.name}" />
-						<input type="hidden" name="from" value="${pageContext.request.requestURI}/department">
-					</form>
-       			</td> 
-    		</tr>
-    		<br><br>
-		</c:forEach>	
+		</h1>
+		<div class = "menuContainer">	
+			<c:forEach items="${department.courses}" var="course">
+	    		<tr>      
+	       			<td>
+	       				<form action="${pageContext.request.contextPath}/department" method = "post">
+							<button type="submit" class = "department">${course.name} </button>
+							<input name="courseName" type="hidden" value="${course.name}" />
+							<input name="departmentName" type="hidden" value="${department.name}" />
+							<input type="hidden" name="from" value="${pageContext.request.requestURI}/department">
+						</form>
+	       			</td> 
+	    		</tr>
+	    		<br><br>
+			</c:forEach>
+		</div>	
 		<br>
 		<footer><ul><li></li></ul> </footer>
 	</body>

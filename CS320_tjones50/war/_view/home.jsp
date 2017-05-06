@@ -7,9 +7,6 @@
 		<title>Home</title>
 		<style type="text/css">
     		<%@include file="style.css" %>
-    			.active {
-				background-color:#096333;
-				}
 		</style>
 	</head>
 	<body>
@@ -30,19 +27,21 @@
 		<h1 class = "headerStyle">
 			Select Your Department:	
 		</h1>
-		<c:forEach items="${home.departments}" var="department">
-    			<tr>      
-       				<td>
-						<form action="${pageContext.request.contextPath}/home" class = "departments" method = "post">
-							<button type="submit" class = "home">${department.name}</button>
-							<input name="departmentName" type="hidden" value="${department.name}" />
-							<input type="hidden" name="from" value="${pageContext.request.requestURI}/home">
-						</form>
-					</td> 
-    			</tr>
-    			<br>
-    			<br>
+		<div class = "menuContainer">
+			<c:forEach items="${home.departments}" var="department">
+	    			<tr>      
+	       				<td>
+							<form action="${pageContext.request.contextPath}/home" class = "departments" method = "post">
+								<button type="submit" class = "home">${department.name}</button>
+								<input name="departmentName" type="hidden" value="${department.name}" />
+								<input type="hidden" name="from" value="${pageContext.request.requestURI}/home">
+							</form>
+						</td> 
+	    			</tr>
+	    			<br>
+	    			<br>
 			</c:forEach>
+		</div>
 		<footer><ul><li></li></ul></footer>
 	</body>
 </html>

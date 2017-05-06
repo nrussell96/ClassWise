@@ -10,9 +10,16 @@ form{
     margin-top: 20px;
 }
 form.departments{
-    margin-top: 10px;
     margin-left: 0%;
     text-align: center;
+}
+
+.menuContainer{
+	background-color: #333;
+	border-radius: 25px;
+	width: fit;
+	padding: 5px;
+	margin: 10px;
 }
 
 label {
@@ -228,9 +235,10 @@ button.department{
 	text-align: justify;
 	width: 100%;
     background-color: #096333;
+    border-radius: 25px;
     border: none;
     color: white;
-    padding: 25px;
+    padding: 20px;
     margin: 0px;
     text-align: left;
     text-decoration: none;
@@ -241,9 +249,10 @@ button.home{
 	text-align: justify;
 	width: 100%;
     background-color: #096333;
+    border-radius: 25px;
     border: none;
     color: white;
-    padding: 25px;
+    padding: 20px;
     margin: 0px;
     text-align: left;
     text-decoration: none;
@@ -310,10 +319,9 @@ button.sortAdvice{
 	margin-top:-2%;
 }
 <!--End giveAdvice-->
-.activateButtons{
-	float: right;
-}
+
 <!--Select-box CSS-->
+<!--details on how to format obtained from https://codepen.io/ericrasch/pen/zjDBx-->
 .select-box{
    height: 29px;
    overflow: hidden;
@@ -333,5 +341,5 @@ button.sortAdvice{
    margin-right: -35%
    
 }
-
+<!--End Select-box-->
 	
