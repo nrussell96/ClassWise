@@ -23,7 +23,6 @@ public class LoginServlet extends HttpServlet {
 		
 		System.out.println("In the login doGet");
 		String email = req.getParameter("email");
-		//String url = (String)req.getSession().getAttribute("referer");
 		
 		/*Clears cache to prevent user from going back
 		 * to a previously logged in state after logging out--
@@ -44,8 +43,6 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the login doPost");
-		//String url = req.getHeader("referer");
-		//System.out.println("THE URL: " + url); //Personal test: checking the header URL
 		
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
@@ -64,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 		boolean userAccountExists = userController.checkUserInfo(email, password);
 		boolean adminAccountExists = adminController.checkAdminInfo(email, password);
 		String from = req.getParameter("from");
-		System.out.println("From: " + from); //visual representation of from value
+		System.out.println("From: " + from); //check if from has a url or not
 	
 		// Pass model to jsp
 		req.setAttribute("login", user);

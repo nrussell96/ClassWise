@@ -20,8 +20,8 @@ public class HomeServlet extends HttpServlet {
 		// session info 
 		System.out.println("In Home doGet");
 		
-		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
-		
+		//pulled from Dr. Hake's Lab6 example on resources page
+		String email = (String)req.getSession().getAttribute("email"); 
 		System.out.println("   User: <" + email + "> logged in");
 		
 		// initialize variables
@@ -53,7 +53,6 @@ public class HomeServlet extends HttpServlet {
 		
 		// get info from parameters
 		String departmentName = req.getParameter("departmentName");
-		//String email = (String)req.getSession().getAttribute("email");
 		
 		// store departmentName obj in session
 		req.getSession().setAttribute("departmentName", departmentName);

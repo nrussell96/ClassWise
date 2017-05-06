@@ -1,5 +1,7 @@
 package edu.ycp.cs320.tjones50.controller;
-
+/*Example pulled from Lab2A Web Apps on the course web page
+ * from Dr. Hake to assist in the structure of our servlets.
+ */
 import edu.ycp.cs320.tjones50.model.GuessingGame;
 
 /**

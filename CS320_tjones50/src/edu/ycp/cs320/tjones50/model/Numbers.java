@@ -1,5 +1,7 @@
 package edu.ycp.cs320.tjones50.model;
-
+/*Example pulled from Lab2A Web Apps on the course web page
+ * from Dr. Hake to assist in the structure of our servlets.
+ */
 public class Numbers {
 	private double addNum1, addNum2, addNum3;
 	private Double addResult;

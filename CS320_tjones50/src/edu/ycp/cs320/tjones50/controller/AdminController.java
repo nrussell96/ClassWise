@@ -3,7 +3,6 @@ package edu.ycp.cs320.tjones50.controller;
 import edu.ycp.cs320.db.persist.DerbyDatabase;
 import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Advice;
-import edu.ycp.cs320.tjones50.model.User;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -14,7 +13,10 @@ public class AdminController {
 	private Pattern pattern;
 	private Matcher matcher;
 	private DerbyDatabase database;
-
+	
+	/*From class resources page on email validation
+	 * https://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/
+	 */
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -42,7 +44,9 @@ public class AdminController {
 		return database.adminLogin(email, password); //// need the database
 														//// method
 	}
-
+	/*From class resources page on email validation
+	 * https://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/
+	 */
 	public boolean validate(final String hex) {
 		matcher = pattern.matcher(hex);
 		return matcher.matches();

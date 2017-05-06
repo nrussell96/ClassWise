@@ -58,20 +58,6 @@
     <servlet-class>edu.ycp.cs320.tjones50.servlet.UserAccountServlet</servlet-class>
   </servlet>
 
-  <!-- AJAX servlets. -->
-  <servlet>
-    <servlet-name>AddNumbersAjaxServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.tjones50.servlet.ajax.AddNumbersAjaxServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>MultNumbersAjaxServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.tjones50.servlet.ajax.MultNumbersAjaxServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>NextGuessAjaxServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.tjones50.servlet.ajax.NextGuessAjaxServlet</servlet-class>
-  </servlet>
-
   <!-- Servlet mappings --><servlet-mapping>
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>/logout</url-pattern>
@@ -123,20 +109,6 @@
    <servlet-mapping>
     <servlet-name>UserAccountServlet</servlet-name>
     <url-pattern>/userAccount</url-pattern>
-  </servlet-mapping>
-  
-  <!--  AJAX servlet mappings. -->
-  <servlet-mapping>
-    <servlet-name>AddNumbersAjaxServlet</servlet-name>
-    <url-pattern>/ajax/addNumbers</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>MultNumbersAjaxServlet</servlet-name>
-    <url-pattern>/ajax/multNumbers</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>NextGuessAjaxServlet</servlet-name>
-    <url-pattern>/ajax/nextGuess</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>

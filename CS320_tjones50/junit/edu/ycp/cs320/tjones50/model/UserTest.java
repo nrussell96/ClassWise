@@ -61,4 +61,10 @@ public class UserTest {
 		assertEquals(advice2, user.getAdvice(advice2));
 	}
 	
+	@Test
+	public void TestSetAccountId(){
+		user.setAccountId(234);
+		assertEquals(234, user.getAccountId());
+	}
+	
 }

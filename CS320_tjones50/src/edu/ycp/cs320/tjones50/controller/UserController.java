@@ -15,6 +15,9 @@ public class UserController {
 	private Matcher matcher;
 	private DerbyDatabase database;
 
+	/*From class resources page on email validation
+	 * https://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/
+	 */
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -49,6 +52,9 @@ public class UserController {
 		return database.login(email, password);
 	}
 
+	/*From class resources page on email validation
+	 * https://www.mkyong.com/regular-expressions/how-to-validate-email-address-with-regular-expression/
+	 */
 	public boolean validate(final String hex) {
 		matcher = pattern.matcher(hex);
 		return matcher.matches();

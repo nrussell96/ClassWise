@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.tjones50.controller.GuessingGameController;
 import edu.ycp.cs320.tjones50.model.GuessingGame;
-
+/*Example pulled from Lab2A Web Apps on the course web page
+ * from Dr. Hake to assist in the structure of our servlets.
+ */
 public class GuessingGameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

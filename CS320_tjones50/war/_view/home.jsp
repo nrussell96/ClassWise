@@ -368,7 +368,7 @@
 		</div>
 	</div>
 	<div class="dropdown">
-		<h2 class="headerStyle">W ,</h2>
+		<h2 class="headerStyle">W</h2>
 		<div class="dropdown-content">
 			<c:forEach begin="70" end="71" items="${home.departments}"
 				var="department">
