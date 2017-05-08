@@ -57,6 +57,10 @@
     <servlet-name>UserAccountServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.tjones50.servlet.UserAccountServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.tjones50.servlet.UpdateUserServlet</servlet-class>
+  </servlet>
 
   <!-- Servlet mappings --><servlet-mapping>
   	<servlet-name>LogoutServlet</servlet-name>
@@ -73,6 +77,10 @@
 <servlet-mapping>
   	<servlet-name>CreateAccountServlet</servlet-name>
   	<url-pattern>/createaccount</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  	<servlet-name>UpdateUserServlet</servlet-name>
+  	<url-pattern>/updateaccount</url-pattern>
 </servlet-mapping>
 	<servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>

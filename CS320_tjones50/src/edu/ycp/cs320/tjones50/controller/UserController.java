@@ -71,5 +71,11 @@ public class UserController {
 	public void deleteAdvice(Advice advice) {
 		database.deleteAdvice(advice);
 	}
+	
+	public void updateUserInfo(String password, String major, double GPA, String year){
+		database.updateUserInformation(this.user, password, major, GPA, year);
+		this.user = database.getUserByEmail(user.getEmail());
+		System.out.println("User password: " + user.getPassword() + " User GPA " + user.getGPA());
+	}
 
 }

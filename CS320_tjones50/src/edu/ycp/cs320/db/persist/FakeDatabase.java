@@ -365,6 +365,11 @@ public class FakeDatabase implements IDatabase {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Integer updateUserInformation(User user, String password, String major, double GPA, String classYear) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

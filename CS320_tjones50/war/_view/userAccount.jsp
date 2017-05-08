@@ -60,6 +60,62 @@
 		<ul>
 			<li></li>
 		</ul>
-	</footer>
-</body>
+		<form action="${pageContext.request.contextPath}/updateaccount">
+					<button type="submit" class = "giveAdvice">Update Account Information</button>
+						<input name="password" type="hidden" value="${user.email}" />
+						<input name="major" type="hidden" value="${user.major}" />
+						<input name="GPA" type="hidden" value="${user.GPA}" />
+						<input name="classYear" type="hidden" value="${user.userClassYear}" />
+		</form>
+		<h1>
+			Welcome to your Account!
+		</h1>
+		<h2>
+			Account info:
+		</h2>	
+		<p2>
+			Your email is: ${user.email}
+		</p2>
+		<p2>
+			Your class year is: ${user.userClassYear}
+		</p2>
+		<p2>
+			Your major is: ${user.major}
+		</p2>
+		<p2>
+			Your GPA is: ${user.GPA}
+		</p2>
+		
+		
+		
+		<br>
+		<h2>
+			Advice
+		</h2>
+		<c:forEach items="${user.arrAdvice}" var="advice">
+    		<tr>      
+       			<td>
+					<p1>
+						Course was taken ${advice.semester} of ${advice.classYear}
+						<br><br>
+						Advice was left by a ${advice.userMajor} student who was a ${advice.userClassYear} and had a GPA of ${advice.userGPA }.
+						<br>
+						Student got a ${advice.gradeReceived} in the class taught by ${advice.professor }
+						<br><br>
+						"${advice.text }"
+						<br>
+						<br>
+						Difficulty was ${advice.adviceRating.difficulty}
+						<br>
+						Instruction quality was ${advice.adviceRating.instruction}
+						<br>
+						Cost of supplies was ${advice.adviceRating.suppliesCost}
+						<br>
+						Enjoyment was ${advice.adviceRating.enjoyment}
+					</p1>	
+       			</td> 
+    		</tr>
+		</c:forEach>
+		<footer><ul><li></li></ul> </footer>
+	</body>
 </html>
