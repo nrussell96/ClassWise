@@ -77,5 +77,4 @@ public class UserController {
 		this.user = database.getUserByEmail(user.getEmail());
 		System.out.println("User password: " + user.getPassword() + " User GPA " + user.getGPA());
 	}
-
 }

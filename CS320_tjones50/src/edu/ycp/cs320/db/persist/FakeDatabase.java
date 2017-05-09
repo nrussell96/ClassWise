@@ -361,12 +361,12 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
-	public ArrayList<Advice> getCourseAdviceListSortedByOldest(Course course) {
+	public Integer updateUserInformation(User user, String password, String major, double GPA, String classYear) {
 		// TODO Auto-generated method stub
-		return null;
+				return null;
 	}
 
-	public Integer updateUserInformation(User user, String password, String major, double GPA, String classYear) {
+	public ArrayList<Advice> getCourseAdviceListSortedByOldest(Course course) {
 		// TODO Auto-generated method stub
 		return null;
 	}

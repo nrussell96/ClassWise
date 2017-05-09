@@ -21,6 +21,7 @@ public class Data {
 	}
 
 	// Found online, parses from csv files
+	// http://howtodoinjava.com/core-java/related-concepts/parse-csv-files-in-java/
 	public void populate() {
 
 		// Input file which needs to be parsed
