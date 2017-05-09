@@ -11,7 +11,7 @@ public class User extends Account {
 	private String major;
 	private double GPA;
 	private boolean emailVerified = false;
-	private ArrayList<Advice> arrAdvice =  new ArrayList<Advice>();
+	private ArrayList<Advice> arrAdvice = new ArrayList<Advice>();
 
 	public User() {
 
@@ -48,8 +48,7 @@ public class User extends Account {
 	public String getPassword() {
 		return this.password;
 	}
-	
-	
+
 	@Override
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
@@ -59,36 +58,36 @@ public class User extends Account {
 	public int getAccountId() {
 		return this.accountId;
 	}
-	
-	public void setUserClassYear(String userClassYear){
+
+	public void setUserClassYear(String userClassYear) {
 		this.userClassYear = userClassYear;
 	}
-	
-	public String getUserClassYear(){
+
+	public String getUserClassYear() {
 		return this.userClassYear;
 	}
-	
-	public void setMajor(String major){
+
+	public void setMajor(String major) {
 		this.major = major;
 	}
-	
-	public String getMajor(){
+
+	public String getMajor() {
 		return this.major;
 	}
-	
-	public void setGPA(double GPA){
+
+	public void setGPA(double GPA) {
 		this.GPA = GPA;
 	}
-	
-	public double getGPA(){
+
+	public double getGPA() {
 		return this.GPA;
 	}
-	
-	public void setEmailVerified(boolean emailVerified){
+
+	public void setEmailVerified(boolean emailVerified) {
 		this.emailVerified = emailVerified;
 	}
-	
-	public boolean getEmailVerified(){
+
+	public boolean getEmailVerified() {
 		return this.emailVerified;
 	}
 
@@ -111,41 +110,5 @@ public class User extends Account {
 	public boolean removeAdvice(Advice advice) {
 		return this.arrAdvice.remove(advice);
 	}
-	
-	
-	@Override
-	public void verifyEmail() {
-		throw new UnsupportedOperationException();
-		
-	}
 
-	@Override
-	public void sendEmail() {
-		throw new UnsupportedOperationException();
-
-	}
-
-	@Override
-	public void login() {
-		throw new UnsupportedOperationException();
-
-	}
-
-	@Override
-	public void logout() {
-		throw new UnsupportedOperationException();
-
-	}
-
-	@Override
-	public void deleteAccount() {
-		throw new UnsupportedOperationException();
-
-	}
-
-	@Override
-	public void forgotPassword() {
-		throw new UnsupportedOperationException();
-
-	}
 }

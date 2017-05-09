@@ -16,7 +16,8 @@ public class IndexServlet extends HttpServlet {
 		
 		System.out.println("In Index doGet");
 		
-		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		//pulled from Dr. Hake's Lab6 example on resources page
+		String email = (String)req.getSession().getAttribute("email"); 
 		
 		System.out.println("   User: <" + email + "> logged in");
 		

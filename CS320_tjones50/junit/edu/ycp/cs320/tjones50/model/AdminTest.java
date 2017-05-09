@@ -27,5 +27,15 @@ public class AdminTest {
 		assertEquals(false, advice.getApproved());
 	}
 	
+	@Test
+	public void TestSetAccountId(){
+		admin.setAccountId(3);
+		assertEquals(3, admin.getAccountId());
+	}
 	
+	@Test
+	public void TestEmailVerified(){
+		admin.setEmailVerified(true);
+		assertEquals(true, admin.getEmailVerified());
+	}
 }

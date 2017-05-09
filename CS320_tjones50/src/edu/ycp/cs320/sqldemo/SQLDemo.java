@@ -1,5 +1,7 @@
 package edu.ycp.cs320.sqldemo;
-
+/*Example pulled from CS320_Library_Example_2017 on the course web page
+ * from Dr. Hake and modified for our program.
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

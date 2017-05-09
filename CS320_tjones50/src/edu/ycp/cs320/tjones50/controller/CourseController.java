@@ -79,37 +79,29 @@ public class CourseController {
 	public void SortAdvice(String sort) {
 		if (sort.equals("Newest")) {
 			this.course.setArrAdvice(database.getCourseAdviceList(course));
-		} 
-		else if (sort.equals("Grade Received")) {
+		} else if (sort.equals("Oldest")) {
+			this.course.setArrAdvice(database.getCourseAdviceListSortedByOldest(course));
+		} else if (sort.equals("Grade Received")) {
 			this.course.setArrAdvice(database.getAdviceListSortedByGrade(course));
-		} 
-		else if (sort.equals("Student GPA")) {
+		} else if (sort.equals("Student GPA")) {
 			this.course.setArrAdvice(database.getAdviceListSortedByGPA(course));
-		} 
-		else if (sort.equals("Semester Taken")) {
+		} else if (sort.equals("Semester Taken")) {
 			this.course.setArrAdvice(database.getAdviceListSortedBySemester(course));
-		} 
-		else if (sort.equals("Student Major")) {
+		} else if (sort.equals("Student Major")) {
 			this.course.setArrAdvice(database.getAdviceListSortedByMajor(course));
-		} 
-		else if (sort.equals("Year Taken")) {
+		} else if (sort.equals("Year Taken")) {
 			this.course.setArrAdvice(database.getAdviceListSortedByYear(course));
-		} 
-		else if (sort.equals("Professor")) {
+		} else if (sort.equals("Professor")) {
 			this.course.setArrAdvice(database.getAdviceListSortedByProfessor(course));
-		} 
-		else if (sort.equals("Course Difficulty")) {
+		} else if (sort.equals("Course Difficulty")) {
 			this.course.setArrAdvice(database.getAdviceListSortedByDifficulty(course));
-		} 
-		else if (sort.equals("Course Instruction")) {
-			this.course.setArrAdvice( database.getAdviceListSortedByInstruction(course));
-		} 
-		else if (sort.equals("Course Enjoyment")) {
-			this.course.setArrAdvice( database.getAdviceListSortedByEnjoyment(course));
-		} 
-		else if (sort.equals("Price of Supplies")) {
-			this.course.setArrAdvice( database.getAdviceListSortedBySupplyCost(course));
+		} else if (sort.equals("Course Instruction")) {
+			this.course.setArrAdvice(database.getAdviceListSortedByInstruction(course));
+		} else if (sort.equals("Course Enjoyment")) {
+			this.course.setArrAdvice(database.getAdviceListSortedByEnjoyment(course));
+		} else if (sort.equals("Price of Supplies")) {
+			this.course.setArrAdvice(database.getAdviceListSortedBySupplyCost(course));
 		}
-		
+
 	}
 }

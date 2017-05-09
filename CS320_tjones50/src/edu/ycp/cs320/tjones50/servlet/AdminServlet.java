@@ -63,7 +63,7 @@ public class AdminServlet extends HttpServlet {
 		
 		System.out.println("In the admin doPost");
 		
-		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		String email = (String)req.getSession().getAttribute("email"); //pulled from Dr. Hake's Lab6 example on resources page
 		String action = req.getParameter("action");
 		int adviceId = Integer.parseInt(req.getParameter("adviceId"));
 		

@@ -6,86 +6,83 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Data {
-	
-private Department dept;
-private Course course;
-private ArrayList<Department> depts;
-private ArrayList<Course> courses;
 
-	public Data(){
+	private Department dept;
+	private Course course;
+	private ArrayList<Department> depts;
+	private ArrayList<Course> courses;
+
+	public Data() {
 		course = new Course();
 		courses = new ArrayList<Course>();
 		dept = new Department();
 		depts = new ArrayList<Department>();
-		
+
 	}
+
 	// Found online, parses from csv files
 	// http://howtodoinjava.com/core-java/related-concepts/parse-csv-files-in-java/
 	public void populate() {
-		
-		//Input file which needs to be parsed
-        String fileToParse = "All classes2.csv";
-        BufferedReader fileReader = null;
-         
-        //Delimiter used in CSV file (this is what separates each piece of data)
-        final String DELIMITER = ",";
-        try
-        {
-            String line = "";
-            //Create the file reader
-            fileReader = new BufferedReader(new FileReader(fileToParse));
-             String currentDept = "";
-             String previousDept = "";
-            //Read the file line by line
-            while ((line = fileReader.readLine()) != null) 
-            {
-            	
-                //Get all tokens available in line, token[0] is the general department, token[1] is the sub department and token[2] is the name of the course
-                String[] tokens = line.split(DELIMITER);
-                currentDept = tokens[1];
-                if(!previousDept.equals(currentDept) && previousDept!=""){
-                	depts.add(dept);
-                	dept = new Department();
-                	course = new Course();
-                	//courses = new ArrayList<Course>();
-                }
-                course = new Course();
-                dept.setName(tokens[1]);
-                course.setDepartment(dept);
-            	course.setName(tokens[2]);       	
-            	dept.addCourse(course);
-            	courses.add(course);
-            
-                previousDept = tokens[1];
-            }
-            depts.add(dept);
-        }
-        
-        catch (Exception e) {
-            e.printStackTrace();
-        } 
-        finally
-        {
-            try {
-                fileReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        
-        
+
+		// Input file which needs to be parsed
+		String fileToParse = "All classes2.csv";
+		BufferedReader fileReader = null;
+
+		// Delimiter used in CSV file (this is what separates each piece of
+		// data)
+		final String DELIMITER = ",";
+		try {
+			String line = "";
+			// Create the file reader
+			fileReader = new BufferedReader(new FileReader(fileToParse));
+			String currentDept = "";
+			String previousDept = "";
+			// Read the file line by line
+			while ((line = fileReader.readLine()) != null) {
+
+				// Get all tokens available in line, token[0] is the general
+				// department, token[1] is the sub department and token[2] is
+				// the name of the course
+				String[] tokens = line.split(DELIMITER);
+				currentDept = tokens[1];
+				if (!previousDept.equals(currentDept) && previousDept != "") {
+					depts.add(dept);
+					dept = new Department();
+					course = new Course();
+					// courses = new ArrayList<Course>();
+				}
+				course = new Course();
+				dept.setName(tokens[1]);
+				course.setDepartment(dept);
+				course.setName(tokens[2]);
+				dept.addCourse(course);
+				courses.add(course);
+
+				previousDept = tokens[1];
+			}
+			depts.add(dept);
 		}
 
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				fileReader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
 
 	public Department getDept(String dept) {
-		for(int i = 0; i< this.depts.size(); i++){
-			if(depts.get(i).getName().equals(dept)){
+		for (int i = 0; i < this.depts.size(); i++) {
+			if (depts.get(i).getName().equals(dept)) {
 				return depts.get(i);
 			}
 		}
 		return new Department("Error");
 	}
-
 
 	public void setDept(Department dept) {
 		this.dept = dept;
@@ -95,26 +92,23 @@ private ArrayList<Course> courses;
 		return courses.get(courses.indexOf(course));
 	}
 
-
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-
 
 	public ArrayList<Department> getDepts() {
 		return depts;
 	}
 
-
 	public void setDepts(ArrayList<Department> depts) {
 		this.depts = depts;
 	}
-	
-	public void setCourses(ArrayList<Course> courses){
+
+	public void setCourses(ArrayList<Course> courses) {
 		this.courses = courses;
 	}
-	
-	public ArrayList<Course> getCourses(){
+
+	public ArrayList<Course> getCourses() {
 		return this.courses;
 	}
 }

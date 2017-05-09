@@ -1,32 +1,34 @@
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <html>
-	<head>
-		<title>Account</title>
-		<style type="text/css">
-    		<%@include file="style.css" %>
-    	    	.active {
-				background-color:#096333;
-			}	
-		</style>
+<head>
+		<title>User Account</title>				
+			<style type="text/css">
+    			<%@include file="style.css" %>
+    	    		.active {
+					background-color:#096333;
+					}	    		
+			</style> 
 	</head>
-	<body>
-		<ul>
-  			<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
-  			<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
-  			<c:choose>
-  				<c:when test = "${empty email}">
-  					<li><a href="http://localhost:8081/tjones50/login?from=${pageContext.request.contextPath}/course">Login</a></li>
-  				</c:when>
-  				<c:otherwise>
-  					<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
-  					<li><a href="http://localhost:8081/tjones50/userAccount">Account Information</a></li>
-  					<li><a>Hello, ${email}</a></li>
-  				</c:otherwise>
-  			</c:choose>
-		</ul>
+<body>
+	<ul>
+		<li><a class="active" href="http://localhost:8081/tjones50/index">ClassWise</a></li>
+		<li><a href="http://localhost:8081/tjones50/home">Courses</a></li>
+		<c:choose>
+			<c:when test="${empty email}">
+				<li><a
+					href="http://localhost:8081/tjones50/login?from=${pageContext.request.contextPath}/course">Login</a></li>
+			</c:when>
+			<c:otherwise>
+				<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+				<li><a href="http://localhost:8081/tjones50/userAccount">Account
+						Information</a></li>
+				<li><a>Hello, ${email}</a></li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
 		<form action="${pageContext.request.contextPath}/updateaccount">
 					<button type="submit" class = "giveAdvice">Update Account Information</button>
 						<input name="password" type="hidden" value="${user.email}" />
@@ -85,4 +87,5 @@
 		</c:forEach>
 		<footer><ul><li></li></ul> </footer>
 	</body>
+</body>
 </html>

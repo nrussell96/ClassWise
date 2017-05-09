@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 public class LogoutServlet extends HttpServlet {
@@ -15,6 +14,8 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		System.out.println("In the logout doGet");
+		
+		//get rid of info from session obj
 		req.getSession().invalidate();
 		
 		/*Clears cache to prevent user from going back

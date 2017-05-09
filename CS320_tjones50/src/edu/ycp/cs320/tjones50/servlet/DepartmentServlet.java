@@ -6,15 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.db.persist.DerbyDatabase;
-import edu.ycp.cs320.db.persist.FakeDatabase;
 import edu.ycp.cs320.tjones50.controller.DepartmentController;
-import edu.ycp.cs320.tjones50.model.Course;
-import edu.ycp.cs320.tjones50.model.Data;
 import edu.ycp.cs320.tjones50.model.Department;
-import edu.ycp.cs320.tjones50.model.Home;
 
 public class DepartmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,16 +20,11 @@ public class DepartmentServlet extends HttpServlet {
 		// session info 
 		System.out.println("In the department doGet");
 		
-		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
-
+		//pulled from Dr. Hake's Lab6 example on resources page
+		String email = (String)req.getSession().getAttribute("email");
 		System.out.println("   User: <" + email + "> logged in");
-		
-		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
-
+		String departmentName = (String)req.getSession().getAttribute("departmentName");
 		System.out.println("   Department: <" + departmentName + ">");
-		
-		//String url = req.getHeader("referer");
-		
 		
 		// initialize variables
 		DepartmentController controller = new DepartmentController();
@@ -65,15 +54,13 @@ public class DepartmentServlet extends HttpServlet {
 		// session info 
 		System.out.println("In the department doPost");
 		
-		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
-
-
+		//pulled from Dr. Hake's Lab6 example on resources page
+		String departmentName = (String)req.getSession().getAttribute("departmentName"); 
 		System.out.println("   Department: <" + departmentName + ">");
-		
+
 		// get info from parameters
 		String courseName = req.getParameter("courseName");
 		
-		//String url = req.getParameter("referer");
 		// store courseName obj in session
 		req.getSession().setAttribute("courseName", courseName);
 		

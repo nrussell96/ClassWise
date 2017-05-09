@@ -21,16 +21,12 @@ public class CourseServlet extends HttpServlet {
 		// session info
 		System.out.println("in the course doGet");
 		
-		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
-		
+		//pulled from Dr. Hake's Lab6 example on resources page
+		String email = (String)req.getSession().getAttribute("email"); 
 		System.out.println("   User: <" + email + "> logged in");
-		
-		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
-
+		String departmentName = (String)req.getSession().getAttribute("departmentName");
 		System.out.println("   Department: <" + departmentName + ">");
-		
-		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
-
+		String courseName = (String)req.getSession().getAttribute("courseName");
 		System.out.println("   Course: <" + courseName + ">");
 
 		// initialize variables
@@ -66,11 +62,10 @@ public class CourseServlet extends HttpServlet {
 		System.out.println("In Course Servlet doPost");
 				
 		// get info from parameters
-		String departmentName = (String)req.getSession().getAttribute("departmentName"); //pulled from class example on session info
-
+		//pulled from Dr. Hake's Lab6 example on resources page
+		String departmentName = (String)req.getSession().getAttribute("departmentName");
 		System.out.println("   Departement: <" + departmentName + ">");
-		
-		String courseName = (String)req.getSession().getAttribute("courseName"); //pulled from class example on session info
+		String courseName = (String)req.getSession().getAttribute("courseName"); 
 
 		System.out.println("   Course: <" + courseName + ">");
 		

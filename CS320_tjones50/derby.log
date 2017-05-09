@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon May 08 14:48:47 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-e964-7752-00000638c780 
+on database directory C:\library.db with class loader sun.misc.Launcher$AppClassLoader@4e0e2f2a 
+Loaded from file:/C:/Users/Kyle/Desktop/Code/York%20College/CS320/CS320_Derby/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_60-b27
+user.dir=C:\Users\Kyle\Desktop\Code\York College\CS320\ClassWise\CS320_tjones50
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

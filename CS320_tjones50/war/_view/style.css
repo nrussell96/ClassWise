@@ -228,10 +228,12 @@ button.department{
 	text-align: justify;
 	width: 100%;
     background-color: #096333;
+    border-radius:25px;
     border: none;
     color: white;
-    padding: 25px;
-    margin: 0px;
+    padding: 20px;
+    margin: -5px;
+    margin-left: 0px;
     text-align: left;
     text-decoration: none;
     font-size: 28px;
@@ -262,6 +264,14 @@ button.flags{
     display: inline-block;
     font-size: 12px;
 }
+button.sort{
+    background-color: #096333;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 0px 30px;
+    font-size: 12px;
+}
 button.giveAdvice{
 	float: right;
 	width: 15%;
@@ -273,6 +283,17 @@ button.giveAdviceFade{
 	width: 15%;
 	text-align: center;
 	margin-top:15px;
+}
+button.sortAdvice{
+	background-color: #096333;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 0px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 #flag_content{
 	text-align:right;
@@ -301,6 +322,53 @@ button.giveAdviceFade{
 <!--End giveAdvice-->
 .activateButtons{
 	float: right;
-	}
-	
+}
+<!--Select-box CSS-->
+.select-box{
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+   color:white;
+}
+.select-box select{
+   background-color: #096333;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px;
+   width: 268px;
+   float:left;
+   color:white;
+   margin-left: 35%;
+   margin-right: -35%
+   
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.menuContainer{
+	background-color: #c0c0c0;
+	border-radius: 25px;
+	width: fit;
+	padding: 5px;
+	margin-top:10px;
+	margin-left:-5px;
+}
 	

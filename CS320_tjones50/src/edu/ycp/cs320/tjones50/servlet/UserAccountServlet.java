@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.ycp.cs320.tjones50.controller.HomeController;
 import edu.ycp.cs320.tjones50.controller.UserController;
-import edu.ycp.cs320.tjones50.model.Home;
 import edu.ycp.cs320.tjones50.model.User;
 
 public class UserAccountServlet extends HttpServlet {
@@ -22,8 +20,10 @@ public class UserAccountServlet extends HttpServlet {
 		
 		System.out.println("In the userAccount doGet");
 		
-		String email = (String)req.getSession().getAttribute("email"); //pulled from class example on session info
+		//pulled from Dr. Hake's Lab6 example on resources page
+		String email = (String)req.getSession().getAttribute("email");
 		
+		//session timeout
 		HttpSession session = req.getSession();
 		session.setMaxInactiveInterval(60 * 20); //20 minute session
 		
@@ -64,12 +64,8 @@ public class UserAccountServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the userAccount doPost");
-		// Forward to view to render the result HTML document
 		
-		/*Clears cache to prevent user from going back
-		 * to a previously logged in state after logging out--
-		 * https://coderanch.com/t/351980/java/avoid-caching-JSP-pages
-		 */
+		// Forward to view to render the result HTML document
 		req.getRequestDispatcher("/_view/course.jsp").forward(req, resp);
 	}
 	

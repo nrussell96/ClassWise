@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.tjones50.controller.NumbersController;
 import edu.ycp.cs320.tjones50.model.Numbers;
-
+/*Example pulled from Lab2A Web Apps on the course web page
+ * from Dr. Hake to assist in the structure of our servlets.
+ */
 public class MultNumbersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

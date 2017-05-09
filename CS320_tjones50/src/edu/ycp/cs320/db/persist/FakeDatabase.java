@@ -1,8 +1,9 @@
 package edu.ycp.cs320.db.persist;
-
+/*Example pulled from CS320_Library_Example_2017 on the course web page
+ * from Dr. Hake and modified for our program.
+ */
 import java.util.ArrayList;
 
-import edu.ycp.cs320.tjones50.controller.CourseController;
 import edu.ycp.cs320.tjones50.model.Admin;
 import edu.ycp.cs320.tjones50.model.Advice;
 import edu.ycp.cs320.tjones50.model.Course;
@@ -360,7 +361,13 @@ public class FakeDatabase implements IDatabase {
 	}
 
 	@Override
+
 	public Integer updateUserInformation(User user, String password, String major, double GPA, String classYear) {
+		// TODO Auto-generated method stub
+				return null;
+	}
+
+	public ArrayList<Advice> getCourseAdviceListSortedByOldest(Course course) {
 		// TODO Auto-generated method stub
 		return null;
 	}
