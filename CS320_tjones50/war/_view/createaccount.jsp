@@ -29,7 +29,7 @@
 				</c:otherwise>
 			</c:choose>
 		</ul>
-		<div id="createAccountHeader">Create Account</div>
+		<!--<div id="createAccountHeader">Create Account</div>-->
 		<div id="container">
 			<form action="${pageContext.servletContext.contextPath}/createaccount"
 				method="post">
@@ -64,7 +64,7 @@
 					id="ca_accountButton" type="submit" value="Create Account">
 			</form>
 			<!-- "container" -->
-		</div>
+		<!--</div>-->
 		<div style="color: #FF0000;">${errorMessage}</div>
 	</body>
 </html>
